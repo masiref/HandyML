@@ -1,0 +1,142 @@
+﻿[{
+    "name": "logistic_regression",
+    "printableName": "Logistic Regression",
+    "type": "classification",
+    "parameters": [{
+        "name": "solver",
+        "description": "Algorithm to use in the optimization problem. For small datasets, ‘liblinear’ is a good choice, whereas ‘sag’ and ‘saga’ are faster for large ones. For multiclass problems, only ‘newton-cg’, ‘sag’, ‘saga’ and ‘lbfgs’ handle multinomial loss; ‘liblinear’ is limited to one-versus-rest schemes.",
+        "type": "string",
+        "values": ["newton-cg", "lbfgs", "liblinear", "sag", "saga"],
+        "default": "liblinear"
+    }]
+}, {
+    "name": "knn",
+    "printableName": "K-Nearest Neighbors",
+    "type": "classification",
+    "parameters": [{
+        "name": "n_neighbors",
+        "description": "Number of neighbors to use by default for kneighbors queries.",
+        "type": "int",
+        "default": 5
+    }]
+}, {
+    "name": "svm",
+    "printableName": "Support Vector Machine",
+    "type": "classification",
+    "parameters": [{
+        "name": "kernel",
+        "description": "Specifies the kernel type to be used in the algorithm.",
+        "type": "string",
+        "values": ["linear", "poly", "rbf", "sigmoid"],
+        "default": "rbf"
+    }, {
+        "name": "gamma",
+        "description": "The higher the gamma value it tries to exactly fit the training data set.",
+        "type": "float",
+        "default": 0.1
+    }]
+}, {
+    "name": "kernel_svm",
+    "printableName": "Kernel Support Vector Machine",
+    "type": "classification",
+    "parameters": [{
+        "name": "kernel",
+        "description": "Specifies the kernel type to be used in the algorithm.",
+        "type": "string",
+        "values": ["linear", "poly", "rbf", "sigmoid"],
+        "default": "rbf"
+    }, {
+        "name": "degree",
+        "description": "Degree of the polynomial kernel function (‘poly’). Ignored by all other kernels.",
+        "type": "int",
+        "default": 2
+    }, {
+        "name": "gamma",
+        "description": "The higher the gamma value it tries to exactly fit the training data set.",
+        "type": "float",
+        "default": 0.1
+     }]
+
+}, {
+    "name": "naive_bayes",
+    "printableName": "Naive Bayes",
+    "type": "classification"
+}, {
+    "name": "decision_tree_classification",
+    "printableName": "Decision Tree Classification",
+    "type": "classification",
+    "parameters": [{
+        "name": "criterion",
+        "description": "The function to measure the quality of a split. Supported criteria are 'gini' for the Gini impurity and 'entropy' for the information gain.",
+        "type": "string",
+        "values": ["gini", "entropy"],
+        "default": "gini"
+    }, {
+        "name": "splitter",
+        "description": "The strategy used to choose the split at each node. Supported strategies are 'best' to choose the best split and 'random' to choose the best random split.",
+        "type": "string",
+        "values": ["best", "random"],
+        "default": "best"
+    }]
+}, {
+    "name": "random_forest_classification",
+    "printableName": "Random Forest Classification",
+    "type": "classification",
+    "parameters": [{
+        "name": "criterion",
+        "description": "The function to measure the quality of a split. Supported criteria are 'gini' for the Gini impurity and 'entropy' for the information gain.",
+        "type": "string",
+        "values": ["gini", "entropy"],
+        "default": "gini"
+    }, {
+        "name": "n_estimators",
+        "description": "The number of trees in the forest.",
+        "type": "int",
+        "default": 10
+    }]
+}, {
+    "name": "linear_regression",
+    "printableName": "Linear Regression",
+    "type": "regression"
+}, {
+    "name": "support_vector_regression",
+    "printableName": "Support Vector Regression",
+    "type": "regression"
+}, {
+    "name": "polynomial_regression",
+    "printableName": "Polynomial Regression",
+    "type": "regression",
+    "parameters": [{
+        "name": "degree",
+        "description": "The degree of the polynomial features.",
+        "type": "int",
+        "default": 2
+    }]
+}, {
+    "name": "decision_tree_regression",
+    "printableName": "Decision Tree Regression",
+    "type": "regression",
+    "parameters": [{
+        "name": "criterion",
+        "description": "The function to measure the quality of a split. Supported criteria are “mse” for the mean squared error, which is equal to variance reduction as feature selection criterion and minimizes the L2 loss using the mean of each terminal node, “friedman_mse”, which uses mean squared error with Friedman’s improvement score for potential splits, and “mae” for the mean absolute error, which minimizes the L1 loss using the median of each terminal node.",
+        "type": "string",
+        "values": ["mse", "friedman_mse", "mae"],
+        "default": "mse"
+    }]
+}, {
+    "name": "random_forest_regression",
+    "printableName": "Random Forest Regression",
+    "type": "regression",
+    "parameters": [{
+        "name": "criterion",
+        "description": "The function to measure the quality of a split. Supported criteria are “mse” for the mean squared error, which is equal to variance reduction as feature selection criterion and minimizes the L2 loss using the mean of each terminal node, “friedman_mse”, which uses mean squared error with Friedman’s improvement score for potential splits, and “mae” for the mean absolute error, which minimizes the L1 loss using the median of each terminal node.",
+        "type": "string",
+        "values": ["mse", "friedman_mse", "mae"],
+        "default": "mse"
+    }, {
+        "name": "n_estimators",
+        "description": "The number of trees in the forest.",
+        "type": "int",
+        "default": 10
+    }]
+}]

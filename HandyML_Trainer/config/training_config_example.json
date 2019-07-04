@@ -1,0 +1,45 @@
+{
+	"__comment": "This JSON file is used to configure the data preprocessing phase.",
+	"data": {
+		"__comment": "Data should be formatted in an Excel file (.xlsx) on one sheet.",
+		"path": "C:\\Users\\fofanama1\\machine-learning\\uipath_challenge\\Machine_Learning_For_Non_Datascientists\\data\\1.xlsx",
+		"sheet" : {
+			"__comment": "Name of the sheet and existence of headers (true or false, default value is false).",
+			"name": "50_Startups",
+			"headers": true
+		}
+	},
+	"features": {
+		"__comment": "Please specify the indices (zero-based) of relevant columns used as features. The column data type (String, Float, Integer, Boolean, default is String) and if it contains categorical data (true or false, default value is false) must be specified.",
+		"indices": [{
+			"index": 0,
+			"categorical": false,
+		}, {
+			"index": 1,
+			"categorical": false,
+		},{
+			"index": 2,
+			"categorical": false,
+		},{
+			"index": 3,
+			"categorical": true,
+		}]
+	},
+	"targets": {
+		"__comment": "Please specify the indices (zero-based) of relevant columns used as targets. The column data type (String, Float, Integer, Boolean, default is String) and if it contains categorical data (true for classification problems or false for regression ones, default value is false) must be specified.",
+		"__note": "At this time, only one target could be defined.",
+		"indices": [{
+			"index": 4,
+			"categorical": false
+		}]
+	},
+	"algorithm": {
+		"__comment": "Please specify the algorithm and its parameters if necessary.",
+		"__note": "The list of available algorithms and parameters is defined in resources/Algorithm_Definitions.json file.",
+		"name": "polynomial_regression",
+		"parameters": [{
+			"name": "degree",
+			"value": 3
+		}]
+	}
+}

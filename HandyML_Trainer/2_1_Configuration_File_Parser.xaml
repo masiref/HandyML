@@ -1,0 +1,279 @@
+<Activity mc:Ignorable="sap sap2010" x:Class="Main" this:Main.argIn_str_OutputFilePath="C:\Users\fofanama1\machine-learning\uipath_challenge\Machine_Learning_For_Non_Datascientists\data\config_29062019015306.csv" this:Main.argIn_str_ConfigurationFilePath="C:\Users\fofanama1\machine-learning\uipath_challenge\Machine_Learning_For_Non_Datascientists\data\config_29062019015306.json" xmlns="http://schemas.microsoft.com/netfx/2009/xaml/activities" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:mva="clr-namespace:Microsoft.VisualBasic.Activities;assembly=System.Activities" xmlns:njl="clr-namespace:Newtonsoft.Json.Linq;assembly=Newtonsoft.Json" xmlns:s="clr-namespace:System;assembly=mscorlib" xmlns:sap="http://schemas.microsoft.com/netfx/2009/xaml/activities/presentation" xmlns:sap2010="http://schemas.microsoft.com/netfx/2010/xaml/activities/presentation" xmlns:scg="clr-namespace:System.Collections.Generic;assembly=mscorlib" xmlns:sco="clr-namespace:System.Collections.ObjectModel;assembly=mscorlib" xmlns:this="clr-namespace:" xmlns:ui="http://schemas.uipath.com/workflow/activities" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+  <x:Members>
+    <x:Property Name="argIn_str_OutputFilePath" Type="InArgument(x:String)" />
+    <x:Property Name="argOut_str_Features" Type="OutArgument(x:String)" />
+    <x:Property Name="argOut_str_CategoricalFeatures" Type="OutArgument(x:String)" />
+    <x:Property Name="argOut_str_Targets" Type="OutArgument(x:String)" />
+    <x:Property Name="argOut_str_CategoricalTargets" Type="OutArgument(x:String)" />
+    <x:Property Name="argIn_str_ConfigurationFilePath" Type="InArgument(x:String)" />
+    <x:Property Name="argOut_str_Algorithm" Type="OutArgument(x:String)" />
+    <x:Property Name="argOut_str_AlgorithmParameters" Type="OutArgument(x:String)" />
+  </x:Members>
+  <mva:VisualBasic.Settings>
+    <x:Null />
+  </mva:VisualBasic.Settings>
+  <sap:VirtualizedContainerService.HintSize>476,2418</sap:VirtualizedContainerService.HintSize>
+  <sap2010:WorkflowViewState.IdRef>Main_1</sap2010:WorkflowViewState.IdRef>
+  <TextExpression.NamespacesForImplementation>
+    <sco:Collection x:TypeArguments="x:String">
+      <x:String>System.Activities</x:String>
+      <x:String>System.Activities.Statements</x:String>
+      <x:String>System.Activities.Expressions</x:String>
+      <x:String>System.Activities.Validation</x:String>
+      <x:String>System.Activities.XamlIntegration</x:String>
+      <x:String>Microsoft.VisualBasic</x:String>
+      <x:String>Microsoft.VisualBasic.Activities</x:String>
+      <x:String>System</x:String>
+      <x:String>System.Collections</x:String>
+      <x:String>System.Collections.Generic</x:String>
+      <x:String>System.Data</x:String>
+      <x:String>System.Diagnostics</x:String>
+      <x:String>System.Drawing</x:String>
+      <x:String>System.IO</x:String>
+      <x:String>System.Linq</x:String>
+      <x:String>System.Net.Mail</x:String>
+      <x:String>System.Xml</x:String>
+      <x:String>System.Xml.Linq</x:String>
+      <x:String>UiPath.Core</x:String>
+      <x:String>UiPath.Core.Activities</x:String>
+      <x:String>System.Windows.Markup</x:String>
+      <x:String>Newtonsoft.Json.Linq</x:String>
+      <x:String>Newtonsoft.Json</x:String>
+    </sco:Collection>
+  </TextExpression.NamespacesForImplementation>
+  <TextExpression.ReferencesForImplementation>
+    <sco:Collection x:TypeArguments="AssemblyReference">
+      <AssemblyReference>System.Activities</AssemblyReference>
+      <AssemblyReference>Microsoft.VisualBasic</AssemblyReference>
+      <AssemblyReference>mscorlib</AssemblyReference>
+      <AssemblyReference>System.Data</AssemblyReference>
+      <AssemblyReference>System</AssemblyReference>
+      <AssemblyReference>System.Drawing</AssemblyReference>
+      <AssemblyReference>System.Core</AssemblyReference>
+      <AssemblyReference>System.Xml</AssemblyReference>
+      <AssemblyReference>System.Xml.Linq</AssemblyReference>
+      <AssemblyReference>PresentationFramework</AssemblyReference>
+      <AssemblyReference>WindowsBase</AssemblyReference>
+      <AssemblyReference>PresentationCore</AssemblyReference>
+      <AssemblyReference>System.Xaml</AssemblyReference>
+      <AssemblyReference>Newtonsoft.Json</AssemblyReference>
+      <AssemblyReference>System.ComponentModel.Composition</AssemblyReference>
+      <AssemblyReference>System.ServiceModel</AssemblyReference>
+      <AssemblyReference>UiPath.IntelligentOCR</AssemblyReference>
+      <AssemblyReference>UiPath.Python</AssemblyReference>
+      <AssemblyReference>Microsoft.VisualStudio.Services.Common</AssemblyReference>
+      <AssemblyReference>UiPath.System.Activities</AssemblyReference>
+      <AssemblyReference>UiPath.UiAutomation.Activities</AssemblyReference>
+      <AssemblyReference>System.ValueTuple</AssemblyReference>
+      <AssemblyReference>UiPath.Excel</AssemblyReference>
+      <AssemblyReference>UiPath.Mail</AssemblyReference>
+      <AssemblyReference>UiPath.Word</AssemblyReference>
+    </sco:Collection>
+  </TextExpression.ReferencesForImplementation>
+  <Sequence DisplayName="2_1_Configuration_File_Parser" sap:VirtualizedContainerService.HintSize="436,2338" sap2010:WorkflowViewState.IdRef="Sequence_1">
+    <Sequence.Variables>
+      <Variable x:TypeArguments="x:String" Name="str_ConfigurationJSON" />
+      <Variable x:TypeArguments="njl:JObject" Name="jobject_Configuration" />
+    </Sequence.Variables>
+    <sap:WorkflowViewStateService.ViewState>
+      <scg:Dictionary x:TypeArguments="x:String, x:Object">
+        <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+      </scg:Dictionary>
+    </sap:WorkflowViewStateService.ViewState>
+    <ui:Comment sap:VirtualizedContainerService.HintSize="414,55" sap2010:WorkflowViewState.IdRef="Comment_1" Text="//////////// Configuration file parser helps to:" />
+    <ui:Comment sap:VirtualizedContainerService.HintSize="414,74" sap2010:WorkflowViewState.IdRef="Comment_2" Text="// 1 - Generate a CSV file from an Excel file (.xlsx)" />
+    <ui:Comment sap:VirtualizedContainerService.HintSize="414,131" sap2010:WorkflowViewState.IdRef="Comment_3" Text="// 2 - Produce lists of features, categorical features, targets and categorical targets indices needed to train a regression or classification machine learning model (artifacts)" />
+    <ui:Comment sap:VirtualizedContainerService.HintSize="414,74" sap2010:WorkflowViewState.IdRef="Comment_11" Text="// 3 - Give information about the ML algorithm to use and its possible parameters" />
+    <ui:Comment sap:VirtualizedContainerService.HintSize="414,55" sap2010:WorkflowViewState.IdRef="Comment_4" Text="//////////// Arguments" />
+    <ui:Comment sap:VirtualizedContainerService.HintSize="414,93" sap2010:WorkflowViewState.IdRef="Comment_5" Text="// In =&gt; ConfigurationFilePath: Path of the configuration file containing all information for artifacts extractions" />
+    <ui:Comment sap:VirtualizedContainerService.HintSize="414,93" sap2010:WorkflowViewState.IdRef="Comment_6" Text="// In =&gt; OutputFilePath: Path of output file needed for machine learning preprocessing phase, usually a .csv file" />
+    <ui:Comment sap:VirtualizedContainerService.HintSize="414,74" sap2010:WorkflowViewState.IdRef="Comment_7" Text="// Out =&gt; Features: Column indices of features" />
+    <ui:Comment sap:VirtualizedContainerService.HintSize="414,93" sap2010:WorkflowViewState.IdRef="Comment_8" Text="// Out =&gt; CategoricalFeatures: Column indices of categorical features (in order to do label encoding)" />
+    <ui:Comment sap:VirtualizedContainerService.HintSize="414,55" sap2010:WorkflowViewState.IdRef="Comment_9" Text="// Out =&gt; Targets: Column indices of targets" />
+    <ui:Comment sap:VirtualizedContainerService.HintSize="414,93" sap2010:WorkflowViewState.IdRef="Comment_10" Text="// Out =&gt; CategoricalTargets: Column indices of categorical targets (in order to do label encoding)" />
+    <ui:Comment sap:VirtualizedContainerService.HintSize="414,74" sap2010:WorkflowViewState.IdRef="Comment_12" Text="// Out =&gt; Algorithm: ML Algorithm to use with its parameters if necessary" />
+    <ui:LogMessage DisplayName="Log message" sap:VirtualizedContainerService.HintSize="414,91" sap2010:WorkflowViewState.IdRef="LogMessage_3" Level="Trace" Message="=== Starting parsing of configuration file">
+      <sap:WorkflowViewStateService.ViewState>
+        <scg:Dictionary x:TypeArguments="x:String, x:Object">
+          <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+          <x:Boolean x:Key="IsPinned">False</x:Boolean>
+        </scg:Dictionary>
+      </sap:WorkflowViewStateService.ViewState>
+    </ui:LogMessage>
+    <TryCatch DisplayName="Try catch" sap:VirtualizedContainerService.HintSize="414,508" sap2010:WorkflowViewState.IdRef="TryCatch_1">
+      <sap:WorkflowViewStateService.ViewState>
+        <scg:Dictionary x:TypeArguments="x:String, x:Object">
+          <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+          <x:Boolean x:Key="IsPinned">False</x:Boolean>
+        </scg:Dictionary>
+      </sap:WorkflowViewStateService.ViewState>
+      <TryCatch.Try>
+        <Sequence sap:VirtualizedContainerService.HintSize="569,2562" sap2010:WorkflowViewState.IdRef="Sequence_3">
+          <Sequence.Variables>
+            <Variable x:TypeArguments="x:Boolean" Name="bool_ConfigurationFileExists" />
+            <Variable x:TypeArguments="scg:List(x:Int32)" Name="list_Features" />
+            <Variable x:TypeArguments="scg:List(x:Int32)" Name="list_CategoricalFeatures" />
+            <Variable x:TypeArguments="scg:List(x:Int32)" Name="list_CategoricalTargets" />
+            <Variable x:TypeArguments="scg:List(x:Int32)" Name="list_Targets" />
+            <Variable x:TypeArguments="x:String" Name="str_Algorithm" />
+            <Variable x:TypeArguments="scg:Dictionary(x:String, x:Object)" Name="dict_AlgorithmParameters" />
+            <Variable x:TypeArguments="x:Int32" Name="int_Index" />
+          </Sequence.Variables>
+          <sap:WorkflowViewStateService.ViewState>
+            <scg:Dictionary x:TypeArguments="x:String, x:Object">
+              <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+            </scg:Dictionary>
+          </sap:WorkflowViewStateService.ViewState>
+          <ui:LogMessage DisplayName="Log message" sap:VirtualizedContainerService.HintSize="547,91" sap2010:WorkflowViewState.IdRef="LogMessage_2" Level="Trace" Message="[String.Format(&quot;&gt; Configuration file path: {0}&quot;, argIn_str_ConfigurationFilePath)]" />
+          <ui:PathExists Exists="{x:Null}" DisplayName="Path exists" sap:VirtualizedContainerService.HintSize="547,89" sap2010:WorkflowViewState.IdRef="PathExists_1" Path="[argIn_str_ConfigurationFilePath]" PathType="File" />
+          <ui:ReadTextFile Content="[str_ConfigurationJSON]" DisplayName="Read text file" FileName="[argIn_str_ConfigurationFilePath]" sap:VirtualizedContainerService.HintSize="547,59" sap2010:WorkflowViewState.IdRef="ReadTextFile_1" />
+          <ui:DeserializeJson x:TypeArguments="njl:JObject" DisplayName="Deserialize json" sap:VirtualizedContainerService.HintSize="547,60" sap2010:WorkflowViewState.IdRef="DeserializeJson`1_1" JsonObject="[jobject_Configuration]" JsonString="[str_ConfigurationJSON]" />
+          <ui:InvokeWorkflowFile ContinueOnError="{x:Null}" DisplayName="Parse configuration file" sap:VirtualizedContainerService.HintSize="547,87" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_1" UnSafe="False" WorkflowFileName="workflows\Parse_Configuration.xaml">
+            <ui:InvokeWorkflowFile.Arguments>
+              <InArgument x:TypeArguments="njl:JObject" x:Key="argIn_jobject_Configuration">[jobject_Configuration]</InArgument>
+              <InArgument x:TypeArguments="x:String" x:Key="argIn_str_OutputFilePath">[argIn_str_OutputFilePath]</InArgument>
+              <OutArgument x:TypeArguments="scg:List(x:Int32)" x:Key="argOut_list_Features">[list_Features]</OutArgument>
+              <OutArgument x:TypeArguments="scg:List(x:Int32)" x:Key="argOut_list_Targets">[list_Targets]</OutArgument>
+              <OutArgument x:TypeArguments="scg:List(x:Int32)" x:Key="argOut_list_CategoricalFeatures">[list_CategoricalFeatures]</OutArgument>
+              <OutArgument x:TypeArguments="scg:List(x:Int32)" x:Key="argOut_list_CategoricalTargets">[list_CategoricalTargets]</OutArgument>
+              <OutArgument x:TypeArguments="x:String" x:Key="argOut_str_Algorithm">[str_Algorithm]</OutArgument>
+              <OutArgument x:TypeArguments="scg:Dictionary(x:String, x:Object)" x:Key="argOut_dict_AlgorithmParameters">[dict_AlgorithmParameters]</OutArgument>
+            </ui:InvokeWorkflowFile.Arguments>
+          </ui:InvokeWorkflowFile>
+          <Assign sap:VirtualizedContainerService.HintSize="547,60" sap2010:WorkflowViewState.IdRef="Assign_1">
+            <Assign.To>
+              <OutArgument x:TypeArguments="x:String">[argOut_str_Features]</OutArgument>
+            </Assign.To>
+            <Assign.Value>
+              <InArgument x:TypeArguments="x:String">[String.Join(" ", list_Features).Trim]</InArgument>
+            </Assign.Value>
+          </Assign>
+          <Assign sap:VirtualizedContainerService.HintSize="547,60" sap2010:WorkflowViewState.IdRef="Assign_2">
+            <Assign.To>
+              <OutArgument x:TypeArguments="x:String">[argOut_str_CategoricalFeatures]</OutArgument>
+            </Assign.To>
+            <Assign.Value>
+              <InArgument x:TypeArguments="x:String">[If(list_CategoricalFeatures.Count &gt; 0, String.Join(" ", list_CategoricalFeatures).Trim, "")]</InArgument>
+            </Assign.Value>
+          </Assign>
+          <Assign sap:VirtualizedContainerService.HintSize="547,60" sap2010:WorkflowViewState.IdRef="Assign_3">
+            <Assign.To>
+              <OutArgument x:TypeArguments="x:String">[argOut_str_Targets]</OutArgument>
+            </Assign.To>
+            <Assign.Value>
+              <InArgument x:TypeArguments="x:String">[String.Join(" ", list_Targets).Trim]</InArgument>
+            </Assign.Value>
+          </Assign>
+          <Assign sap:VirtualizedContainerService.HintSize="547,60" sap2010:WorkflowViewState.IdRef="Assign_4">
+            <Assign.To>
+              <OutArgument x:TypeArguments="x:String">[argOut_str_CategoricalTargets]</OutArgument>
+            </Assign.To>
+            <Assign.Value>
+              <InArgument x:TypeArguments="x:String">[If(list_CategoricalTargets.Count &gt; 0, String.Join(" ", list_CategoricalTargets).Trim, "")]</InArgument>
+            </Assign.Value>
+          </Assign>
+          <Assign sap:VirtualizedContainerService.HintSize="547,60" sap2010:WorkflowViewState.IdRef="Assign_5">
+            <Assign.To>
+              <OutArgument x:TypeArguments="x:String">[argOut_str_Algorithm]</OutArgument>
+            </Assign.To>
+            <Assign.Value>
+              <InArgument x:TypeArguments="x:String">[str_Algorithm]</InArgument>
+            </Assign.Value>
+          </Assign>
+          <Assign sap:VirtualizedContainerService.HintSize="547,60" sap2010:WorkflowViewState.IdRef="Assign_6">
+            <Assign.To>
+              <OutArgument x:TypeArguments="x:String">[argOut_str_AlgorithmParameters]</OutArgument>
+            </Assign.To>
+            <Assign.Value>
+              <InArgument x:TypeArguments="x:String">
+                <Literal x:TypeArguments="x:String" Value="" />
+              </InArgument>
+            </Assign.Value>
+          </Assign>
+          <ui:ForEach x:TypeArguments="scg:KeyValuePair(x:String, x:Object)" CurrentIndex="[int_Index]" DisplayName="For Each" sap:VirtualizedContainerService.HintSize="547,466" sap2010:WorkflowViewState.IdRef="ForEach`1_1" Values="[dict_AlgorithmParameters]">
+            <ui:ForEach.Body>
+              <ActivityAction x:TypeArguments="scg:KeyValuePair(x:String, x:Object)">
+                <ActivityAction.Argument>
+                  <DelegateInArgument x:TypeArguments="scg:KeyValuePair(x:String, x:Object)" Name="parameter" />
+                </ActivityAction.Argument>
+                <Sequence DisplayName="Body" sap:VirtualizedContainerService.HintSize="531,332" sap2010:WorkflowViewState.IdRef="Sequence_4">
+                  <sap:WorkflowViewStateService.ViewState>
+                    <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                      <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                    </scg:Dictionary>
+                  </sap:WorkflowViewStateService.ViewState>
+                  <If Condition="[int_Index &gt; 0]" sap:VirtualizedContainerService.HintSize="509,208" sap2010:WorkflowViewState.IdRef="If_1">
+                    <If.Then>
+                      <Assign sap:VirtualizedContainerService.HintSize="242,60" sap2010:WorkflowViewState.IdRef="Assign_7">
+                        <Assign.To>
+                          <OutArgument x:TypeArguments="x:String">[argOut_str_AlgorithmParameters]</OutArgument>
+                        </Assign.To>
+                        <Assign.Value>
+                          <InArgument x:TypeArguments="x:String">[argOut_str_AlgorithmParameters + String.Format(", {0}={1}", parameter.Key, parameter.Value.ToString)]</InArgument>
+                        </Assign.Value>
+                      </Assign>
+                    </If.Then>
+                    <If.Else>
+                      <Assign sap:VirtualizedContainerService.HintSize="242,60" sap2010:WorkflowViewState.IdRef="Assign_8">
+                        <Assign.To>
+                          <OutArgument x:TypeArguments="x:String">[argOut_str_AlgorithmParameters]</OutArgument>
+                        </Assign.To>
+                        <Assign.Value>
+                          <InArgument x:TypeArguments="x:String">[String.Format("{0}={1}", parameter.Key, parameter.Value.ToString)]</InArgument>
+                        </Assign.Value>
+                      </Assign>
+                    </If.Else>
+                  </If>
+                </Sequence>
+              </ActivityAction>
+            </ui:ForEach.Body>
+            <sap:WorkflowViewStateService.ViewState>
+              <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                <x:Boolean x:Key="IsPinned">False</x:Boolean>
+              </scg:Dictionary>
+            </sap:WorkflowViewStateService.ViewState>
+          </ui:ForEach>
+          <ui:LogMessage DisplayName="Log Message" sap:VirtualizedContainerService.HintSize="547,91" sap2010:WorkflowViewState.IdRef="LogMessage_5" Level="Trace" Message="[String.Format(&quot;Features: {0}&quot;, argOut_str_Features)]" />
+          <ui:LogMessage DisplayName="Log Message" sap:VirtualizedContainerService.HintSize="547,91" sap2010:WorkflowViewState.IdRef="LogMessage_6" Level="Trace" Message="[String.Format(&quot;Categorical features: {0}&quot;, argOut_str_CategoricalFeatures)]" />
+          <ui:LogMessage DisplayName="Log Message" sap:VirtualizedContainerService.HintSize="547,91" sap2010:WorkflowViewState.IdRef="LogMessage_7" Level="Trace" Message="[String.Format(&quot;Targets: {0}&quot;, argOut_str_Targets)]" />
+          <ui:LogMessage DisplayName="Log Message" sap:VirtualizedContainerService.HintSize="547,91" sap2010:WorkflowViewState.IdRef="LogMessage_8" Level="Trace" Message="[String.Format(&quot;Categorical targets: {0}&quot;, argOut_str_CategoricalTargets)]" />
+          <ui:LogMessage DisplayName="Log Message" sap:VirtualizedContainerService.HintSize="547,91" sap2010:WorkflowViewState.IdRef="LogMessage_9" Level="Trace" Message="[String.Format(&quot;Algorihtm: {0}&quot;, argOut_str_Algorithm)]" />
+          <ui:LogMessage DisplayName="Log Message" sap:VirtualizedContainerService.HintSize="547,91" sap2010:WorkflowViewState.IdRef="LogMessage_10" Level="Trace" Message="[String.Format(&quot;Algorithm parameters: {0}&quot;, argOut_str_AlgorithmParameters)]" />
+        </Sequence>
+      </TryCatch.Try>
+      <TryCatch.Catches>
+        <Catch x:TypeArguments="s:Exception" sap:VirtualizedContainerService.HintSize="400,346" sap2010:WorkflowViewState.IdRef="Catch`1_1">
+          <sap:WorkflowViewStateService.ViewState>
+            <scg:Dictionary x:TypeArguments="x:String, x:Object">
+              <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+              <x:Boolean x:Key="IsPinned">False</x:Boolean>
+            </scg:Dictionary>
+          </sap:WorkflowViewStateService.ViewState>
+          <ActivityAction x:TypeArguments="s:Exception">
+            <ActivityAction.Argument>
+              <DelegateInArgument x:TypeArguments="s:Exception" Name="exception" />
+            </ActivityAction.Argument>
+            <Sequence sap:VirtualizedContainerService.HintSize="336,277" sap2010:WorkflowViewState.IdRef="Sequence_5">
+              <sap:WorkflowViewStateService.ViewState>
+                <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                  <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                </scg:Dictionary>
+              </sap:WorkflowViewStateService.ViewState>
+              <ui:LogMessage DisplayName="Log message" sap:VirtualizedContainerService.HintSize="314,91" sap2010:WorkflowViewState.IdRef="LogMessage_1" Level="Error" Message="[String.Format(&quot;Error raised during Configuration file parsing: {0}&quot;, exception.Message)]" />
+              <Rethrow sap:VirtualizedContainerService.HintSize="314,22" sap2010:WorkflowViewState.IdRef="Rethrow_1" />
+            </Sequence>
+          </ActivityAction>
+        </Catch>
+      </TryCatch.Catches>
+    </TryCatch>
+    <ui:LogMessage DisplayName="Log message" sap:VirtualizedContainerService.HintSize="414,91" sap2010:WorkflowViewState.IdRef="LogMessage_4" Level="Trace" Message="=== End of configuration file parsing">
+      <sap:WorkflowViewStateService.ViewState>
+        <scg:Dictionary x:TypeArguments="x:String, x:Object">
+          <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+          <x:Boolean x:Key="IsPinned">False</x:Boolean>
+        </scg:Dictionary>
+      </sap:WorkflowViewStateService.ViewState>
+    </ui:LogMessage>
+  </Sequence>
+</Activity>

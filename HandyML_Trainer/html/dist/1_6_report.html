@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+    <link href="https://fonts.googleapis.com/css?family=Muli:300,400,700&display=swap" rel="stylesheet">
+
+    <title>6. Report</title>
+<link href="css/style.css" rel="stylesheet"></head>
+
+<body>
+    <div class="ui container">
+        <header class="top header">
+            <div class="header__text-box">
+                <h1 class="heading-primary">
+                    <span class="heading-primary--main">6. Report</span>
+                    <span class="heading-primary--sub">Here are the results of your training</span>
+                </h1>
+            </div>
+        </header>
+        <main class="main">
+            <div class="ui icon success message">
+                <i class="download icon"></i>
+                <div class="content">
+                    <div class="header">
+                        Model saved successfully
+                    </div>
+                    <p>
+                        This trained model has been successfully saved at location <span class="highlighted-text" id="model-path-text"></span>.<br>
+                        You'll also find training results in a JSON file located <span class="highlighted-text" id="results-path-text"></span>.
+                    </p>
+                </div>
+            </div>
+            <form action="#" class="form">
+                <input type="hidden" id="model-path" value="{model-path}">
+                <input type="hidden" id="results-path" value="{results-path}">
+                <input type="hidden" id="template-path" value="{template-path}">
+                <input type="hidden" id="score" value="{score}">
+                <input type="hidden" id="duration" value="{duration}">
+                <input type="hidden" id="observations" value="{observations}">
+                <input type="hidden" id="plot-training-results" value="{plot-training-results}">
+                <input type="hidden" id="plot-test-results" value="{plot-test-results}">
+                <input type="hidden" id="confusion-matrix" value="{confusion-matrix}">
+
+                <h2 class="heading-secondary">
+                    <i class="magic icon heading-secondary__icon"></i>
+                    Training results
+                </h2>
+                <div class="ui three statistics">
+                    <div class="statistic">
+                        <div class="value">
+                            <i class="chart bar icon"></i> <span id="score-text"></span> %
+                        </div>
+                        <div class="label">
+                            Score
+                        </div>
+                    </div>
+                    <div class="statistic">
+                        <div class="value">
+                            <i class="stopwatch icon"></i> <span id="duration-text"></span>
+                        </div>
+                        <div class="label">
+                            Duration
+                        </div>
+                    </div>
+                    <div class="statistic">
+                        <div class="value">
+                            <i class="database icon"></i> <span id="observations-text"></span>
+                        </div>
+                        <div class="label">
+                            Observations
+                        </div>
+                    </div>
+                </div>
+                <div class="plots-container u-margin-top-medium" id="plots-container" style="display: none;">
+                    <h2 class="heading-secondary">
+                        <i class="chart area icon heading-secondary__icon"></i>
+                        Plots
+                    </h2>
+                    <div class="plots" id="plots"></div>
+                </div>
+                <div class="confusion-matric-container u-margin-top-medium" id="confusion-matrix-container" style="display: none">
+                    <h2 class="heading-secondary">
+                        <i class="table icon heading-secondary__icon"></i>
+                        Confusion matrix
+                    </h2>
+                </div>
+                <div class="ui icon info message">
+                    <i class="copy icon"></i>
+                    <div class="content">
+                        <div class="header">
+                            Predictor template
+                        </div>
+                        <p>
+                            You can generate a template to use it with <span class="highlighted-text">HandyML Predictor</span>.
+                            By clicking on the button below, a template will be generated containing all needed information to use this trained model on new data.
+                            Then, fill it with the path of the new data on which you want to make predictions.<br><br>
+                            Template file will be saved at location <span class="highlighted-text" id="template-path-text"></span>.
+                        </p>
+
+                        <div class="form__group">
+                            <a href="#" class="btn btn--primary" id="generate-template">
+                                <i class="copy icon"></i>
+                                <span class="btn__text">Generate template</span>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </form>
+        </main>
+        <footer class="footer">
+            HandyML / Machine Learning for non-datascientists | PowerUp Automation 2019<br>
+            Proudly developed by
+            <a href="mailto:masire.fofana@natixis.com" class="footer__link highlighted-text highlighted-text--grey">Masire Fofana</a> &amp;
+            <a href="mailto:chabnichab@eisti.eu" class="footer__link highlighted-text highlighted-text--grey">Chabane Chabni</a><br>
+            <a href="https://github.com/masiref/HandyML" class="footer__link highlighted-text highlighted-text--grey">
+                <i class="github icon"></i> Follow us on Github
+            </a>
+        </footer>
+    </div>
+<script type="text/javascript" src="js/bundle.js"></script></body>
+
+</html>

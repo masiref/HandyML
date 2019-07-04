@@ -1,0 +1,4 @@
+.local/
+.screenshots/
+~*.xaml
+workflows/~*.xaml

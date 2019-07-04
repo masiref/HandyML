@@ -1,0 +1,27 @@
+{
+	"__comment": "This JSON file is used to configure the data preprocessing phase.",
+	"data": {
+		"__comment": "Data should be formatted in an Excel file (.xlsx) on one sheet.",
+		"path": "",
+		"sheet" : {
+			"__comment": "Name of the sheet and existence of headers (true or false, default value is false).",
+			"name": "",
+			"headers": false
+		}
+	},
+	"features": {
+		"__comment": "Please specify the indices (zero-based) of relevant columns used as features. The column data type (String, Float, Integer, Boolean, default is String) and if it contains categorical data (true or false, default value is false) must be specified.",
+		"indices": []
+	},
+	"targets": {
+		"__comment": "Please specify the indices (zero-based) of relevant columns used as targets. The column data type (String, Float, Integer, Boolean, default is String) and if it contains categorical data (true for classification problems or false for regression ones, default value is false) must be specified.",
+		"__note": "At this time, only one target could be defined.",
+		"indices": []
+	},
+	"algorithm": {
+		"__comment": "Please specify the algorithm and its parameters if necessary.",
+		"__note": "The list of available algorithms and parameters is defined in resources/Algorithm_Definitions.json file.",
+		"name": "",
+		"parameters": []
+	}
+}

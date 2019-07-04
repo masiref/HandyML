@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+    <link href="https://fonts.googleapis.com/css?family=Muli:300,400,700&display=swap" rel="stylesheet">
+
+    <title>1. Where is your data?</title>
+<link href="css/style.css" rel="stylesheet"></head>
+
+<body class="bg">
+    <div class="ui container">
+        <header class="top header">
+            <div class="header__text-box">
+                <h1 class="heading-primary">
+                    <span class="heading-primary--main">1. Where is your data?</span>
+                    <span class="heading-primary--sub">Specify the location of your data</span>
+                </h1>
+            </div>
+        </header>
+        <main class="main">
+            <div class="ui icon info message">
+                <i class="info circle icon"></i>
+                <div class="content">
+                    <div class="header">
+                        How my data should be organized?
+                    </div>
+                    <p>
+                        Your data should be well formatted in an Excel file (.xlsx) on one sheet. You can have an unlimited number of rows and columns.
+                    </p>
+                    <div class="header">
+                        Your data can only use the following 4 data types
+                    </div>
+                    <div class="ui list columns__list">
+                        <div class="item">
+                            <i class="chevron circle right icon"></i>
+                            <div class="content">
+                                <div class="header">String</div>
+                                Data will be considered as a category (eg.: the Town column contains either Paris, London or Bucarest)
+                            </div>
+                        </div>
+                        <div class="item">
+                            <i class="chevron circle right icon"></i>
+                            <div class="content">
+                                <div class="header">Integer</div>
+                                Data should be an integer value going from –2147483648 to 2147483647
+                            </div>
+                        </div>
+                        <div class="item">
+                            <i class="chevron circle right icon"></i>
+                            <div class="content">
+                                <div class="header">Float</div>
+                                The decimal separator needs to be a point (eg.: 250.25 or 1222447.67)
+                            </div>
+                        </div>
+                        <div class="item">
+                            <i class="chevron circle right icon"></i>
+                            <div class="content">
+                                <div class="header">Boolean</div>
+                                Data should be standard TRUE or FALSE value of Excel
+                            </div>
+                        </div>
+                    </div>            
+                </div>
+            </div>
+
+            <div class="1_1_where_is_your_data__form">
+                <form action="#" class="form">
+                    <h2 class="heading-secondary">
+                        <i class="database icon heading-secondary__icon"></i>
+                        Input data configuration
+                    </h2>
+                    <div class="form__group">
+                        <input type="text" class="form__input" id="path" value="" required>
+                        <label for="path" class="form__label">Excel file path</label>
+                    </div>
+                    <div class="form__group">
+                        <input type="text" class="form__input" id="sheet" value="" required>
+                        <label for="sheet" class="form__label">Sheet name</label>
+                    </div>
+                    <div class="form__group">
+                        <div class="ui toggle checkbox">
+                            <input type="checkbox" id="headers">
+                            <label for="headers" class="form__label">First line should be considered as headers</label>
+                        </div>
+                    </div>
+                    <div class="form__group u-centered u-margin-top-medium u-border-top u-padding-top-medium">
+                        <a href="#" class="btn btn--primary" id="1_1_where_is_your_data__btn_ok">
+                            <span class="btn__text">2. Select your features</span>
+                            <i class="arrow circle right icon"></i>
+                        </a>
+                    </div>
+                </form>
+            </div>
+        </main>
+        <footer class="footer">
+            HandyML / Machine Learning for non-datascientists | PowerUp Automation 2019<br>
+            Proudly developed by
+            <a href="mailto:masire.fofana@natixis.com" class="footer__link highlighted-text highlighted-text--grey">Masire Fofana</a> &amp;
+            <a href="mailto:chabnichab@eisti.eu" class="footer__link highlighted-text highlighted-text--grey">Chabane Chabni</a><br>
+            <a href="https://github.com/masiref/HandyML" class="footer__link highlighted-text highlighted-text--grey">
+                <i class="github icon"></i> Follow us on Github
+            </a>
+        </footer>
+    </div>
+<script type="text/javascript" src="js/bundle.js"></script></body>
+
+</html>

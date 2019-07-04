@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+    <link href="https://fonts.googleapis.com/css?family=Muli:300,400,700&display=swap" rel="stylesheet">
+
+    <title>4. Select your algorithm</title>
+<link href="css/style.css" rel="stylesheet"></head>
+
+<body>
+    <div class="ui container">
+        <header class="top header">
+            <div class="header__text-box">
+                <h1 class="heading-primary">
+                    <span class="heading-primary--main">4. Select your algorithm</span>
+                    <span class="heading-primary--sub">Specify the algorithm you want to use to train your model</span>
+                </h1>
+            </div>
+        </header>
+        <main class="main">
+            <div class="ui icon info message">
+                <i class="info circle icon"></i>
+                <div class="content">
+                    <div class="header">
+                        What is an algorithm?
+                    </div>
+                    <p>
+                        Supervised learning algorithms build a mathematical model of a set of data that contains both the inputs and the desired outputs.<br>
+                        The data is known as training data, and consists of a set of training examples. Each training example has one or more inputs and a desired output, also known as a supervisory signal.<br><br>
+                        Supervised learning algorithms include classification and regression. Classification algorithms are used when the outputs are restricted to a limited set of values, and regression algorithms are used when the outputs may have any numerical value within a range.<br><br>
+                        You'll find below the different classification and regression algorithms available in the tool.
+                    </p>
+                    <a href="https://en.wikipedia.org/wiki/Supervised_learning" target="_blank" class="source"><i class="search plus icon"></i> Supervised learning on Wikipedia</a>
+                </div>
+            </div>
+
+            <div class="1_4_select_your_algorithm__form u-margin-bottom-medium">
+                <form action="#" class="form">
+                    <h2 class="heading-secondary">
+                        <i class="flask icon heading-secondary__icon"></i>
+                        Algorithm selection
+                    </h2>
+                    <input type="hidden" id="calculated-algorithm-type" value="{calculated-algorithm-type}">
+                    <input type="hidden" id="algorithm-definitions" value="{algorithm-definitions}">
+
+                    <div class="ui icon info message" id="calculated-algorithm-type-message">
+                        <i class="lightbulb icon"></i>
+                        <div class="content">
+                            <div class="header">
+                                What kind of algorithm seems to best fit your need?
+                            </div>
+                            <p>
+                                Based on the target you selected at previous step, it seems that your model needs to use a <span class="highlighted-text" id="calculated-algorithm-type-text"></span> algorithm.
+                            </p>
+                        </div>
+                    </div>
+
+                    <div class="form__group">
+                        <select class="form__select" id="algorithm" required>
+                            <option value="">Select an algorithm</option>
+                            <optgroup label="Classification algorithms">
+                                <option value="logistic_regression">Logistic Regression</option>
+                                <option value="knn">K-Nearest Neighbors</option>
+                                <option value="svm">Support Vector Machine</option>
+                                <option value="kernel_svm">Kernel Support Vector Machine</option>
+                                <option value="naive_bayes">Naive Bayes</option>
+                                <option value="decision_tree_classification">Decision Tree Classification</option>
+                                <option value="random_forest_classification">Random Forest Classification</option>
+                            </optgroup>
+                            <optgroup label="Regression algorithms">
+                                <option value="linear_regression">Linear Regression</option>
+                                <option value="polynomial_regression">Polynomial Regression</option>
+                                <option value="support_vector_regression">Support Vector Regression</option>
+                                <option value="decision_tree_regression">Decision Tree Regression</option>
+                                <option value="random_forest_regression">Random Forest Regression</option>
+                            </optgroup>
+                        </select>
+                    </div>
+                    <h3 class="heading-tertiary algorithm-parameters__title" id="algorithm-parameters-title">
+                        <i class="sliders horizontal icon heading-tertiary__icon"></i>
+                        Parameters
+                    </h3>
+                    <div class="algorithm-parameters__list" id="algorithm-parameters"></div>
+                    <div class="form__group u-centered u-margin-top-medium u-border-top u-padding-top-medium">
+                        <a href="#" class="btn btn--tertiary" id="back">
+                            <i class="arrow circle left icon"></i>
+                            <span class="btn__text">3. Select your targets</span>
+                        </a>
+                        <a href="#" class="btn btn--primary" id="1_4_select_your_algorithm__btn_ok">
+                            <span class="btn__text">5. Summary</span>
+                            <i class="arrow circle right icon"></i>
+                        </a>
+                    </div>
+                </form>
+            </div>
+
+            <h2 class="heading-secondary">
+                <i class="chart pie icon heading-secondary__icon"></i>
+                Classification algorithms
+            </h2>
+            <div class="ui list columns__list">
+                <div class="item">
+                    <div class="content">
+                        <div class="header">Logistic Regression</div>
+                        <div class="description">In statistics, the logistic model (or logit model) is used to model the probability of a certain class or event existing such as pass/fail, win/lose, alive/dead or healthy/sick.</div>
+                        <a href="https://en.wikipedia.org/wiki/Logistic_regression" target="_blank" class="source"><i class="search plus icon"></i> Read more</a>
+                    </div>
+                </div>
+                <div class="item">
+                    <div class="content">
+                        <div class="header">K-Nearest Neighbors</div>
+                        <div class="description">In pattern recognition, the k-nearest neighbors algorithm (k-NN) is a non-parametric method used for classification and regression, but here only its classification implementation is available. The input consists of the k closest training examples in the feature space. The output is a class membership.</div>
+                        <a href="https://en.wikipedia.org/wiki/K-nearest_neighbors_algorithm" target="_blank" class="source"><i class="search plus icon"></i> Read more</a>
+                    </div>
+                </div>
+                <div class="item">
+                    <div class="content">
+                        <div class="header">Support Vector Machine / Kernel Support Vector Machine</div>
+                        <div class="description">Given a set of training examples, each marked as belonging to one or the other of two categories, an SVM training algorithm builds a model that assigns new examples to one category or the other, making it a non-probabilistic binary linear classifier.</div>
+                        <a href="https://en.wikipedia.org/wiki/Support-vector_machine" target="_blank" class="source"><i class="search plus icon"></i> Read more</a>
+                    </div>
+                </div>
+                <div class="item">
+                    <div class="content">
+                        <div class="header">Naive Bayes</div>
+                        <div class="description">In machine learning, naive Bayes classifiers are a family of simple "probabilistic classifiers" based on applying Bayes' theorem with strong (naive) independence assumptions between the features.</div>
+                        <a href="https://en.wikipedia.org/wiki/Naive_Bayes_classifier" target="_blank" class="source"><i class="search plus icon"></i> Read more</a>
+                    </div>
+                </div>
+                <div class="item">
+                    <div class="content">
+                        <div class="header">Decision Tree Classification</div>
+                        <div class="description">In computer science, Decision tree learning uses a decision tree (as a predictive model) to go from observations about an item (represented in the branches) to conclusions about the item's target value (represented in the leaves).</div>
+                        <a href="https://en.wikipedia.org/wiki/Decision_tree_learning" target="_blank" class="source"><i class="search plus icon"></i> Read more</a>
+                    </div>
+                </div>
+                <div class="item">
+                    <div class="content">
+                        <div class="header">Random Forest Classification</div>
+                        <div class="description">Random forests or random decision forests are an ensemble learning method for classification, regression and other tasks that operates by constructing a multitude of decision trees at training time and outputting the class that is the mode of the classes (classification) or mean prediction (regression) of the individual trees.</div>
+                        <a href="https://en.wikipedia.org/wiki/Random_forest" target="_blank" class="source"><i class="search plus icon"></i> Read more</a>
+                    </div>
+                </div>
+            </div>
+            <h2 class="heading-secondary">
+                <i class="chart line icon heading-secondary__icon"></i>
+                Regression algorithms
+            </h2>
+            <div class="ui list columns__list">
+                <div class="item">
+                    <div class="content">
+                        <div class="header">Linear Regression</div>
+                        <div class="description">In statistics, linear regression is a linear approach to modeling the relationship between a scalar response (or target) and one or more explanatory variables (or features). The case of one explanatory variable is called simple linear regression. For more than one explanatory variable, the process is called multiple linear regression.</div>
+                        <a href="https://en.wikipedia.org/wiki/Linear_regression" target="_blank" class="source"><i class="search plus icon"></i> Read more</a>
+                    </div>
+                </div>
+                <div class="item">
+                    <div class="content">
+                        <div class="header">Polynomial Regression</div>
+                        <div class="description">In statistics, polynomial regression is a form of regression analysis in which the relationship between the independent variable x and the dependent variable y is modelled as an nth degree polynomial in x.</div>
+                        <a href="https://en.wikipedia.org/wiki/Polynomial_regression" target="_blank" class="source"><i class="search plus icon"></i> Read more</a>
+                    </div>
+                </div>
+                <div class="item">
+                    <div class="content">
+                        <div class="header">Support Vector Regression</div>
+                        <div class="description">See Support Vector Machine algorithm.</div>
+                        <a href="https://en.wikipedia.org/wiki/Support-vector_machine" target="_blank" class="source"><i class="search plus icon"></i> Read more</a>
+                    </div>
+                </div>
+                <div class="item">
+                    <div class="content">
+                        <div class="header">Decision Tree Regression</div>
+                        <div class="description">See Decision Tree Classification algorithm.</div>
+                        <a href="https://en.wikipedia.org/wiki/Decision_tree_learning" target="_blank" class="source"><i class="search plus icon"></i> Read more</a>
+                    </div>
+                </div>
+                <div class="item">
+                    <div class="content">
+                        <div class="header">Random Forest Regression</div>
+                        <div class="description">See Random Forest Classification algorithm.</div>
+                        <a href="https://en.wikipedia.org/wiki/Random_forest" target="_blank" class="source"><i class="search plus icon"></i> Read more</a>
+                    </div>
+                </div>
+            </div>
+        </main>
+        <footer class="footer">
+            HandyML / Machine Learning for non-datascientists | PowerUp Automation 2019<br>
+            Proudly developed by
+            <a href="mailto:masire.fofana@natixis.com" class="footer__link highlighted-text highlighted-text--grey">Masire Fofana</a> &amp;
+            <a href="mailto:chabnichab@eisti.eu" class="footer__link highlighted-text highlighted-text--grey">Chabane Chabni</a><br>
+            <a href="https://github.com/masiref/HandyML" class="footer__link highlighted-text highlighted-text--grey">
+                <i class="github icon"></i> Follow us on Github
+            </a>
+        </footer>
+    </div>
+<script type="text/javascript" src="js/bundle.js"></script></body>
+
+</html>

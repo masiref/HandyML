@@ -1,0 +1,2 @@
+def process(model_path, file_path, features, target, categorical_features, problem_type, algorithm, algorithm_parameters, path, scaler_x_path, scaler_y_path, labelencoder_path):
+    return '{"result": "ok"}'

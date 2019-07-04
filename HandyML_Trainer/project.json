@@ -1,0 +1,39 @@
+{
+  "name": "HandyML_Trainer",
+  "description": "This front office robot helps to create a supervised machine learning model from data contained in an Excel file.",
+  "main": "Main.xaml",
+  "dependencies": {
+    "UiPath.Cognitive.Activities": "[2.2.1]",
+    "UiPath.Excel.Activities": "[2.5.3]",
+    "UiPath.IntelligentOCR.Activities": "[2.0.0]",
+    "UiPath.Mail.Activities": "[1.4.0]",
+    "UiPath.PDF.Activities": "[2.0.0]",
+    "UiPath.Python.Activities": "1.1.6863.33404",
+    "UiPath.System.Activities": "[18.3.6897.22524]",
+    "UiPath.Terminal.Activities": "[1.3.1]",
+    "UiPath.UIAutomation.Activities": "[18.3.6897.22543]",
+    "UiPath.WebAPI.Activities": "[1.4.1]",
+    "UiPath.Word.Activities": "[1.3.1]"
+  },
+  "schemaVersion": "3.2",
+  "studioVersion": "18.2",
+  "projectVersion": "1.0.2",
+  "runtimeOptions": {
+    "autoDispose": false,
+    "isPausable": true,
+    "excludedLoggedData": [
+      "Private:*",
+      "*password*"
+    ]
+  },
+  "projectType": "Workflow",
+  "libraryOptions": {
+    "includeOriginalXaml": false,
+    "privateWorkflows": []
+  },
+  "arguments": {
+    "input": [],
+    "output": []
+  },
+  "webServices": []
+}

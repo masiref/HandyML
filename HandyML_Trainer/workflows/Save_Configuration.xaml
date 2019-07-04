@@ -1,0 +1,486 @@
+<Activity mc:Ignorable="sap sap2010" x:Class="Save_Configuration" this:Save_Configuration.argIn_str_Filepath="test file" this:Save_Configuration.argIn_str_SheetName="sheet1" this:Save_Configuration.argIn_bool_HasHeaders="True" this:Save_Configuration.argIn_list_Features="[New List(Of Integer)]" this:Save_Configuration.argIn_list_Targets="[New List(Of Integer)]" this:Save_Configuration.argIn_str_OutputPath="C:\Users\fofanama1\machine-learning\uipath_challenge\Machine_Learning_For_Non_Datascientists\data\test.json" xmlns="http://schemas.microsoft.com/netfx/2009/xaml/activities" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:mva="clr-namespace:Microsoft.VisualBasic.Activities;assembly=System.Activities" xmlns:njl="clr-namespace:Newtonsoft.Json.Linq;assembly=Newtonsoft.Json" xmlns:s="clr-namespace:System;assembly=mscorlib" xmlns:sap="http://schemas.microsoft.com/netfx/2009/xaml/activities/presentation" xmlns:sap2010="http://schemas.microsoft.com/netfx/2010/xaml/activities/presentation" xmlns:scg="clr-namespace:System.Collections.Generic;assembly=mscorlib" xmlns:sco="clr-namespace:System.Collections.ObjectModel;assembly=mscorlib" xmlns:sd="clr-namespace:System.Data;assembly=System.Data" xmlns:this="clr-namespace:" xmlns:ui="http://schemas.uipath.com/workflow/activities" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+  <x:Members>
+    <x:Property Name="argIn_str_Filepath" Type="InArgument(x:String)" />
+    <x:Property Name="argIn_str_SheetName" Type="InArgument(x:String)" />
+    <x:Property Name="argIn_bool_HasHeaders" Type="InArgument(x:Boolean)" />
+    <x:Property Name="argIn_list_Features" Type="InArgument(scg:List(x:Int32))" />
+    <x:Property Name="argIn_list_Targets" Type="InArgument(scg:List(x:Int32))" />
+    <x:Property Name="argIn_jobject_Algorithm" Type="InArgument(njl:JObject)" />
+    <x:Property Name="argIn_dt_Data" Type="InArgument(sd:DataTable)" />
+    <x:Property Name="argIn_str_OutputPath" Type="InArgument(x:String)" />
+  </x:Members>
+  <mva:VisualBasic.Settings>
+    <x:Null />
+  </mva:VisualBasic.Settings>
+  <sap:VirtualizedContainerService.HintSize>526,4013</sap:VirtualizedContainerService.HintSize>
+  <sap2010:WorkflowViewState.IdRef>ActivityBuilder_1</sap2010:WorkflowViewState.IdRef>
+  <TextExpression.NamespacesForImplementation>
+    <sco:Collection x:TypeArguments="x:String">
+      <x:String>System.Activities</x:String>
+      <x:String>System.Activities.Statements</x:String>
+      <x:String>System.Activities.Expressions</x:String>
+      <x:String>System.Activities.Validation</x:String>
+      <x:String>System.Activities.XamlIntegration</x:String>
+      <x:String>Microsoft.VisualBasic</x:String>
+      <x:String>Microsoft.VisualBasic.Activities</x:String>
+      <x:String>System</x:String>
+      <x:String>System.Collections</x:String>
+      <x:String>System.Collections.Generic</x:String>
+      <x:String>System.Data</x:String>
+      <x:String>System.Diagnostics</x:String>
+      <x:String>System.Drawing</x:String>
+      <x:String>System.IO</x:String>
+      <x:String>System.Linq</x:String>
+      <x:String>System.Net.Mail</x:String>
+      <x:String>System.Xml</x:String>
+      <x:String>System.Xml.Linq</x:String>
+      <x:String>System.Windows.Markup</x:String>
+      <x:String>UiPath.Core</x:String>
+      <x:String>UiPath.Core.Activities</x:String>
+      <x:String>Newtonsoft.Json.Linq</x:String>
+      <x:String>Newtonsoft.Json</x:String>
+      <x:String>System.Xml.Serialization</x:String>
+    </sco:Collection>
+  </TextExpression.NamespacesForImplementation>
+  <TextExpression.ReferencesForImplementation>
+    <sco:Collection x:TypeArguments="AssemblyReference">
+      <AssemblyReference>System.Activities</AssemblyReference>
+      <AssemblyReference>Microsoft.VisualBasic</AssemblyReference>
+      <AssemblyReference>mscorlib</AssemblyReference>
+      <AssemblyReference>System.Data</AssemblyReference>
+      <AssemblyReference>System.Data.DataSetExtensions</AssemblyReference>
+      <AssemblyReference>System</AssemblyReference>
+      <AssemblyReference>System.Drawing</AssemblyReference>
+      <AssemblyReference>System.Core</AssemblyReference>
+      <AssemblyReference>System.Xml</AssemblyReference>
+      <AssemblyReference>System.Xml.Linq</AssemblyReference>
+      <AssemblyReference>PresentationFramework</AssemblyReference>
+      <AssemblyReference>WindowsBase</AssemblyReference>
+      <AssemblyReference>PresentationCore</AssemblyReference>
+      <AssemblyReference>System.Xaml</AssemblyReference>
+      <AssemblyReference>UiPath.System.Activities</AssemblyReference>
+      <AssemblyReference>UiPath.UiAutomation.Activities</AssemblyReference>
+      <AssemblyReference>System.ServiceModel</AssemblyReference>
+      <AssemblyReference>System.ValueTuple</AssemblyReference>
+      <AssemblyReference>UiPath.Excel</AssemblyReference>
+      <AssemblyReference>UiPath.IntelligentOCR</AssemblyReference>
+      <AssemblyReference>UiPath.Mail</AssemblyReference>
+      <AssemblyReference>UiPath.Python</AssemblyReference>
+      <AssemblyReference>UiPath.Word</AssemblyReference>
+      <AssemblyReference>System.ComponentModel.Composition</AssemblyReference>
+      <AssemblyReference>Newtonsoft.Json</AssemblyReference>
+      <AssemblyReference>System.Collections.Immutable</AssemblyReference>
+      <AssemblyReference>System.Runtime.WindowsRuntime</AssemblyReference>
+    </sco:Collection>
+  </TextExpression.ReferencesForImplementation>
+  <Sequence DisplayName="Save_Configuration" sap:VirtualizedContainerService.HintSize="486,3933" sap2010:WorkflowViewState.IdRef="Sequence_1">
+    <Sequence.Variables>
+      <Variable x:TypeArguments="x:String" Name="str_ConfigTemplate" />
+      <Variable x:TypeArguments="njl:JObject" Name="jobject_ConfigTemplate" />
+      <Variable x:TypeArguments="njl:JArray" Default="[New JArray()]" Name="jobject_FeaturesIndices" />
+      <Variable x:TypeArguments="njl:JArray" Default="[New JArray()]" Name="jobject_TargetsIndices" />
+    </Sequence.Variables>
+    <sap:WorkflowViewStateService.ViewState>
+      <scg:Dictionary x:TypeArguments="x:String, x:Object">
+        <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+      </scg:Dictionary>
+    </sap:WorkflowViewStateService.ViewState>
+    <ui:LogMessage DisplayName="Log Message" sap:VirtualizedContainerService.HintSize="464,91" sap2010:WorkflowViewState.IdRef="LogMessage_1" Level="Trace" Message="=== Saving configuration" />
+    <ui:CommentOut DisplayName="Comment Out" sap:VirtualizedContainerService.HintSize="464,51" sap2010:WorkflowViewState.IdRef="CommentOut_1">
+      <ui:CommentOut.Body>
+        <Sequence DisplayName="Ignored Activities" sap:VirtualizedContainerService.HintSize="358,1299" sap2010:WorkflowViewState.IdRef="Sequence_11">
+          <sap:WorkflowViewStateService.ViewState>
+            <scg:Dictionary x:TypeArguments="x:String, x:Object">
+              <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+            </scg:Dictionary>
+          </sap:WorkflowViewStateService.ViewState>
+          <Sequence sap:VirtualizedContainerService.HintSize="336,1175" sap2010:WorkflowViewState.IdRef="Sequence_7">
+            <sap:WorkflowViewStateService.ViewState>
+              <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                <x:Boolean x:Key="IsPinned">False</x:Boolean>
+              </scg:Dictionary>
+            </sap:WorkflowViewStateService.ViewState>
+            <InvokeMethod DisplayName="Invoke Method" sap:VirtualizedContainerService.HintSize="314,133" sap2010:WorkflowViewState.IdRef="InvokeMethod_4" MethodName="Add">
+              <InvokeMethod.TargetObject>
+                <InArgument x:TypeArguments="scg:List(x:Int32)">[argIn_list_Features]</InArgument>
+              </InvokeMethod.TargetObject>
+              <InArgument x:TypeArguments="x:Int32">0</InArgument>
+            </InvokeMethod>
+            <InvokeMethod DisplayName="Invoke Method" sap:VirtualizedContainerService.HintSize="314,133" sap2010:WorkflowViewState.IdRef="InvokeMethod_5" MethodName="Add">
+              <InvokeMethod.TargetObject>
+                <InArgument x:TypeArguments="scg:List(x:Int32)">[argIn_list_Features]</InArgument>
+              </InvokeMethod.TargetObject>
+              <InArgument x:TypeArguments="x:Int32">1</InArgument>
+            </InvokeMethod>
+            <InvokeMethod DisplayName="Invoke Method" sap:VirtualizedContainerService.HintSize="314,133" sap2010:WorkflowViewState.IdRef="InvokeMethod_6" MethodName="Add">
+              <InvokeMethod.TargetObject>
+                <InArgument x:TypeArguments="scg:List(x:Int32)">[argIn_list_Features]</InArgument>
+              </InvokeMethod.TargetObject>
+              <InArgument x:TypeArguments="x:Int32">2</InArgument>
+            </InvokeMethod>
+            <InvokeMethod DisplayName="Invoke Method" sap:VirtualizedContainerService.HintSize="314,133" sap2010:WorkflowViewState.IdRef="InvokeMethod_7" MethodName="Add">
+              <InvokeMethod.TargetObject>
+                <InArgument x:TypeArguments="scg:List(x:Int32)">[argIn_list_Features]</InArgument>
+              </InvokeMethod.TargetObject>
+              <InArgument x:TypeArguments="x:Int32">3</InArgument>
+            </InvokeMethod>
+            <InvokeMethod DisplayName="Invoke Method" sap:VirtualizedContainerService.HintSize="314,132" sap2010:WorkflowViewState.IdRef="InvokeMethod_11" MethodName="Add">
+              <InvokeMethod.TargetObject>
+                <InArgument x:TypeArguments="scg:List(x:Int32)">[argIn_list_Targets]</InArgument>
+              </InvokeMethod.TargetObject>
+              <InArgument x:TypeArguments="x:Int32">4</InArgument>
+            </InvokeMethod>
+            <Assign sap:VirtualizedContainerService.HintSize="314,60" sap2010:WorkflowViewState.IdRef="Assign_24">
+              <Assign.To>
+                <OutArgument x:TypeArguments="njl:JObject">[argIn_jobject_Algorithm]</OutArgument>
+              </Assign.To>
+              <Assign.Value>
+                <InArgument x:TypeArguments="njl:JObject">[JObject.Parse("{'name':'random_forest_regression','parameters':[{'name':'criterion','value':'mse'},{'name':'n_estimators','value':10}]}")]</InArgument>
+              </Assign.Value>
+            </Assign>
+            <ui:ReadRange AddHeaders="True" DataTable="[argIn_dt_Data]" DisplayName="Read Range" sap:VirtualizedContainerService.HintSize="314,87" sap2010:WorkflowViewState.IdRef="ReadRange_1" SheetName="50_Startups" WorkbookPath="data\1.xlsx">
+              <ui:ReadRange.Range>
+                <InArgument x:TypeArguments="x:String">
+                  <Literal x:TypeArguments="x:String" Value="" />
+                </InArgument>
+              </ui:ReadRange.Range>
+            </ui:ReadRange>
+          </Sequence>
+        </Sequence>
+      </ui:CommentOut.Body>
+      <sap:WorkflowViewStateService.ViewState>
+        <scg:Dictionary x:TypeArguments="x:String, x:Object">
+          <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+          <x:Boolean x:Key="IsPinned">False</x:Boolean>
+        </scg:Dictionary>
+      </sap:WorkflowViewStateService.ViewState>
+    </ui:CommentOut>
+    <ui:ReadTextFile Content="[str_ConfigTemplate]" DisplayName="Read Text File" FileName="config\training_config_template.json" sap:VirtualizedContainerService.HintSize="464,51" sap2010:WorkflowViewState.IdRef="ReadTextFile_1">
+      <sap:WorkflowViewStateService.ViewState>
+        <scg:Dictionary x:TypeArguments="x:String, x:Object">
+          <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+          <x:Boolean x:Key="IsPinned">False</x:Boolean>
+        </scg:Dictionary>
+      </sap:WorkflowViewStateService.ViewState>
+    </ui:ReadTextFile>
+    <ui:DeserializeJson x:TypeArguments="njl:JObject" DisplayName="Deserialize JSON" sap:VirtualizedContainerService.HintSize="464,60" sap2010:WorkflowViewState.IdRef="DeserializeJson`1_1" JsonObject="[jobject_ConfigTemplate]" JsonString="[str_ConfigTemplate]">
+      <sap:WorkflowViewStateService.ViewState>
+        <scg:Dictionary x:TypeArguments="x:String, x:Object">
+          <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+          <x:Boolean x:Key="IsPinned">False</x:Boolean>
+        </scg:Dictionary>
+      </sap:WorkflowViewStateService.ViewState>
+    </ui:DeserializeJson>
+    <Assign sap:VirtualizedContainerService.HintSize="464,60" sap2010:WorkflowViewState.IdRef="Assign_1">
+      <Assign.To>
+        <OutArgument x:TypeArguments="njl:JToken">[jobject_ConfigTemplate.Item("data").Item("path")]</OutArgument>
+      </Assign.To>
+      <Assign.Value>
+        <InArgument x:TypeArguments="njl:JToken">[argIn_str_Filepath]</InArgument>
+      </Assign.Value>
+    </Assign>
+    <Assign sap:VirtualizedContainerService.HintSize="464,60" sap2010:WorkflowViewState.IdRef="Assign_2">
+      <Assign.To>
+        <OutArgument x:TypeArguments="njl:JToken">[jobject_ConfigTemplate.Item("data").Item("sheet").Item("name")]</OutArgument>
+      </Assign.To>
+      <Assign.Value>
+        <InArgument x:TypeArguments="njl:JToken">[argIn_str_SheetName]</InArgument>
+      </Assign.Value>
+    </Assign>
+    <Assign sap:VirtualizedContainerService.HintSize="464,60" sap2010:WorkflowViewState.IdRef="Assign_3">
+      <Assign.To>
+        <OutArgument x:TypeArguments="njl:JToken">[jobject_ConfigTemplate.Item("data").Item("sheet").Item("headers")]</OutArgument>
+      </Assign.To>
+      <Assign.Value>
+        <InArgument x:TypeArguments="njl:JToken">[argIn_bool_HasHeaders]</InArgument>
+      </Assign.Value>
+    </Assign>
+    <ui:ForEach x:TypeArguments="x:Int32" CurrentIndex="{x:Null}" DisplayName="For Each" sap:VirtualizedContainerService.HintSize="464,1125" sap2010:WorkflowViewState.IdRef="ForEach`1_1" Values="[argIn_list_Features]">
+      <ui:ForEach.Body>
+        <ActivityAction x:TypeArguments="x:Int32">
+          <ActivityAction.Argument>
+            <DelegateInArgument x:TypeArguments="x:Int32" Name="feature" />
+          </ActivityAction.Argument>
+          <Sequence DisplayName="Body" sap:VirtualizedContainerService.HintSize="264,991" sap2010:WorkflowViewState.IdRef="Sequence_6">
+            <Sequence.Variables>
+              <Variable x:TypeArguments="scg:List(x:Object)" Name="list_FeatureData" />
+              <Variable x:TypeArguments="x:Object" Name="obj_RandomRowData" />
+              <Variable x:TypeArguments="x:Boolean" Default="False" Name="bool_IsBooleanFeature" />
+              <Variable x:TypeArguments="x:Boolean" Name="bool_IsTextFeature" />
+              <Variable x:TypeArguments="njl:JObject" Default="[New JObject()]" Name="jobject_Feature" />
+              <Variable x:TypeArguments="x:Boolean" Name="bool_Result" />
+            </Sequence.Variables>
+            <sap:WorkflowViewStateService.ViewState>
+              <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+              </scg:Dictionary>
+            </sap:WorkflowViewStateService.ViewState>
+            <Assign sap:VirtualizedContainerService.HintSize="242,60" sap2010:WorkflowViewState.IdRef="Assign_4">
+              <Assign.To>
+                <OutArgument x:TypeArguments="scg:List(x:Object)">[list_FeatureData]</OutArgument>
+              </Assign.To>
+              <Assign.Value>
+                <InArgument x:TypeArguments="scg:List(x:Object)">[(From r As DataRow In argIn_dt_Data.Rows.Cast(Of DataRow)() Select r(feature)).ToList]</InArgument>
+              </Assign.Value>
+            </Assign>
+            <Assign sap:VirtualizedContainerService.HintSize="242,60" sap2010:WorkflowViewState.IdRef="Assign_5">
+              <Assign.To>
+                <OutArgument x:TypeArguments="x:Object">[obj_RandomRowData]</OutArgument>
+              </Assign.To>
+              <Assign.Value>
+                <InArgument x:TypeArguments="x:Object">[list_FeatureData.Item(CInt(Math.Ceiling(Rnd() * list_FeatureData.Count - 1)))]</InArgument>
+              </Assign.Value>
+            </Assign>
+            <Assign sap:VirtualizedContainerService.HintSize="242,60" sap2010:WorkflowViewState.IdRef="Assign_6">
+              <Assign.To>
+                <OutArgument x:TypeArguments="x:Boolean">[bool_IsBooleanFeature]</OutArgument>
+              </Assign.To>
+              <Assign.Value>
+                <InArgument x:TypeArguments="x:Boolean">[Boolean.TryParse(obj_RandomRowData.ToString, bool_Result)]</InArgument>
+              </Assign.Value>
+            </Assign>
+            <TryCatch DisplayName="Try Convert Data to Text" sap:VirtualizedContainerService.HintSize="242,51" sap2010:WorkflowViewState.IdRef="TryCatch_2">
+              <sap:WorkflowViewStateService.ViewState>
+                <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                  <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+                  <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                </scg:Dictionary>
+              </sap:WorkflowViewStateService.ViewState>
+              <TryCatch.Try>
+                <Sequence sap:VirtualizedContainerService.HintSize="264,284" sap2010:WorkflowViewState.IdRef="Sequence_3">
+                  <Sequence.Variables>
+                    <Variable x:TypeArguments="x:String" Name="str_ConvertedValue" />
+                  </Sequence.Variables>
+                  <sap:WorkflowViewStateService.ViewState>
+                    <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                      <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                      <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                    </scg:Dictionary>
+                  </sap:WorkflowViewStateService.ViewState>
+                  <Assign sap:VirtualizedContainerService.HintSize="242,60" sap2010:WorkflowViewState.IdRef="Assign_8">
+                    <Assign.To>
+                      <OutArgument x:TypeArguments="x:String">[str_ConvertedValue]</OutArgument>
+                    </Assign.To>
+                    <Assign.Value>
+                      <InArgument x:TypeArguments="x:String">[CType(obj_RandomRowData, String)]</InArgument>
+                    </Assign.Value>
+                  </Assign>
+                  <Assign sap:VirtualizedContainerService.HintSize="242,60" sap2010:WorkflowViewState.IdRef="Assign_9">
+                    <Assign.To>
+                      <OutArgument x:TypeArguments="x:Boolean">[bool_IsTextFeature]</OutArgument>
+                    </Assign.To>
+                    <Assign.Value>
+                      <InArgument x:TypeArguments="x:Boolean">[Not IsNumeric(str_ConvertedValue)]</InArgument>
+                    </Assign.Value>
+                  </Assign>
+                </Sequence>
+              </TryCatch.Try>
+              <TryCatch.Catches>
+                <Catch x:TypeArguments="s:Exception" sap:VirtualizedContainerService.HintSize="404,21" sap2010:WorkflowViewState.IdRef="Catch`1_2">
+                  <sap:WorkflowViewStateService.ViewState>
+                    <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                      <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+                      <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                    </scg:Dictionary>
+                  </sap:WorkflowViewStateService.ViewState>
+                  <ActivityAction x:TypeArguments="s:Exception">
+                    <ActivityAction.Argument>
+                      <DelegateInArgument x:TypeArguments="s:Exception" Name="exception" />
+                    </ActivityAction.Argument>
+                  </ActivityAction>
+                </Catch>
+              </TryCatch.Catches>
+            </TryCatch>
+            <InvokeMethod DisplayName="Invoke Method" sap:VirtualizedContainerService.HintSize="242,132" sap2010:WorkflowViewState.IdRef="InvokeMethod_1" MethodName="Add">
+              <InvokeMethod.TargetObject>
+                <InArgument x:TypeArguments="njl:JObject">[jobject_Feature]</InArgument>
+              </InvokeMethod.TargetObject>
+              <InArgument x:TypeArguments="njl:JProperty">[New JProperty("index", feature)]</InArgument>
+            </InvokeMethod>
+            <InvokeMethod DisplayName="Invoke Method" sap:VirtualizedContainerService.HintSize="242,132" sap2010:WorkflowViewState.IdRef="InvokeMethod_2" MethodName="Add">
+              <InvokeMethod.TargetObject>
+                <InArgument x:TypeArguments="njl:JObject">[jobject_Feature]</InArgument>
+              </InvokeMethod.TargetObject>
+              <InArgument x:TypeArguments="njl:JProperty">[New JProperty("categorical", bool_IsBooleanFeature Or bool_IsTextFeature)]</InArgument>
+            </InvokeMethod>
+            <InvokeMethod DisplayName="Invoke Method" sap:VirtualizedContainerService.HintSize="242,132" sap2010:WorkflowViewState.IdRef="InvokeMethod_3" MethodName="Add">
+              <InvokeMethod.TargetObject>
+                <InArgument x:TypeArguments="njl:JArray">[jobject_FeaturesIndices]</InArgument>
+              </InvokeMethod.TargetObject>
+              <InArgument x:TypeArguments="njl:JToken">[jobject_Feature]</InArgument>
+            </InvokeMethod>
+          </Sequence>
+        </ActivityAction>
+      </ui:ForEach.Body>
+      <sap:WorkflowViewStateService.ViewState>
+        <scg:Dictionary x:TypeArguments="x:String, x:Object">
+          <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+          <x:Boolean x:Key="IsPinned">False</x:Boolean>
+        </scg:Dictionary>
+      </sap:WorkflowViewStateService.ViewState>
+    </ui:ForEach>
+    <Assign sap:VirtualizedContainerService.HintSize="464,60" sap2010:WorkflowViewState.IdRef="Assign_15">
+      <Assign.To>
+        <OutArgument x:TypeArguments="njl:JToken">[jobject_ConfigTemplate.Item("features").Item("indices")]</OutArgument>
+      </Assign.To>
+      <Assign.Value>
+        <InArgument x:TypeArguments="njl:JToken">[jobject_FeaturesIndices]</InArgument>
+      </Assign.Value>
+    </Assign>
+    <ui:ForEach x:TypeArguments="x:Int32" CurrentIndex="{x:Null}" DisplayName="For Each" sap:VirtualizedContainerService.HintSize="464,1125" sap2010:WorkflowViewState.IdRef="ForEach`1_2" Values="[argIn_list_Targets]">
+      <ui:ForEach.Body>
+        <ActivityAction x:TypeArguments="x:Int32">
+          <ActivityAction.Argument>
+            <DelegateInArgument x:TypeArguments="x:Int32" Name="target" />
+          </ActivityAction.Argument>
+          <Sequence DisplayName="Body" sap:VirtualizedContainerService.HintSize="264,991" sap2010:WorkflowViewState.IdRef="Sequence_10">
+            <Sequence.Variables>
+              <Variable x:TypeArguments="scg:List(x:Object)" Name="list_TargetData" />
+              <Variable x:TypeArguments="x:Object" Name="obj_RandomRowData" />
+              <Variable x:TypeArguments="x:Boolean" Name="bool_IsTextTarget" />
+              <Variable x:TypeArguments="njl:JObject" Default="[New JObject()]" Name="jobject_Target" />
+              <Variable x:TypeArguments="x:Boolean" Name="bool_IsBooleanTarget" />
+              <Variable x:TypeArguments="x:Boolean" Name="bool_Result" />
+            </Sequence.Variables>
+            <sap:WorkflowViewStateService.ViewState>
+              <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+              </scg:Dictionary>
+            </sap:WorkflowViewStateService.ViewState>
+            <Assign sap:VirtualizedContainerService.HintSize="242,60" sap2010:WorkflowViewState.IdRef="Assign_16">
+              <Assign.To>
+                <OutArgument x:TypeArguments="scg:List(x:Object)">[list_TargetData]</OutArgument>
+              </Assign.To>
+              <Assign.Value>
+                <InArgument x:TypeArguments="scg:List(x:Object)">[(From r As DataRow In argIn_dt_Data.Rows.Cast(Of DataRow)() Select r(target)).ToList]</InArgument>
+              </Assign.Value>
+            </Assign>
+            <Assign sap:VirtualizedContainerService.HintSize="242,60" sap2010:WorkflowViewState.IdRef="Assign_17">
+              <Assign.To>
+                <OutArgument x:TypeArguments="x:Object">[obj_RandomRowData]</OutArgument>
+              </Assign.To>
+              <Assign.Value>
+                <InArgument x:TypeArguments="x:Object">[list_TargetData.Item(CInt(Math.Ceiling(Rnd() * list_TargetData.Count - 1)))]</InArgument>
+              </Assign.Value>
+            </Assign>
+            <Assign sap:VirtualizedContainerService.HintSize="242,60" sap2010:WorkflowViewState.IdRef="Assign_23">
+              <Assign.To>
+                <OutArgument x:TypeArguments="x:Boolean">[bool_IsBooleanTarget]</OutArgument>
+              </Assign.To>
+              <Assign.Value>
+                <InArgument x:TypeArguments="x:Boolean">[Boolean.TryParse(obj_RandomRowData.ToString, bool_Result)]</InArgument>
+              </Assign.Value>
+            </Assign>
+            <TryCatch DisplayName="Try Convert Data to Text" sap:VirtualizedContainerService.HintSize="242,51" sap2010:WorkflowViewState.IdRef="TryCatch_6">
+              <sap:WorkflowViewStateService.ViewState>
+                <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                  <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+                  <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                </scg:Dictionary>
+              </sap:WorkflowViewStateService.ViewState>
+              <TryCatch.Try>
+                <Sequence sap:VirtualizedContainerService.HintSize="264,284" sap2010:WorkflowViewState.IdRef="Sequence_9">
+                  <Sequence.Variables>
+                    <Variable x:TypeArguments="x:String" Name="str_ConvertedValue" />
+                  </Sequence.Variables>
+                  <sap:WorkflowViewStateService.ViewState>
+                    <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                      <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                      <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                    </scg:Dictionary>
+                  </sap:WorkflowViewStateService.ViewState>
+                  <Assign sap:VirtualizedContainerService.HintSize="242,60" sap2010:WorkflowViewState.IdRef="Assign_20">
+                    <Assign.To>
+                      <OutArgument x:TypeArguments="x:String">[str_ConvertedValue]</OutArgument>
+                    </Assign.To>
+                    <Assign.Value>
+                      <InArgument x:TypeArguments="x:String">[CType(obj_RandomRowData, String)]</InArgument>
+                    </Assign.Value>
+                  </Assign>
+                  <Assign sap:VirtualizedContainerService.HintSize="242,60" sap2010:WorkflowViewState.IdRef="Assign_21">
+                    <Assign.To>
+                      <OutArgument x:TypeArguments="x:Boolean">[bool_IsTextTarget]</OutArgument>
+                    </Assign.To>
+                    <Assign.Value>
+                      <InArgument x:TypeArguments="x:Boolean">[Not IsNumeric(str_ConvertedValue)]</InArgument>
+                    </Assign.Value>
+                  </Assign>
+                </Sequence>
+              </TryCatch.Try>
+              <TryCatch.Catches>
+                <Catch x:TypeArguments="s:Exception" sap:VirtualizedContainerService.HintSize="404,21" sap2010:WorkflowViewState.IdRef="Catch`1_6">
+                  <sap:WorkflowViewStateService.ViewState>
+                    <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                      <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+                      <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                    </scg:Dictionary>
+                  </sap:WorkflowViewStateService.ViewState>
+                  <ActivityAction x:TypeArguments="s:Exception">
+                    <ActivityAction.Argument>
+                      <DelegateInArgument x:TypeArguments="s:Exception" Name="exception" />
+                    </ActivityAction.Argument>
+                  </ActivityAction>
+                </Catch>
+              </TryCatch.Catches>
+            </TryCatch>
+            <InvokeMethod DisplayName="Invoke Method" sap:VirtualizedContainerService.HintSize="242,132" sap2010:WorkflowViewState.IdRef="InvokeMethod_8" MethodName="Add">
+              <InvokeMethod.TargetObject>
+                <InArgument x:TypeArguments="njl:JObject">[jobject_Target]</InArgument>
+              </InvokeMethod.TargetObject>
+              <InArgument x:TypeArguments="njl:JProperty">[New JProperty("index", target)]</InArgument>
+            </InvokeMethod>
+            <InvokeMethod DisplayName="Invoke Method" sap:VirtualizedContainerService.HintSize="242,132" sap2010:WorkflowViewState.IdRef="InvokeMethod_9" MethodName="Add">
+              <InvokeMethod.TargetObject>
+                <InArgument x:TypeArguments="njl:JObject">[jobject_Target]</InArgument>
+              </InvokeMethod.TargetObject>
+              <InArgument x:TypeArguments="njl:JProperty">[New JProperty("categorical", bool_IsBooleanTarget Or bool_IsTextTarget)]</InArgument>
+            </InvokeMethod>
+            <InvokeMethod DisplayName="Invoke Method" sap:VirtualizedContainerService.HintSize="242,132" sap2010:WorkflowViewState.IdRef="InvokeMethod_10" MethodName="Add">
+              <InvokeMethod.TargetObject>
+                <InArgument x:TypeArguments="njl:JArray">[jobject_TargetsIndices]</InArgument>
+              </InvokeMethod.TargetObject>
+              <InArgument x:TypeArguments="njl:JToken">[jobject_Target]</InArgument>
+            </InvokeMethod>
+          </Sequence>
+        </ActivityAction>
+      </ui:ForEach.Body>
+      <sap:WorkflowViewStateService.ViewState>
+        <scg:Dictionary x:TypeArguments="x:String, x:Object">
+          <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+          <x:Boolean x:Key="IsPinned">False</x:Boolean>
+        </scg:Dictionary>
+      </sap:WorkflowViewStateService.ViewState>
+    </ui:ForEach>
+    <Assign sap:VirtualizedContainerService.HintSize="464,60" sap2010:WorkflowViewState.IdRef="Assign_22">
+      <Assign.To>
+        <OutArgument x:TypeArguments="njl:JToken">[jobject_ConfigTemplate.Item("targets").Item("indices")]</OutArgument>
+      </Assign.To>
+      <Assign.Value>
+        <InArgument x:TypeArguments="njl:JArray">[jobject_TargetsIndices]</InArgument>
+      </Assign.Value>
+    </Assign>
+    <Assign sap:VirtualizedContainerService.HintSize="464,60" sap2010:WorkflowViewState.IdRef="Assign_25">
+      <Assign.To>
+        <OutArgument x:TypeArguments="njl:JToken">[jobject_ConfigTemplate.Item("algorithm").Item("name")]</OutArgument>
+      </Assign.To>
+      <Assign.Value>
+        <InArgument x:TypeArguments="njl:JToken">[argIn_jobject_Algorithm.Item("name")]</InArgument>
+      </Assign.Value>
+    </Assign>
+    <If Condition="[Not argIn_jobject_Algorithm.Item(&quot;parameters&quot;) Is Nothing]" sap:VirtualizedContainerService.HintSize="464,208" sap2010:WorkflowViewState.IdRef="If_1">
+      <If.Then>
+        <Assign sap:VirtualizedContainerService.HintSize="242,60" sap2010:WorkflowViewState.IdRef="Assign_26">
+          <Assign.To>
+            <OutArgument x:TypeArguments="njl:JToken">[jobject_ConfigTemplate.Item("algorithm").Item("parameters")]</OutArgument>
+          </Assign.To>
+          <Assign.Value>
+            <InArgument x:TypeArguments="njl:JToken">[argIn_jobject_Algorithm.Item("parameters")]</InArgument>
+          </Assign.Value>
+        </Assign>
+      </If.Then>
+    </If>
+    <ui:WriteTextFile DisplayName="Write Text File" FileName="[argIn_str_OutputPath]" sap:VirtualizedContainerService.HintSize="464,87" sap2010:WorkflowViewState.IdRef="WriteTextFile_1" Text="[jobject_ConfigTemplate.ToString]" />
+    <ui:LogMessage DisplayName="Log Message" sap:VirtualizedContainerService.HintSize="464,91" sap2010:WorkflowViewState.IdRef="LogMessage_2" Level="Trace" Message="[String.Format(&quot;=== Configuration saved to {0}&quot;, argIn_str_OutputPath)]" />
+  </Sequence>
+</Activity>
