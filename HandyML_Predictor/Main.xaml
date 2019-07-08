@@ -517,7 +517,7 @@
                     <OutArgument x:TypeArguments="scg:List(x:Double)">[list_Probabilities]</OutArgument>
                   </Assign.To>
                   <Assign.Value>
-                    <InArgument x:TypeArguments="scg:List(x:Double)">[If(Not jobject_Result.Item("y_proba") Is Nothing, CType(jobject_Result.Item("y_proba"), JArray).ToObject(Of List(Of Double)), Nothing)]</InArgument>
+                    <InArgument x:TypeArguments="scg:List(x:Double)">[If(jtoken_SelectedAlgorithm.Item("type").ToString.Equals("classification"), CType(jobject_Result.Item("y_proba"), JArray).ToObject(Of List(Of Double)), Nothing)]</InArgument>
                   </Assign.Value>
                 </Assign>
                 <If Condition="[Not list_Probabilities Is Nothing]" sap:VirtualizedContainerService.HintSize="516,280" sap2010:WorkflowViewState.IdRef="If_12">

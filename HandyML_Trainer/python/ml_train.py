@@ -448,20 +448,20 @@ def process(file_path, features, target, categorical_features, problem_type, alg
 # Main program
 if __name__ == '__main__':
     
-    file = 'file.csv'
-    column_names = 'a::b::c'
-    features = '1'
+    file = ''
+    column_names = ''
+    features = ''
     categorical_features = ''
-    target = '2'
+    target = ''
     
     # classification, regression
     problem_type = 'regression'
     
     # linear_regression, polynomial_regression, support_vector_regression, decision_tree_regression, random_forest_regression
     # logistic_regression, knn, svm, kernel_svm, naive_bayes, decision_tree_classification, random_forest_classification
-    algorithm = 'random_forest_regression'
+    algorithm = 'linear_regression'
     algorithm_parameters = ''
-    path = 'C:/Temp/'
+    path = ''
     
     result = process(file, features, target, categorical_features, problem_type, algorithm, algorithm_parameters, path, column_names)
 

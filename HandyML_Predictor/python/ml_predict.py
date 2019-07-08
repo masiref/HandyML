@@ -104,6 +104,7 @@ def process(model_path, file_path, features, target, categorical_features, probl
         y_proba = predict_proba(X, model)
         y_proba = np.amax(y_proba, 1)
         y_proba = y_proba * 100
+        y_proba = y_proba.tolist()
     
     # Inverse scaling on target if necessary
     if scaler_y_path:
@@ -114,10 +115,12 @@ def process(model_path, file_path, features, target, categorical_features, probl
     if labelencoder_path:
         labelencoder = load_sklearn_component(labelencoder_path)
         y_pred = labelencoder.inverse_transform(y_pred)
+        
+    y_pred = y_pred.tolist()
 
     json_object = {
-        "y_pred": y_pred.tolist(),
-        "y_proba": y_proba.tolist()
+        "y_pred": y_pred,
+        "y_proba": y_proba
     }
     json_string = json.dumps(json_object)
     
@@ -125,24 +128,24 @@ def process(model_path, file_path, features, target, categorical_features, probl
    
 if __name__ == '__main__':
     
-    model = 'model_20190704182028.model'
-    file = 'converted_04072019225118.csv'
-    features = '2 3'
+    model = ''
+    file = ''
+    features = ''
     categorical_features = ''
-    target = '4'
+    target = ''
     
     # classification, regression
-    problem_type = 'classification'
+    problem_type = 'regression'
     
     # linear_regression, polynomial_regression, support_vector_regression, decision_tree_regression, random_forest_regression
     # logistic_regression, knn, svm, kernel_svm, naive_bayes, decision_tree_classification, random_forest_classification
-    algorithm = 'kernel_svm'
-    algorithm_parameters = 'kernel=rbf, degree=3, gamma=0.8'
+    algorithm = 'linear_regression'
+    algorithm_parameters = ''
 
-    path = 'C:/temp/HandyML/_Examples/Classification/Social_Network_Ads/kernel_svm_04072019-182019701/'
+    path = ''
 
-    scaler_X = 'scaler_X_20190704182028.scaler'
+    scaler_X = ''
     scaler_y = ''
-    labelencoder = 'labelencoder_20190704182028.labelencoder'
+    labelencoder = ''
     
     result = process(model, file, features, target, categorical_features, problem_type, algorithm, algorithm_parameters, path, scaler_X, scaler_y, labelencoder)
