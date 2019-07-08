@@ -564,7 +564,7 @@
                                                         <av:PointCollection x:Key="ConnectorLocation">150,1495.02 150,1604.5</av:PointCollection>
                                                       </scg:Dictionary>
                                                     </sap:WorkflowViewStateService.ViewState>
-                                                    <Sequence DisplayName="=== Train model ===" sap:VirtualizedContainerService.HintSize="200,51" sap2010:WorkflowViewState.IdRef="Sequence_16">
+                                                    <Sequence DisplayName="=== Train model ===" sap:VirtualizedContainerService.HintSize="609,2426" sap2010:WorkflowViewState.IdRef="Sequence_16">
                                                       <Sequence.Variables>
                                                         <Variable x:TypeArguments="x:String" Name="str_Features" />
                                                         <Variable x:TypeArguments="x:String" Name="str_CategoricalFeatures" />
@@ -579,9 +579,9 @@
                                                           <x:Boolean x:Key="IsExpanded">True</x:Boolean>
                                                         </scg:Dictionary>
                                                       </sap:WorkflowViewStateService.ViewState>
-                                                      <TryCatch DisplayName="Try Catch" sap:VirtualizedContainerService.HintSize="414,508" sap2010:WorkflowViewState.IdRef="TryCatch_2">
+                                                      <TryCatch DisplayName="Try Catch" sap:VirtualizedContainerService.HintSize="587,2302" sap2010:WorkflowViewState.IdRef="TryCatch_2">
                                                         <TryCatch.Try>
-                                                          <Sequence sap:VirtualizedContainerService.HintSize="569,2202" sap2010:WorkflowViewState.IdRef="Sequence_17">
+                                                          <Sequence sap:VirtualizedContainerService.HintSize="569,2075" sap2010:WorkflowViewState.IdRef="Sequence_17">
                                                             <Sequence.Variables>
                                                               <Variable x:TypeArguments="njl:JObject" Name="jobject_TrainResult" />
                                                               <Variable x:TypeArguments="x:String" Name="str_ColumnNames">
@@ -751,15 +751,14 @@
                                                                 <InArgument x:TypeArguments="x:String">[jobject_TrainResult.Item("plot_test_results").ToString]</InArgument>
                                                               </Assign.Value>
                                                             </Assign>
-                                                            <ui:WriteTextFile DisplayName="Write Text File" FileName="[str_ResultsPath]" sap:VirtualizedContainerService.HintSize="547,87" sap2010:WorkflowViewState.IdRef="WriteTextFile_1" Text="[jobject_TrainResult.ToString]" />
                                                             <ui:LogMessage DisplayName="Log Message" sap:VirtualizedContainerService.HintSize="547,91" sap2010:WorkflowViewState.IdRef="LogMessage_3" Level="Trace" Message="[String.Format(&quot;Results from training: {0}&quot;, jobject_TrainResult.ToString)]" />
                                                           </Sequence>
                                                         </TryCatch.Try>
                                                         <TryCatch.Catches>
-                                                          <Catch x:TypeArguments="s:Exception" sap:VirtualizedContainerService.HintSize="400,346" sap2010:WorkflowViewState.IdRef="Catch`1_2">
+                                                          <Catch x:TypeArguments="s:Exception" sap:VirtualizedContainerService.HintSize="573,21" sap2010:WorkflowViewState.IdRef="Catch`1_2">
                                                             <sap:WorkflowViewStateService.ViewState>
                                                               <scg:Dictionary x:TypeArguments="x:String, x:Object">
-                                                                <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                                                                <x:Boolean x:Key="IsExpanded">False</x:Boolean>
                                                                 <x:Boolean x:Key="IsPinned">False</x:Boolean>
                                                               </scg:Dictionary>
                                                             </sap:WorkflowViewStateService.ViewState>

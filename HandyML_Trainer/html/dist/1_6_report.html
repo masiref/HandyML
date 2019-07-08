@@ -52,7 +52,7 @@
                 <div class="ui three statistics">
                     <div class="statistic">
                         <div class="value">
-                            <i class="chart bar icon"></i> <span id="score-text"></span> %
+                            <i class="chart bar icon"></i> <span id="score-text"></span>
                         </div>
                         <div class="label">
                             Score
@@ -73,6 +73,18 @@
                         <div class="label">
                             Observations
                         </div>
+                    </div>
+                </div>
+                <div class="ui icon info message">
+                    <i class="info icon"></i>
+                    <div class="content">
+                        <div class="header">
+                            Note
+                        </div>
+                        <p>
+                            The best possible score is 1.0 and it can be negative (because the model can be arbitrarily worse).
+                            A constant model that always predicts the expected value of y, disregarding the input features, would get a R^2 score of 0.0.
+                        </p>
                     </div>
                 </div>
                 <div class="plots-container u-margin-top-medium" id="plots-container" style="display: none;">
