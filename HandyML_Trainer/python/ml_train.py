@@ -55,7 +55,7 @@ def one_hot_encode(data, indices):
 def feature_scaling(data, scaler = None):
 
     if scaler == None:
-        scaler = StandardScaler()
+        scaler = StandardScaler(with_mean = False)
         data = scaler.fit_transform(data)
     else:
         data = scaler.transform(data)
