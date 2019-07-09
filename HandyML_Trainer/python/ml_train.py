@@ -239,7 +239,6 @@ def fit_random_forest_classification(X_train, y_train, n_estimators, criterion):
     classifier.fit(X_train, y_train)
     return classifier
     
-
 def process(file_path, features, target, categorical_features, problem_type, algorithm, algorithm_parameters, path, column_names):
 
     # Converting list of features columns from string to integer
@@ -254,6 +253,8 @@ def process(file_path, features, target, categorical_features, problem_type, alg
 
     # Importing the dataset
     dataset = pd.read_csv(file_path)
+    dataset = dataset.fillna(dataset.mean())
+    dataset = dataset.dropna()
     X = dataset.iloc[:, features].values
     y = dataset.iloc[:, target].values
 
