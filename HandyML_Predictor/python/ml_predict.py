@@ -63,7 +63,11 @@ def predict_proba(X, model):
     
 def predict(X, model):
     
-    return model.predict(X)
+    try:
+        return model.predict(X)
+    except TypeError:
+        # Avoiding error: A sparse matrix was passed, but dense data is required. Use X.toarray() to convert to a dense numpy array.
+        return model.predict(X.toarray())
 
 def process(model_path, file_path, features, target, categorical_features, problem_type, algorithm, algorithm_parameters, path, scaler_X_path, scaler_y_path, labelencoder_path):
     
@@ -128,6 +132,7 @@ def process(model_path, file_path, features, target, categorical_features, probl
    
 if __name__ == '__main__':
     
+    # For testing purposes
     model = ''
     file = ''
     features = ''
@@ -135,11 +140,11 @@ if __name__ == '__main__':
     target = ''
     
     # classification, regression
-    problem_type = 'regression'
+    problem_type = ''
     
     # linear_regression, polynomial_regression, support_vector_regression, decision_tree_regression, random_forest_regression
     # logistic_regression, knn, svm, kernel_svm, naive_bayes, decision_tree_classification, random_forest_classification
-    algorithm = 'linear_regression'
+    algorithm = ''
     algorithm_parameters = ''
 
     path = ''

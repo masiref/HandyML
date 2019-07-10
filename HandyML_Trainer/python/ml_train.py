@@ -90,8 +90,12 @@ def get_model_score(model, X_test, y_test, is_polynomial_regression = False, deg
     if is_polynomial_regression:
         poly_reg = PolynomialFeatures(degree)
         X_test = poly_reg.fit_transform(X_test)
-
-    return model.score(X_test, y_test)
+    
+    try:
+        return model.score(X_test, y_test)
+    except TypeError:
+        # Avoiding error: A sparse matrix was passed, but dense data is required. Use X.toarray() to convert to a dense numpy array.
+        return model.score(X_test.toarray(), y_test)
 
 def save_scaler(path, scaler):
 
@@ -224,7 +228,12 @@ def fit_kernel_svm(X_train, y_train, kernel, degree, gamma):
 def fit_naive_bayes(X_train, y_train):
 
     classifier = GaussianNB()
-    classifier.fit(X_train, y_train)
+    try:
+        classifier.fit(X_train, y_train)
+    except TypeError:
+        # Avoiding error: A sparse matrix was passed, but dense data is required. Use X.toarray() to convert to a dense numpy array.
+        classifier.fit(X_train.toarray(), y_train)
+        
     return classifier
 
 def fit_decision_tree_classification(X_train, y_train, criterion, splitter):
@@ -449,6 +458,7 @@ def process(file_path, features, target, categorical_features, problem_type, alg
 # Main program
 if __name__ == '__main__':
     
+    # For testing purposes
     file = ''
     column_names = ''
     features = ''
@@ -456,11 +466,11 @@ if __name__ == '__main__':
     target = ''
     
     # classification, regression
-    problem_type = 'regression'
+    problem_type = ''
     
     # linear_regression, polynomial_regression, support_vector_regression, decision_tree_regression, random_forest_regression
     # logistic_regression, knn, svm, kernel_svm, naive_bayes, decision_tree_classification, random_forest_classification
-    algorithm = 'linear_regression'
+    algorithm = ''
     algorithm_parameters = ''
     path = ''
     

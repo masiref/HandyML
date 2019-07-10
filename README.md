@@ -37,9 +37,14 @@ Project developed and tested on a Windows 10 machine.
 This project has been developed under UiPath Studio 2019.4.3. So you will need a Studio/Robot with version 2019.4.3+.
 #### 1.2. Python version
 This project uses Python 3.6.8+. It has been tested and developed on a x64 architecture.
-You can easily have a working Python 3.6 environment by installing Anaconda 2019.03 version ([download Anaconda](https://www.anaconda.com/distribution)). Then you will need to create an Anaconda environment specifying Python 3.6.8+ version ([https://stackoverflow.com/questions/48174935/conda-creating-a-virtual-environment](https://stackoverflow.com/questions/48174935/conda-creating-a-virtual-environment)).
+You can easily have a working Python 3.6 environment by installing Anaconda 2019.03 version ([download Anaconda](https://www.anaconda.com/distribution)). Then you will need to create an Anaconda environment specifying Python 3.6.8+ version by executing the following in Anaconda Prompt (replace [environment-name] by the name you want, eg. env-3.6):
+`conda create-env -n [environment-name] python=3.6`
 #### 1.3. Python packages
 You will also need to install the following packages using either `conda` (if Anaconda installed) or `pip` to be able to use this tool.
+If using Anaconda, launch Anaconda Prompt and execute following commands:
+`activate [environment-name]`
+`conda install numpy pandas scikit-learn`
+`pip install matplotlib`
 ##### 1.3.1. NumPy
 Developed with NumPy 1.16.4.
 ##### 1.3.2. Pandas
