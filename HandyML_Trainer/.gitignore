@@ -1,4 +1,5 @@
 .local/
 .screenshots/
+999_Garbage.xaml
 ~*.xaml
 workflows/~*.xaml
