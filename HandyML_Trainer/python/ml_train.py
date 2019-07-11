@@ -183,6 +183,20 @@ def save_lift_curve_plot(y_pred, y_probas, title, path):
     plt.title(title)
     plt.savefig(path, bbox_inches = 'tight')
     plt.close()
+    
+def save_learning_curve_plot(model, X, y, title, path):
+    
+    skplt.estimators.plot_learning_curve(model, X, y, title)
+    plt.title(title)
+    plt.savefig(path, bbox_inches = 'tight')
+    plt.close()
+    
+def save_feature_importances_plot(model, feature_names, title, path):
+    
+    skplt.estimators.plot_feature_importances(model, title, feature_names, x_tick_rotation = 45)
+    plt.title(title)
+    plt.savefig(path, bbox_inches = 'tight')
+    plt.close()
 
 def get_confusion_matrix(y_test, y_pred):
 
@@ -297,9 +311,16 @@ def fit_random_forest_classification(X_train, y_train, n_estimators, criterion):
 def process(file_path, features, target, categorical_features, problem_type, algorithm, algorithm_parameters, path, column_names):
 
     toaster = ToastNotifier()
+        
+    # Converting column_names to a list of string
+    if len(column_names) > 0:
+        column_names = column_names.split('::')
     
     # Converting list of features columns from string to integer
     features = list(map(int, features.split()))
+    feature_names = list(map(lambda index: column_names[index], features))
+    
+    # Converting list of categorical features columns from string to integer if necessary
     if len(categorical_features) > 0:
         categorical_features = list(map(int, categorical_features.split()))
         # Find the right index of the column in features list
@@ -325,10 +346,6 @@ def process(file_path, features, target, categorical_features, problem_type, alg
     if problem_type == 'classification':
         y, labelencoder = encode_categorical_data(y)
         
-    # Converting column_names to a list of string
-    if len(column_names) > 0:
-        column_names = column_names.split('::')
-        
     # Splitting the dataset into training set and test set
     X_train, X_test, y_train, y_test = split_data_set(X, y)
 
@@ -347,6 +364,8 @@ def process(file_path, features, target, categorical_features, problem_type, alg
     plot_precision_recall = ''
     plot_cumulative_gain = ''
     plot_lift_curve = ''
+    plot_learning_curve = ''
+    plot_feature_importances = ''
     
     scaler_X_path = ''
     scaler_y_path = ''
@@ -477,7 +496,11 @@ def process(file_path, features, target, categorical_features, problem_type, alg
         # Generate confusion matrix when target is boolean
         if len(np.unique(y)) == 2:
             cmatrix = get_confusion_matrix(y_test, model.predict(X_test))
-            
+    
+    toaster.show_toast(app_name, 'Training ended successfully', duration=5)
+    
+    # Generate metrics and estimators plots
+    if problem_type == 'classification':            
         plot_confusion_matrix = path + 'confusion_matrix_' + timestamp + '.png'
         save_confusion_matrix_plot(y_test, model.predict(X_test), 'Confusion matrix', plot_confusion_matrix)
         
@@ -496,7 +519,14 @@ def process(file_path, features, target, categorical_features, problem_type, alg
         plot_lift_curve = path + 'lift_curve_' + timestamp + '.png'
         save_lift_curve_plot(model.predict(X_test), model.predict_proba(X_test), 'Lift curve', plot_lift_curve)
     
-    toaster.show_toast(app_name, 'Training ended successfully', duration=5)
+    plot_learning_curve = path + 'learning_curve_' + timestamp + '.png'
+    save_learning_curve_plot(model, X_train, y_train, 'Learning curve', plot_learning_curve)
+    
+    if hasattr(model, 'feature_importances_') and len(features) > 1:
+        plot_feature_importances = path + 'feature_importances_' + timestamp + '.png'
+        save_feature_importances_plot(model, feature_names, 'Feature importances', plot_feature_importances)
+    
+    toaster.show_toast(app_name, 'Plots generated successfully', duration=5)
     
     # Saving the trained model 
     model_path = save_model(model_path, model)
@@ -533,7 +563,9 @@ def process(file_path, features, target, categorical_features, problem_type, alg
             "plot_ks_statistic": plot_ks_statistic,
             "plot_precision_recall": plot_precision_recall,
             "plot_cumulative_gain": plot_cumulative_gain,
-            "plot_lift_curve": plot_lift_curve
+            "plot_lift_curve": plot_lift_curve,
+            "plot_learning_curve": plot_learning_curve,
+            "plot_feature_importances": plot_feature_importances
     }
     json_string = json.dumps(json_object)
 
@@ -545,20 +577,20 @@ def process(file_path, features, target, categorical_features, problem_type, alg
 if __name__ == '__main__':
     
     # For testing purposes
-    file = ''
-    column_names = ''
-    features = ''
+    file = 'converted_11072019141940.csv'
+    column_names = 'a::b::c::d::e::f::g::h::i'
+    features = '0 1 2 3 4 5 6 7'
     categorical_features = ''
-    target = ''
+    target = '8'
     
     # classification, regression
-    problem_type = ''
+    problem_type = 'classification'
     
     # linear_regression, polynomial_regression, support_vector_regression, decision_tree_regression, random_forest_regression
     # logistic_regression, knn, svm, kernel_svm, naive_bayes, decision_tree_classification, random_forest_classification
-    algorithm = ''
+    algorithm = 'decision_tree_classification'
     algorithm_parameters = ''
-    path = ''
+    path = 'C:/temp/'
     
     result = process(file, features, target, categorical_features, problem_type, algorithm, algorithm_parameters, path, column_names)
 

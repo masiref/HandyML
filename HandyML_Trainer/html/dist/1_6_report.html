@@ -43,7 +43,15 @@
                 <input type="hidden" id="observations" value="{observations}">
                 <input type="hidden" id="plot-training-results" value="{plot-training-results}">
                 <input type="hidden" id="plot-test-results" value="{plot-test-results}">
-                <input type="hidden" id="confusion-matrix" value="{confusion-matrix}">
+                <!--<input type="hidden" id="confusion-matrix" value="{confusion-matrix}">-->
+                <input type="hidden" id="plot-confusion-matrix" value="{plot-confusion-matrix}">
+                <input type="hidden" id="plot-roc" value="{plot-roc}">
+                <input type="hidden" id="plot-ks-statistic" value="{plot-ks-statistic}">
+                <input type="hidden" id="plot-precision-recall" value="{plot-precision-recall}">
+                <input type="hidden" id="plot-cumulative-gain" value="{plot-cumulative-gain}">
+                <input type="hidden" id="plot-lift-curve" value="{plot-lift-curve}">
+                <input type="hidden" id="plot-learning-curve" value="{plot-learning-curve}">
+                <input type="hidden" id="plot-feature-importances" value="{plot-feature-importances}">
 
                 <h2 class="heading-secondary">
                     <i class="magic icon heading-secondary__icon"></i>
@@ -87,19 +95,6 @@
                         </p>
                     </div>
                 </div>
-                <div class="plots-container u-margin-top-medium" id="plots-container" style="display: none;">
-                    <h2 class="heading-secondary">
-                        <i class="chart area icon heading-secondary__icon"></i>
-                        Plots
-                    </h2>
-                    <div class="plots" id="plots"></div>
-                </div>
-                <div class="confusion-matric-container u-margin-top-medium" id="confusion-matrix-container" style="display: none">
-                    <h2 class="heading-secondary">
-                        <i class="table icon heading-secondary__icon"></i>
-                        Confusion matrix
-                    </h2>
-                </div>
                 <div class="ui icon info message">
                     <i class="copy icon"></i>
                     <div class="content">
@@ -121,6 +116,19 @@
                         </div>
                     </div>
                 </div>
+                <div class="plots-container u-margin-top-medium" id="plots-container" style="display: none;">
+                    <h2 class="heading-secondary">
+                        <i class="chart area icon heading-secondary__icon"></i>
+                        Plots
+                    </h2>
+                    <div class="plots" id="plots"></div>
+                </div>
+                <!--<div class="confusion-matric-container u-margin-top-medium" id="confusion-matrix-container" style="display: none">
+                    <h2 class="heading-secondary">
+                        <i class="table icon heading-secondary__icon"></i>
+                        Confusion matrix
+                    </h2>
+                </div>-->
             </form>
         </main>
         <footer class="footer">

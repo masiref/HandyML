@@ -12879,13 +12879,16 @@ body {
 
 .plots {
   display: flex;
-  justify-content: space-between; }
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center; }
 
 .plot {
-  height: 40rem;
   box-shadow: 0 1rem 2rem rgba(0, 0, 0, 0.1);
   border-radius: 3px;
   overflow: hidden; }
+  .plot:not(:last-child) {
+    margin-bottom: 1.5rem; }
 
 .footer {
   font-size: 1.2rem;
