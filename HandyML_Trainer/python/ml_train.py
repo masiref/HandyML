@@ -500,24 +500,24 @@ def process(file_path, features, target, categorical_features, problem_type, alg
     toaster.show_toast(app_name, 'Training ended successfully', duration=5)
     
     # Generate metrics and estimators plots
-    if problem_type == 'classification':            
-        plot_confusion_matrix = path + 'confusion_matrix_' + timestamp + '.png'
-        save_confusion_matrix_plot(y_test, model.predict(X_test), 'Confusion matrix', plot_confusion_matrix)
-        
-        plot_roc = path + 'roc_' + timestamp + '.png'
-        save_roc_plot(model.predict(X_test), model.predict_proba(X_test), 'ROC curves', plot_roc)
-        
-        plot_ks_statistic = path + 'ks_statistic_' + timestamp + '.png'
-        save_ks_statistic_plot(model.predict(X_test), model.predict_proba(X_test), 'KS Statistic', plot_ks_statistic)
-        
-        plot_precision_recall = path + 'precision_recall_' + timestamp + '.png'
-        save_precision_recall_plot(model.predict(X_test), model.predict_proba(X_test), 'Precision recall', plot_precision_recall)
-        
-        plot_cumulative_gain = path + 'cumulative_gain_' + timestamp + '.png'
-        save_cumulative_gain_plot(model.predict(X_test), model.predict_proba(X_test), 'Cumulative gain', plot_cumulative_gain)
-        
-        plot_lift_curve = path + 'lift_curve_' + timestamp + '.png'
-        save_lift_curve_plot(model.predict(X_test), model.predict_proba(X_test), 'Lift curve', plot_lift_curve)
+#    if problem_type == 'classification':            
+#        plot_confusion_matrix = path + 'confusion_matrix_' + timestamp + '.png'
+#        save_confusion_matrix_plot(y_test, model.predict(X_test), 'Confusion matrix', plot_confusion_matrix)
+#        
+#        plot_roc = path + 'roc_' + timestamp + '.png'
+#        save_roc_plot(model.predict(X_test), model.predict_proba(X_test), 'ROC curves', plot_roc)
+#        
+#        plot_ks_statistic = path + 'ks_statistic_' + timestamp + '.png'
+#        save_ks_statistic_plot(model.predict(X_test), model.predict_proba(X_test), 'KS Statistic', plot_ks_statistic)
+#        
+#        plot_precision_recall = path + 'precision_recall_' + timestamp + '.png'
+#        save_precision_recall_plot(model.predict(X_test), model.predict_proba(X_test), 'Precision recall', plot_precision_recall)
+#        
+#        plot_cumulative_gain = path + 'cumulative_gain_' + timestamp + '.png'
+#        save_cumulative_gain_plot(model.predict(X_test), model.predict_proba(X_test), 'Cumulative gain', plot_cumulative_gain)
+#        
+#        plot_lift_curve = path + 'lift_curve_' + timestamp + '.png'
+#        save_lift_curve_plot(model.predict(X_test), model.predict_proba(X_test), 'Lift curve', plot_lift_curve)
     
     plot_learning_curve = path + 'learning_curve_' + timestamp + '.png'
     save_learning_curve_plot(model, X_train, y_train, 'Learning curve', plot_learning_curve)
@@ -577,11 +577,11 @@ def process(file_path, features, target, categorical_features, problem_type, alg
 if __name__ == '__main__':
     
     # For testing purposes
-    file = 'converted_11072019141940.csv'
-    column_names = 'a::b::c::d::e::f::g::h::i'
-    features = '0 1 2 3 4 5 6 7'
+    file = 'data.csv'
+    column_names = 'a::b::c::d::e'
+    features = '0 1 2 3'
     categorical_features = ''
-    target = '8'
+    target = '4'
     
     # classification, regression
     problem_type = 'classification'
