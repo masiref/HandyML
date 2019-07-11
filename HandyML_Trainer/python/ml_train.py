@@ -30,8 +30,12 @@ from sklearn.metrics import confusion_matrix
 
 import matplotlib.pyplot as plt
 from matplotlib.colors import ListedColormap
+import scikitplot as skplt
+
+from win10toast import ToastNotifier
 
 ############## GLOBAL VARIABLES ##############
+app_name = 'HandyML Trainer'
 color_red = 'tomato'
 color_blue = 'skyblue'
 color_green = 'palegreen'
@@ -135,6 +139,48 @@ def save_classification_plot(X, y, classifier, labels, title, path):
     plt.xlabel(labels[0])
     plt.ylabel(labels[1])
     plt.legend()
+    plt.savefig(path, bbox_inches = 'tight')
+    plt.close()
+    
+def save_confusion_matrix_plot(y_test, y_pred, title, path):
+    
+    skplt.metrics.plot_confusion_matrix(y_test, y_pred, normalize = True)
+    plt.title(title)
+    plt.savefig(path, bbox_inches = 'tight')
+    plt.close()
+    
+def save_roc_plot(y_pred, y_probas, title, path):
+    
+    skplt.metrics.plot_roc(y_pred, y_probas, title)
+    plt.title(title)
+    plt.savefig(path, bbox_inches = 'tight')
+    plt.close()
+    
+def save_ks_statistic_plot(y_pred, y_probas, title, path):
+    
+    skplt.metrics.plot_ks_statistic(y_pred, y_probas, title)
+    plt.title(title)
+    plt.savefig(path, bbox_inches = 'tight')
+    plt.close()
+    
+def save_precision_recall_plot(y_pred, y_probas, title, path):
+    
+    skplt.metrics.plot_precision_recall(y_pred, y_probas, title)
+    plt.title(title)
+    plt.savefig(path, bbox_inches = 'tight')
+    plt.close()
+    
+def save_cumulative_gain_plot(y_pred, y_probas, title, path):
+    
+    skplt.metrics.plot_cumulative_gain(y_pred, y_probas, title)
+    plt.title(title)
+    plt.savefig(path, bbox_inches = 'tight')
+    plt.close()
+    
+def save_lift_curve_plot(y_pred, y_probas, title, path):
+    
+    skplt.metrics.plot_lift_curve(y_pred, y_probas, title)
+    plt.title(title)
     plt.savefig(path, bbox_inches = 'tight')
     plt.close()
 
@@ -250,6 +296,8 @@ def fit_random_forest_classification(X_train, y_train, n_estimators, criterion):
     
 def process(file_path, features, target, categorical_features, problem_type, algorithm, algorithm_parameters, path, column_names):
 
+    toaster = ToastNotifier()
+    
     # Converting list of features columns from string to integer
     features = list(map(int, features.split()))
     if len(categorical_features) > 0:
@@ -290,8 +338,16 @@ def process(file_path, features, target, categorical_features, problem_type, alg
     if path == None:
         path = 'C:/Temp/'
     model_path = path + 'model' + '_' + timestamp + '.model'
+    
     plot_training_results = ''
     plot_test_results = ''
+    plot_confusion_matrix = ''
+    plot_roc = ''
+    plot_ks_statistic = ''
+    plot_precision_recall = ''
+    plot_cumulative_gain = ''
+    plot_lift_curve = ''
+    
     scaler_X_path = ''
     scaler_y_path = ''
     labelencoder_path = ''
@@ -302,6 +358,8 @@ def process(file_path, features, target, categorical_features, problem_type, alg
     is_polynomial_regression = False
     degree = None
     cmatrix = None
+    
+    toaster.show_toast(app_name, 'Dataset successfully imported', duration=5)
     
     ############## PROBLEM TYPE IS REGRESSION ##############
     if problem_type == 'regression':
@@ -419,6 +477,26 @@ def process(file_path, features, target, categorical_features, problem_type, alg
         # Generate confusion matrix when target is boolean
         if len(np.unique(y)) == 2:
             cmatrix = get_confusion_matrix(y_test, model.predict(X_test))
+            
+        plot_confusion_matrix = path + 'confusion_matrix_' + timestamp + '.png'
+        save_confusion_matrix_plot(y_test, model.predict(X_test), 'Confusion matrix', plot_confusion_matrix)
+        
+        plot_roc = path + 'roc_' + timestamp + '.png'
+        save_roc_plot(model.predict(X_test), model.predict_proba(X_test), 'ROC curves', plot_roc)
+        
+        plot_ks_statistic = path + 'ks_statistic_' + timestamp + '.png'
+        save_ks_statistic_plot(model.predict(X_test), model.predict_proba(X_test), 'KS Statistic', plot_ks_statistic)
+        
+        plot_precision_recall = path + 'precision_recall_' + timestamp + '.png'
+        save_precision_recall_plot(model.predict(X_test), model.predict_proba(X_test), 'Precision recall', plot_precision_recall)
+        
+        plot_cumulative_gain = path + 'cumulative_gain_' + timestamp + '.png'
+        save_cumulative_gain_plot(model.predict(X_test), model.predict_proba(X_test), 'Cumulative gain', plot_cumulative_gain)
+        
+        plot_lift_curve = path + 'lift_curve_' + timestamp + '.png'
+        save_lift_curve_plot(model.predict(X_test), model.predict_proba(X_test), 'Lift curve', plot_lift_curve)
+    
+    toaster.show_toast(app_name, 'Training ended successfully', duration=5)
     
     # Saving the trained model 
     model_path = save_model(model_path, model)
@@ -449,10 +527,18 @@ def process(file_path, features, target, categorical_features, problem_type, alg
             "score": model_score,
             "confusion_matrix": cmatrix,
             "plot_training_results": plot_training_results,
-            "plot_test_results": plot_test_results
+            "plot_test_results": plot_test_results,
+            "plot_confusion_matrix": plot_confusion_matrix,
+            "plot_roc": plot_roc,
+            "plot_ks_statistic": plot_ks_statistic,
+            "plot_precision_recall": plot_precision_recall,
+            "plot_cumulative_gain": plot_cumulative_gain,
+            "plot_lift_curve": plot_lift_curve
     }
     json_string = json.dumps(json_object)
 
+    toaster.show_toast(app_name, 'Model and results exported successfully', duration=5)
+    
     return json_string
 
 # Main program

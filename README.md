@@ -39,7 +39,7 @@ This project has been developed under UiPath Studio 2019.4.3. So you will need a
 This project uses Python 3.6.8+. It has been tested and developed on a x64 architecture.
 You can easily have a working Python 3.6 environment by installing Anaconda 2019.03 version ([download Anaconda](https://www.anaconda.com/distribution)). Then you will need to create an Anaconda environment specifying Python 3.6.8+ version by executing the following in Anaconda Prompt (replace [environment-name] by the name you want, eg. env-3.6):
 
-`conda create-env -n [environment-name] python=3.6`
+`conda create --name [environment-name] python=3.6`
 
 #### 1.3. Python packages
 You will also need to install the following packages using either `conda` (if Anaconda installed) or `pip` to be able to use this tool.
@@ -49,7 +49,7 @@ If using Anaconda, launch Anaconda Prompt and execute following commands:
 
 `conda install numpy pandas scikit-learn`
 
-`pip install matplotlib`
+`pip install matplotlib win10toast scikit-plot`
 
 ##### 1.3.1. NumPy
 Developed with NumPy 1.16.4.
@@ -59,6 +59,10 @@ Developed with Pandas 0.24.2.
 Developed with Scikit-Learn 0.21.2.
 ##### 1.3.4. Matplotlib
 Developed with Matplotlib 3.1.1. (Note: needs to be installed using `pip`, not working correctly using `conda`)
+##### 1.3.5. Win10toast
+Developed with Win10toast 0.9. (Note: needs to be installed using `pip`, not working correctly using `conda`)
+##### 1.3.6. Scikit-Plot
+Developed with Scikit-Plot 0.3.7. (Note: needs to be installed using `pip`, not working correctly using `conda`)
 #### 1.4. Environment variables
 In order for the UiPath Robot to know where is Python installed and on which architecture you'll have to create 2 environment variables:
 - `HANDYML_PYTHON_PATH`, indicating the folder on which python.exe file can be found
