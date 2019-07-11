@@ -500,10 +500,10 @@ def process(file_path, features, target, categorical_features, problem_type, alg
     toaster.show_toast(app_name, 'Training ended successfully', duration=5)
     
     # Generate metrics and estimators plots
-#    if problem_type == 'classification':            
-#        plot_confusion_matrix = path + 'confusion_matrix_' + timestamp + '.png'
-#        save_confusion_matrix_plot(y_test, model.predict(X_test), 'Confusion matrix', plot_confusion_matrix)
-#        
+    if problem_type == 'classification':            
+        plot_confusion_matrix = path + 'confusion_matrix_' + timestamp + '.png'
+        save_confusion_matrix_plot(y_test, model.predict(X_test), 'Confusion matrix', plot_confusion_matrix)
+        
 #        plot_roc = path + 'roc_' + timestamp + '.png'
 #        save_roc_plot(model.predict(X_test), model.predict_proba(X_test), 'ROC curves', plot_roc)
 #        

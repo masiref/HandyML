@@ -105,13 +105,13 @@
     </Assign>
     <If Condition="[argIn_str_PythonTarget.Equals(&quot;x64&quot;)]" sap:VirtualizedContainerService.HintSize="950,738" sap2010:WorkflowViewState.IdRef="If_2">
       <If.Then>
-        <p:PythonScope DisplayName="Python Scope" sap:VirtualizedContainerService.HintSize="350,543" sap2010:WorkflowViewState.IdRef="PythonScope_1" Path="[argIn_str_PythonExecutablePath]" TargetPlatform="x64" Version="Python_36">
+        <p:PythonScope DisplayName="Python Scope" sap:VirtualizedContainerService.HintSize="350,442" sap2010:WorkflowViewState.IdRef="PythonScope_1" Path="[argIn_str_PythonExecutablePath]" TargetPlatform="x64" Version="Python_36">
           <p:PythonScope.Body>
             <ActivityAction x:TypeArguments="x:Object">
               <ActivityAction.Argument>
                 <DelegateInArgument x:TypeArguments="x:Object" Name="PythonEngineSessionProperty" />
               </ActivityAction.Argument>
-              <Sequence DisplayName="Do" sap:VirtualizedContainerService.HintSize="336,507" sap2010:WorkflowViewState.IdRef="Sequence_1">
+              <Sequence DisplayName="Do" sap:VirtualizedContainerService.HintSize="336,406" sap2010:WorkflowViewState.IdRef="Sequence_1">
                 <sap:WorkflowViewStateService.ViewState>
                   <scg:Dictionary x:TypeArguments="x:String, x:Object">
                     <x:Boolean x:Key="IsExpanded">True</x:Boolean>
@@ -120,7 +120,6 @@
                 <p:LoadScript Code="{x:Null}" DisplayName="Load Python Script" sap:VirtualizedContainerService.HintSize="314,59" sap2010:WorkflowViewState.IdRef="LoadScript_1" Result="[python_Script]" ScriptFile="[argIn_str_PythonScriptPath]" />
                 <p:InvokeMethod DisplayName="Invoke Python Method" sap:VirtualizedContainerService.HintSize="314,22" sap2010:WorkflowViewState.IdRef="InvokeMethod_1" Instance="[python_Script]" Name="process" Parameters="[arr_InputParameters]" Result="[python_ScriptResult]" />
                 <p:GetObject x:TypeArguments="x:String" DisplayName="Get Python Object" sap:VirtualizedContainerService.HintSize="314,22" sap2010:WorkflowViewState.IdRef="GetObject`1_3" PythonObject="[python_ScriptResult]" Result="[str_Result]" />
-                <WriteLine DisplayName="Write Line" sap:VirtualizedContainerService.HintSize="314,61" sap2010:WorkflowViewState.IdRef="WriteLine_1" Text="[str_Result]" />
                 <ui:DeserializeJson x:TypeArguments="njl:JObject" DisplayName="Deserialize JSON" sap:VirtualizedContainerService.HintSize="314,59" sap2010:WorkflowViewState.IdRef="DeserializeJson`1_1" JsonObject="[argOut_jobject_Result]" JsonString="[str_Result]" />
               </Sequence>
             </ActivityAction>
