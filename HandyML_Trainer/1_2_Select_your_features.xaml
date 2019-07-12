@@ -1,14 +1,15 @@
-<Activity mc:Ignorable="sap sap2010" x:Class="_1_2_Select_your_features" xmlns="http://schemas.microsoft.com/netfx/2009/xaml/activities" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:mva="clr-namespace:Microsoft.VisualBasic.Activities;assembly=System.Activities" xmlns:njl="clr-namespace:Newtonsoft.Json.Linq;assembly=Newtonsoft.Json" xmlns:s="clr-namespace:System;assembly=mscorlib" xmlns:sap="http://schemas.microsoft.com/netfx/2009/xaml/activities/presentation" xmlns:sap2010="http://schemas.microsoft.com/netfx/2010/xaml/activities/presentation" xmlns:scg="clr-namespace:System.Collections.Generic;assembly=mscorlib" xmlns:sco="clr-namespace:System.Collections.ObjectModel;assembly=mscorlib" xmlns:ui="http://schemas.uipath.com/workflow/activities" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+<Activity mc:Ignorable="sap sap2010" x:Class="_1_2_Select_your_features" xmlns="http://schemas.microsoft.com/netfx/2009/xaml/activities" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:mva="clr-namespace:Microsoft.VisualBasic.Activities;assembly=System.Activities" xmlns:njl="clr-namespace:Newtonsoft.Json.Linq;assembly=Newtonsoft.Json" xmlns:s="clr-namespace:System;assembly=mscorlib" xmlns:sap="http://schemas.microsoft.com/netfx/2009/xaml/activities/presentation" xmlns:sap2010="http://schemas.microsoft.com/netfx/2010/xaml/activities/presentation" xmlns:scg="clr-namespace:System.Collections.Generic;assembly=mscorlib" xmlns:sco="clr-namespace:System.Collections.ObjectModel;assembly=mscorlib" xmlns:sd="clr-namespace:System.Data;assembly=System.Data" xmlns:ui="http://schemas.uipath.com/workflow/activities" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
   <x:Members>
     <x:Property Name="argIn_list_ColumnNames" Type="InArgument(scg:List(x:String))" />
     <x:Property Name="argOut_bool_FormFilled" Type="OutArgument(x:Boolean)" />
     <x:Property Name="argOut_list_SelectedFeatures" Type="OutArgument(scg:List(x:Int32))" />
     <x:Property Name="argOut_bool_Back" Type="OutArgument(x:Boolean)" />
+    <x:Property Name="argIn_dt_Data" Type="InArgument(sd:DataTable)" />
   </x:Members>
   <mva:VisualBasic.Settings>
     <x:Null />
   </mva:VisualBasic.Settings>
-  <sap:VirtualizedContainerService.HintSize>852,3522</sap:VirtualizedContainerService.HintSize>
+  <sap:VirtualizedContainerService.HintSize>852,4329</sap:VirtualizedContainerService.HintSize>
   <sap2010:WorkflowViewState.IdRef>ActivityBuilder_1</sap2010:WorkflowViewState.IdRef>
   <TextExpression.NamespacesForImplementation>
     <sco:Collection x:TypeArguments="x:String">
@@ -36,6 +37,7 @@
       <x:String>System.Web</x:String>
       <x:String>Newtonsoft.Json.Linq</x:String>
       <x:String>Newtonsoft.Json</x:String>
+      <x:String>System.Xml.Serialization</x:String>
     </sco:Collection>
   </TextExpression.NamespacesForImplementation>
   <TextExpression.ReferencesForImplementation>
@@ -66,9 +68,11 @@
       <AssemblyReference>System.ComponentModel.Composition</AssemblyReference>
       <AssemblyReference>System.Web</AssemblyReference>
       <AssemblyReference>Newtonsoft.Json</AssemblyReference>
+      <AssemblyReference>System.Collections.Immutable</AssemblyReference>
+      <AssemblyReference>System.Runtime.WindowsRuntime</AssemblyReference>
     </sco:Collection>
   </TextExpression.ReferencesForImplementation>
-  <Sequence DisplayName="1_2_Select_your_features" sap:VirtualizedContainerService.HintSize="812,3442" sap2010:WorkflowViewState.IdRef="Sequence_1">
+  <Sequence DisplayName="1_2_Select_your_features" sap:VirtualizedContainerService.HintSize="812,4249" sap2010:WorkflowViewState.IdRef="Sequence_1">
     <Sequence.Variables>
       <Variable x:TypeArguments="x:String" Name="str_Result" />
       <Variable x:TypeArguments="x:Int32" Name="int_Index" />
@@ -93,9 +97,12 @@
         </scg:Dictionary>
       </sap:WorkflowViewStateService.ViewState>
     </ui:LogMessage>
-    <TryCatch DisplayName="Try Catch" sap:VirtualizedContainerService.HintSize="790,3056" sap2010:WorkflowViewState.IdRef="TryCatch_1">
+    <TryCatch DisplayName="Try Catch" sap:VirtualizedContainerService.HintSize="790,3863" sap2010:WorkflowViewState.IdRef="TryCatch_1">
       <TryCatch.Try>
-        <Sequence sap:VirtualizedContainerService.HintSize="772,2829" sap2010:WorkflowViewState.IdRef="Sequence_7">
+        <Sequence sap:VirtualizedContainerService.HintSize="772,3636" sap2010:WorkflowViewState.IdRef="Sequence_7">
+          <Sequence.Variables>
+            <Variable x:TypeArguments="scg:Dictionary(x:String, s:String[])" Default="[New Dictionary(Of String, String())]" Name="dict_DataTop5" />
+          </Sequence.Variables>
           <sap:WorkflowViewStateService.ViewState>
             <scg:Dictionary x:TypeArguments="x:String, x:Object">
               <x:Boolean x:Key="IsExpanded">True</x:Boolean>
@@ -157,7 +164,7 @@
               </scg:Dictionary>
             </sap:WorkflowViewStateService.ViewState>
           </ui:ReadTextFile>
-          <ui:ForEach x:TypeArguments="x:String" CurrentIndex="[int_Index]" DisplayName="For Each" sap:VirtualizedContainerService.HintSize="750,466" sap2010:WorkflowViewState.IdRef="ForEach`1_1" Values="[argIn_list_ColumnNames]">
+          <ui:ForEach x:TypeArguments="x:String" CurrentIndex="[int_Index]" DisplayName="For Each" sap:VirtualizedContainerService.HintSize="750,51" sap2010:WorkflowViewState.IdRef="ForEach`1_1" Values="[argIn_list_ColumnNames]">
             <ui:ForEach.Body>
               <ActivityAction x:TypeArguments="x:String">
                 <ActivityAction.Argument>
@@ -196,7 +203,7 @@
             </ui:ForEach.Body>
             <sap:WorkflowViewStateService.ViewState>
               <scg:Dictionary x:TypeArguments="x:String, x:Object">
-                <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                <x:Boolean x:Key="IsExpanded">False</x:Boolean>
                 <x:Boolean x:Key="IsPinned">False</x:Boolean>
               </scg:Dictionary>
             </sap:WorkflowViewStateService.ViewState>
@@ -209,12 +216,86 @@
               <InArgument x:TypeArguments="x:String">["[" + str_ColumnNames + "]"]</InArgument>
             </Assign.Value>
           </Assign>
+          <ui:ForEach x:TypeArguments="sd:DataColumn" CurrentIndex="{x:Null}" DisplayName="For Each" sap:VirtualizedContainerService.HintSize="750,1082" sap2010:WorkflowViewState.IdRef="ForEach`1_3" Values="[argIn_dt_Data.Columns]">
+            <ui:ForEach.Body>
+              <ActivityAction x:TypeArguments="sd:DataColumn">
+                <ActivityAction.Argument>
+                  <DelegateInArgument x:TypeArguments="sd:DataColumn" Name="column" />
+                </ActivityAction.Argument>
+                <Sequence DisplayName="Body" sap:VirtualizedContainerService.HintSize="538,948" sap2010:WorkflowViewState.IdRef="Sequence_13">
+                  <Sequence.Variables>
+                    <Variable x:TypeArguments="scg:List(x:String)" Default="[New List(Of String)]" Name="values" />
+                    <Variable x:TypeArguments="x:Int32" Name="int_AnotherIndex" />
+                  </Sequence.Variables>
+                  <sap:WorkflowViewStateService.ViewState>
+                    <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                      <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                    </scg:Dictionary>
+                  </sap:WorkflowViewStateService.ViewState>
+                  <ui:ForEachRow CurrentIndex="[int_AnotherIndex]" DataTable="[argIn_dt_Data]" DisplayName="For Each Row" sap:VirtualizedContainerService.HintSize="516,652" sap2010:WorkflowViewState.IdRef="ForEachRow_1">
+                    <ui:ForEachRow.Body>
+                      <ActivityAction x:TypeArguments="sd:DataRow">
+                        <ActivityAction.Argument>
+                          <DelegateInArgument x:TypeArguments="sd:DataRow" Name="row" />
+                        </ActivityAction.Argument>
+                        <Sequence DisplayName="Body" sap:VirtualizedContainerService.HintSize="486,504" sap2010:WorkflowViewState.IdRef="Sequence_12">
+                          <sap:WorkflowViewStateService.ViewState>
+                            <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                              <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                            </scg:Dictionary>
+                          </sap:WorkflowViewStateService.ViewState>
+                          <InvokeMethod DisplayName="Invoke Method" sap:VirtualizedContainerService.HintSize="464,132" sap2010:WorkflowViewState.IdRef="InvokeMethod_3" MethodName="Add">
+                            <InvokeMethod.TargetObject>
+                              <InArgument x:TypeArguments="scg:List(x:String)">[values]</InArgument>
+                            </InvokeMethod.TargetObject>
+                            <InArgument x:TypeArguments="x:String">[row.Item(column).ToString]</InArgument>
+                          </InvokeMethod>
+                          <If Condition="[int_AnotherIndex &gt; 3]" sap:VirtualizedContainerService.HintSize="464,208" sap2010:WorkflowViewState.IdRef="If_4">
+                            <If.Then>
+                              <ui:Break sap:VirtualizedContainerService.HintSize="200,22" sap2010:WorkflowViewState.IdRef="Break_1" />
+                            </If.Then>
+                          </If>
+                        </Sequence>
+                      </ActivityAction>
+                    </ui:ForEachRow.Body>
+                    <sap:WorkflowViewStateService.ViewState>
+                      <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                        <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                        <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                      </scg:Dictionary>
+                    </sap:WorkflowViewStateService.ViewState>
+                  </ui:ForEachRow>
+                  <InvokeMethod DisplayName="Invoke Method" sap:VirtualizedContainerService.HintSize="516,132" sap2010:WorkflowViewState.IdRef="InvokeMethod_4" MethodName="Add">
+                    <InvokeMethod.TargetObject>
+                      <InArgument x:TypeArguments="scg:Dictionary(x:String, s:String[])">[dict_DataTop5]</InArgument>
+                    </InvokeMethod.TargetObject>
+                    <InArgument x:TypeArguments="x:String">[column.ToString]</InArgument>
+                    <InArgument x:TypeArguments="s:String[]">[values.ToArray]</InArgument>
+                  </InvokeMethod>
+                </Sequence>
+              </ActivityAction>
+            </ui:ForEach.Body>
+            <sap:WorkflowViewStateService.ViewState>
+              <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                <x:Boolean x:Key="IsPinned">False</x:Boolean>
+              </scg:Dictionary>
+            </sap:WorkflowViewStateService.ViewState>
+          </ui:ForEach>
           <Assign sap:VirtualizedContainerService.HintSize="750,60" sap2010:WorkflowViewState.IdRef="Assign_4">
             <Assign.To>
               <OutArgument x:TypeArguments="x:String">[str_HTMLPageContent]</OutArgument>
             </Assign.To>
             <Assign.Value>
               <InArgument x:TypeArguments="x:String">[str_HTMLPageContent.Replace("{column-names}", System.Web.HttpUtility.HtmlEncode(str_ColumnNames))]</InArgument>
+            </Assign.Value>
+          </Assign>
+          <Assign sap:VirtualizedContainerService.HintSize="750,60" sap2010:WorkflowViewState.IdRef="Assign_11">
+            <Assign.To>
+              <OutArgument x:TypeArguments="x:String">[str_HTMLPageContent]</OutArgument>
+            </Assign.To>
+            <Assign.Value>
+              <InArgument x:TypeArguments="x:String" xml:space="preserve">[str_HTMLPageContent.Replace("{data-top-5}", System.Web.HttpUtility.HtmlEncode(JsonConvert.SerializeObject(dict_DataTop5)).Replace(vbCrLf, "").Replace("    ", "").Replace(vbTab, ""))]</InArgument>
             </Assign.Value>
           </Assign>
           <ui:WriteTextFile DisplayName="Write Text File" FileName="[str_HTMLPageURI]" sap:VirtualizedContainerService.HintSize="750,51" sap2010:WorkflowViewState.IdRef="WriteTextFile_1" Text="[str_HTMLPageContent]">

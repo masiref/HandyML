@@ -45,6 +45,17 @@
                         Features selection
                     </h2>
                     <input type="hidden" id="column-names" value="{column-names}">
+                    <input type="hidden" id="data-top-5" value="{data-top-5}">
+                    <input type="hidden" id="correlation-matrix" value="{correlation-matrix}">
+
+                    <div class="ui icon info message">
+                        <i class="lightbulb icon"></i>
+                        <div class="content">
+                            <div class="header">Tip</div>
+                            <p>You can hover the label with your mouse to have a sample of data regarding the Column.</p>
+                        </div>
+                    </div>
+
                     <div class="form__group u-centered">
                         <a href="#" class="btn btn--primary" id="select-all-columns">
                             <i class="check square icon"></i>
@@ -56,6 +67,13 @@
                         </a>
                     </div>
                     <div class="columns__list"></div>
+                    <div class="plots-container u-margin-top-medium" id="plots-container" style="display: none;">
+                        <h2 class="heading-secondary">
+                            <i class="object group outline icon heading-secondary__icon"></i>
+                            Correlation matrix
+                        </h2>
+                        <div class="plots" id="plots"></div>
+                    </div>
                     <div class="form__group u-centered u-margin-top-medium u-border-top u-padding-top-medium">
                         <a href="#" class="btn btn--tertiary" id="back">
                             <i class="arrow circle left icon"></i>
