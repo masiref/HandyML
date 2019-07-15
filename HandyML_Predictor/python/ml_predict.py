@@ -11,6 +11,11 @@ from sklearn.compose import ColumnTransformer
 from sklearn.preprocessing import StandardScaler
 from sklearn.preprocessing import PolynomialFeatures
 
+from win10toast import ToastNotifier
+
+############## GLOBAL VARIABLES ##############
+app_name = 'HandyML Predictor'
+
 ############## GENERIC FUNCTIONS ##############
 def one_hot_encode(data, indices):
     
@@ -69,60 +74,88 @@ def predict(X, model):
         # Avoiding error: A sparse matrix was passed, but dense data is required. Use X.toarray() to convert to a dense numpy array.
         return model.predict(X.toarray())
 
-def process(model_path, file_path, features, target, problem_type, algorithm, algorithm_parameters, path, scaler_X_path, scaler_y_path, labelencoder_path, one_hot_encoder_path, dataset_mean_path):
+def process(model_path, file_path, features, target, problem_type, algorithm, algorithm_parameters, path, scaler_X_path, scaler_y_path, labelencoder_path, one_hot_encoder_path, dataset_mean_path, dataset_mode_path):
+
+    errors = []
+    toaster = ToastNotifier()
     
-    # Loading the model from disk
-    model = load_sklearn_component(model_path)
-
-    # Converting list of features columns from string to integer    
-    features = list(map(int, features.split()))
-
-    # Importing the dataset
-    dataset = pd.read_csv(file_path)
-    mean = pd.read_pickle(dataset_mean_path)
-    dataset = dataset.fillna(mean)
-    dataset = dataset.fillna(dataset.mode().iloc[0])
-    X = dataset.iloc[:, features].values
+    model_loaded = False
     
-    if one_hot_encoder_path:
-        one_hot_encoder = load_sklearn_component(one_hot_encoder_path)
-        X = one_hot_encoder.transform(X)
-
-    if scaler_X_path:
-        scaler_X = load_sklearn_component(scaler_X_path)
-        X = scaler_X.transform(X)
+    try:
+    
+        # Loading the model from disk
+        model = load_sklearn_component(model_path)
+    
+        # Converting list of features columns from string to integer    
+        features = list(map(int, features.split()))
+    
+        # Importing the dataset
+        dataset = pd.read_csv(file_path)
+        mean = pd.read_pickle(dataset_mean_path)
+        dataset = dataset.fillna(mean)
+        mode = pd.read_pickle(dataset_mode_path)
+        dataset = dataset.fillna(mode)
+        X = dataset.iloc[:, features].values
+        
+        if one_hot_encoder_path:
+            one_hot_encoder = load_sklearn_component(one_hot_encoder_path)
+            X = one_hot_encoder.transform(X)
+    
+        if scaler_X_path:
+            scaler_X = load_sklearn_component(scaler_X_path)
+            X = scaler_X.transform(X)
+        
+        toaster.show_toast(app_name, 'Model successfully loaded', duration=5)
+        model_loaded = True
+            
+    except Exception as e:
+        
+        toaster.show_toast(app_name, 'Error raised while loading model', duration=5)
+        errors.append('Error raised while loading model: ' + str(e))
         
     y_pred = None
     y_proba = None
-
-    # Making the predictions
-    if algorithm == 'polynomial_regression':
-        degree = int(get_parameter_value('degree', algorithm_parameters, 2))
-        y_pred = predict_polynomial(X, model, degree)
-
-    else:
-        y_pred = predict(X, model)
-
-    # Get probability when problem type is classification
-    if problem_type == 'classification':
-        y_proba = predict_proba(X, model)
-        y_proba = np.amax(y_proba, 1)
-        y_proba = y_proba * 100
-        y_proba = y_proba.tolist()
     
-    # Inverse scaling on target if necessary
-    if scaler_y_path:
-        scaler_y = load_sklearn_component(scaler_y_path)
-        y_pred = scaler_y.inverse_transform(y_pred)        
-    
-    # Inverse label encoding on target if necessary
-    if labelencoder_path:
-        labelencoder = load_sklearn_component(labelencoder_path)
-        y_pred = labelencoder.inverse_transform(y_pred)
+    if model_loaded:
+
+        try:
+            
+            # Making the predictions
+            if algorithm == 'polynomial_regression':
+                degree = int(get_parameter_value('degree', algorithm_parameters, 2))
+                y_pred = predict_polynomial(X, model, degree)
         
-    y_pred = y_pred.tolist()
+            else:
+                y_pred = predict(X, model)
+        
+            # Get probability when problem type is classification
+            if problem_type == 'classification':
+                y_proba = predict_proba(X, model)
+                y_proba = np.amax(y_proba, 1)
+                y_proba = y_proba * 100
+                y_proba = y_proba.tolist()
+            
+            # Inverse scaling on target if necessary
+            if scaler_y_path:
+                scaler_y = load_sklearn_component(scaler_y_path)
+                y_pred = scaler_y.inverse_transform(y_pred)        
+            
+            # Inverse label encoding on target if necessary
+            if labelencoder_path:
+                labelencoder = load_sklearn_component(labelencoder_path)
+                y_pred = labelencoder.inverse_transform(y_pred)
+                
+            y_pred = y_pred.tolist()
+        
+            toaster.show_toast(app_name, 'Predictions made successfully', duration=5)
+        
+        except Exception as e:
+        
+            toaster.show_toast(app_name, 'Error raised while making predictions', duration=5)
+            errors.append('Error raised while making predictions: ' + str(e))
 
     json_object = {
+        "errors": errors,
         "y_pred": y_pred,
         "y_proba": y_proba
     }
@@ -153,5 +186,6 @@ if __name__ == '__main__':
     scaler_y = ''
     labelencoder = ''
     dataset_mean = ''
+    dataset_mode = ''
     
-    result = process(model, file, features, target, problem_type, algorithm, algorithm_parameters, path, scaler_X, scaler_y, labelencoder, one_hot_encoder)
+    result = process(model, file, features, target, problem_type, algorithm, algorithm_parameters, path, scaler_X, scaler_y, labelencoder, one_hot_encoder, dataset_mean, dataset_mode)

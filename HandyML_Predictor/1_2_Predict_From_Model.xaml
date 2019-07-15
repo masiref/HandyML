@@ -16,6 +16,7 @@
     <x:Property Name="argIn_str_LabelencoderPath" Type="InArgument(x:String)" />
     <x:Property Name="argIn_str_OneHotEncoderPath" Type="InArgument(x:String)" />
     <x:Property Name="argIn_str_DatasetMeanPath" Type="InArgument(x:String)" />
+    <x:Property Name="argIn_str_DatasetModePath" Type="InArgument(x:String)" />
   </x:Members>
   <mva:VisualBasic.Settings>
     <x:Null />
@@ -104,7 +105,7 @@
         <OutArgument x:TypeArguments="s:Object[]">[arr_InputParameters]</OutArgument>
       </Assign.To>
       <Assign.Value>
-        <InArgument x:TypeArguments="s:String[]">[{ argIn_str_ModelPath.Replace("\", "/"), argIn_str_DataFilePath.Replace("\", "/"), argIn_str_Features, argIn_str_Targets, argIn_str_ProblemType, argIn_str_Algorithm, argIn_str_AlgorithmParameters, argIn_str_DataFilePath.Substring(0, argIn_str_DataFilePath.LastIndexOf("/") + 1), argIn_str_ScalerXPath, argIn_str_ScalerYPath, argIn_str_LabelencoderPath, argIn_str_OneHotEncoderPath, argIn_str_DatasetMeanPath }]</InArgument>
+        <InArgument x:TypeArguments="s:String[]">[{ argIn_str_ModelPath.Replace("\", "/"), argIn_str_DataFilePath.Replace("\", "/"), argIn_str_Features, argIn_str_Targets, argIn_str_ProblemType, argIn_str_Algorithm, argIn_str_AlgorithmParameters, argIn_str_DataFilePath.Substring(0, argIn_str_DataFilePath.LastIndexOf("/") + 1), argIn_str_ScalerXPath, argIn_str_ScalerYPath, argIn_str_LabelencoderPath, argIn_str_OneHotEncoderPath, argIn_str_DatasetMeanPath, argIn_str_DatasetModePath }]</InArgument>
       </Assign.Value>
     </Assign>
     <If Condition="[argIn_str_PythonTarget.Equals(&quot;x64&quot;)]" sap:VirtualizedContainerService.HintSize="950,738" sap2010:WorkflowViewState.IdRef="If_2">

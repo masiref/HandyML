@@ -25,11 +25,12 @@
     <x:Property Name="argIn_str_Errors" Type="InArgument(x:String)" />
     <x:Property Name="argIn_str_OneHotEncoderPath" Type="InArgument(x:String)" />
     <x:Property Name="argIn_str_DatasetMeanPath" Type="InArgument(x:String)" />
+    <x:Property Name="argIn_str_DatasetModePath" Type="InArgument(x:String)" />
   </x:Members>
   <mva:VisualBasic.Settings>
     <x:Null />
   </mva:VisualBasic.Settings>
-  <sap:VirtualizedContainerService.HintSize>691,8004</sap:VirtualizedContainerService.HintSize>
+  <sap:VirtualizedContainerService.HintSize>691,8159</sap:VirtualizedContainerService.HintSize>
   <sap2010:WorkflowViewState.IdRef>ActivityBuilder_1</sap2010:WorkflowViewState.IdRef>
   <TextExpression.NamespacesForImplementation>
     <sco:Collection x:TypeArguments="x:String">
@@ -90,7 +91,7 @@
       <AssemblyReference>Newtonsoft.Json</AssemblyReference>
     </sco:Collection>
   </TextExpression.ReferencesForImplementation>
-  <Sequence DisplayName="1_6_Report" sap:VirtualizedContainerService.HintSize="651,7924" sap2010:WorkflowViewState.IdRef="Sequence_2">
+  <Sequence DisplayName="1_6_Report" sap:VirtualizedContainerService.HintSize="651,8079" sap2010:WorkflowViewState.IdRef="Sequence_2">
     <sap:WorkflowViewStateService.ViewState>
       <scg:Dictionary x:TypeArguments="x:String, x:Object">
         <x:Boolean x:Key="IsExpanded">True</x:Boolean>
@@ -104,9 +105,9 @@
         </scg:Dictionary>
       </sap:WorkflowViewStateService.ViewState>
     </ui:LogMessage>
-    <TryCatch DisplayName="Try Catch" sap:VirtualizedContainerService.HintSize="629,7538" sap2010:WorkflowViewState.IdRef="TryCatch_1">
+    <TryCatch DisplayName="Try Catch" sap:VirtualizedContainerService.HintSize="629,7693" sap2010:WorkflowViewState.IdRef="TryCatch_1">
       <TryCatch.Try>
-        <Sequence sap:VirtualizedContainerService.HintSize="611,7311" sap2010:WorkflowViewState.IdRef="Sequence_1">
+        <Sequence sap:VirtualizedContainerService.HintSize="611,7466" sap2010:WorkflowViewState.IdRef="Sequence_1">
           <Sequence.Variables>
             <Variable x:TypeArguments="x:String" Name="str_HTMLPageContent" />
             <Variable x:TypeArguments="x:String" Default="html\dist\temp.1_6_report.html" Name="str_HTMLPageURI" />
@@ -456,9 +457,9 @@
               </scg:Dictionary>
             </sap:WorkflowViewStateService.ViewState>
           </ui:CustomInput>
-          <If Condition="[str_Result.Trim.Equals(&quot;generate-template&quot;)]" DisplayName="Generate predictor template if user asked" sap:VirtualizedContainerService.HintSize="589,2026" sap2010:WorkflowViewState.IdRef="If_1">
+          <If Condition="[str_Result.Trim.Equals(&quot;generate-template&quot;)]" DisplayName="Generate predictor template if user asked" sap:VirtualizedContainerService.HintSize="589,2181" sap2010:WorkflowViewState.IdRef="If_1">
             <If.Then>
-              <Sequence sap:VirtualizedContainerService.HintSize="336,1878" sap2010:WorkflowViewState.IdRef="Sequence_3">
+              <Sequence sap:VirtualizedContainerService.HintSize="336,2033" sap2010:WorkflowViewState.IdRef="Sequence_3">
                 <Sequence.Variables>
                   <Variable x:TypeArguments="sd:DataTable" Default="[New DataTable()]" Name="dt_Columns" />
                 </Sequence.Variables>
@@ -471,10 +472,11 @@
                 <ui:WriteCell Cell="B1" DisplayName="Write Cell" sap:VirtualizedContainerService.HintSize="314,115" sap2010:WorkflowViewState.IdRef="WriteCell_1" SheetName="HandyML_Predictor" Text="[argIn_str_ModelPath]" WorkbookPath="[argIn_str_PredictorTemplatePath]" />
                 <ui:WriteCell Cell="B2" DisplayName="Write Cell" sap:VirtualizedContainerService.HintSize="314,115" sap2010:WorkflowViewState.IdRef="WriteCell_2" SheetName="HandyML_Predictor" Text="[argIn_str_ConfigPath]" WorkbookPath="[argIn_str_PredictorTemplatePath]" />
                 <ui:WriteCell Cell="B3" DisplayName="Write Cell" sap:VirtualizedContainerService.HintSize="314,115" sap2010:WorkflowViewState.IdRef="WriteCell_7" SheetName="HandyML_Predictor" Text="[argIn_str_DatasetMeanPath]" WorkbookPath="[argIn_str_PredictorTemplatePath]" />
-                <ui:WriteCell Cell="B4" DisplayName="Write Cell" sap:VirtualizedContainerService.HintSize="314,115" sap2010:WorkflowViewState.IdRef="WriteCell_6" SheetName="HandyML_Predictor" Text="[argIn_str_OneHotEncoderPath]" WorkbookPath="[argIn_str_PredictorTemplatePath]" />
-                <ui:WriteCell Cell="B5" DisplayName="Write Cell" sap:VirtualizedContainerService.HintSize="314,115" sap2010:WorkflowViewState.IdRef="WriteCell_3" SheetName="HandyML_Predictor" Text="[argIn_str_ScalerXPath]" WorkbookPath="[argIn_str_PredictorTemplatePath]" />
-                <ui:WriteCell Cell="B6" DisplayName="Write Cell" sap:VirtualizedContainerService.HintSize="314,115" sap2010:WorkflowViewState.IdRef="WriteCell_4" SheetName="HandyML_Predictor" Text="[argIn_str_ScalerYPath]" WorkbookPath="[argIn_str_PredictorTemplatePath]" />
-                <ui:WriteCell Cell="B7" DisplayName="Write Cell" sap:VirtualizedContainerService.HintSize="314,115" sap2010:WorkflowViewState.IdRef="WriteCell_5" SheetName="HandyML_Predictor" Text="[argIn_str_LabelencoderPath]" WorkbookPath="[argIn_str_PredictorTemplatePath]" />
+                <ui:WriteCell Cell="B4" DisplayName="Write Cell" sap:VirtualizedContainerService.HintSize="314,115" sap2010:WorkflowViewState.IdRef="WriteCell_8" SheetName="HandyML_Predictor" Text="[argIn_str_DatasetModePath]" WorkbookPath="[argIn_str_PredictorTemplatePath]" />
+                <ui:WriteCell Cell="B5" DisplayName="Write Cell" sap:VirtualizedContainerService.HintSize="314,115" sap2010:WorkflowViewState.IdRef="WriteCell_6" SheetName="HandyML_Predictor" Text="[argIn_str_OneHotEncoderPath]" WorkbookPath="[argIn_str_PredictorTemplatePath]" />
+                <ui:WriteCell Cell="B6" DisplayName="Write Cell" sap:VirtualizedContainerService.HintSize="314,115" sap2010:WorkflowViewState.IdRef="WriteCell_3" SheetName="HandyML_Predictor" Text="[argIn_str_ScalerXPath]" WorkbookPath="[argIn_str_PredictorTemplatePath]" />
+                <ui:WriteCell Cell="B7" DisplayName="Write Cell" sap:VirtualizedContainerService.HintSize="314,115" sap2010:WorkflowViewState.IdRef="WriteCell_4" SheetName="HandyML_Predictor" Text="[argIn_str_ScalerYPath]" WorkbookPath="[argIn_str_PredictorTemplatePath]" />
+                <ui:WriteCell Cell="B8" DisplayName="Write Cell" sap:VirtualizedContainerService.HintSize="314,115" sap2010:WorkflowViewState.IdRef="WriteCell_5" SheetName="HandyML_Predictor" Text="[argIn_str_LabelencoderPath]" WorkbookPath="[argIn_str_PredictorTemplatePath]" />
                 <ui:ForEach x:TypeArguments="x:String" CurrentIndex="{x:Null}" DisplayName="For Each" sap:VirtualizedContainerService.HintSize="314,390" sap2010:WorkflowViewState.IdRef="ForEach`1_1" Values="[argIn_list_ColumnNames]">
                   <ui:ForEach.Body>
                     <ActivityAction x:TypeArguments="x:String">

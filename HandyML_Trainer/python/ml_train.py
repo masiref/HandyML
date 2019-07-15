@@ -300,6 +300,7 @@ def process(file_path, features, target, categorical_features, problem_type, alg
     
     model_path = ''
     dataset_mean_path = ''
+    dataset_mode_path = ''
     one_hot_encoder_path = ''
     scaler_X_path = ''
     scaler_y_path = ''
@@ -347,6 +348,7 @@ def process(file_path, features, target, categorical_features, problem_type, alg
         # Importing the dataset
         dataset = pd.read_csv(file_path)
         mean = dataset.mean()
+        mode = dataset.mode().iloc[0]
         dataset = dataset.fillna(mean)
         dataset = dataset.dropna()
         X = dataset.iloc[:, features].values
@@ -550,6 +552,10 @@ def process(file_path, features, target, categorical_features, problem_type, alg
                 dataset_mean_path = path + 'dataset_mean_' + timestamp + '.pickle'
                 mean.to_pickle(dataset_mean_path)
                 
+                # Saving dataset mode
+                dataset_mode_path = path + 'dataset_mode_' + timestamp + '.pickle'
+                mode.to_pickle(dataset_mode_path)
+                
                 # Saving the one hot encoder
                 if one_hot_encoder:
                     one_hot_encoder_path = path + 'one_hot_encoder_' + timestamp + '.pickle'
@@ -590,6 +596,7 @@ def process(file_path, features, target, categorical_features, problem_type, alg
         "errors": errors,
         "model": model_path,
         "dataset_mean": dataset_mean_path,
+        "dataset_mode": dataset_mode_path,
         "one_hot_encoder": one_hot_encoder_path,
         "scaler_X": scaler_X_path,
         "scaler_y": scaler_y_path,
