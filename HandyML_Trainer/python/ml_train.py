@@ -310,246 +310,286 @@ def fit_random_forest_classification(X_train, y_train, n_estimators, criterion):
     
 def process(file_path, features, target, categorical_features, problem_type, algorithm, algorithm_parameters, path, column_names):
 
+    errors = []
     toaster = ToastNotifier()
+    model_score = 0
+    
+    dataset_imported = False
+    
+    try:
         
-    # Converting column_names to a list of string
-    if len(column_names) > 0:
-        column_names = column_names.split('::')
-    
-    # Converting list of features columns from string to integer
-    features = list(map(int, features.split()))
-    feature_names = list(map(lambda index: column_names[index], features))
-    
-    # Converting list of categorical features columns from string to integer if necessary
-    if len(categorical_features) > 0:
-        categorical_features = list(map(int, categorical_features.split()))
-        # Find the right index of the column in features list
-        categorical_features = np.array(list(map(lambda index: features.index(index), categorical_features)), dtype=int)
-    
-    # Converting target column from string to integer  
-    target = int(target)
-
-    # Importing the dataset
-    dataset = pd.read_csv(file_path)
-    dataset = dataset.fillna(dataset.mean())
-    dataset = dataset.dropna()
-    X = dataset.iloc[:, features].values
-    y = dataset.iloc[:, target].values
-
-    # Encoding categorical features
-    if len(categorical_features) > 0:
-        # One hot encoding on X[:, indices]
-        X = one_hot_encode(X, categorical_features)
-    
-    # Encoding categorical target in case of a classification problem
-    labelencoder = None
-    if problem_type == 'classification':
-        y, labelencoder = encode_categorical_data(y)
+        # Converting column_names to a list of string
+        if len(column_names) > 0:
+            column_names = column_names.split('::')
         
-    # Splitting the dataset into training set and test set
-    X_train, X_test, y_train, y_test = split_data_set(X, y)
-
-    now = time.localtime()
-    timestamp = time.strftime("%Y%m%d%H%M%S", now)
-
-    if path == None:
-        path = 'C:/Temp/'
-    model_path = path + 'model' + '_' + timestamp + '.model'
-    
-    plot_training_results = ''
-    plot_test_results = ''
-    plot_confusion_matrix = ''
-    plot_roc = ''
-    plot_ks_statistic = ''
-    plot_precision_recall = ''
-    plot_cumulative_gain = ''
-    plot_lift_curve = ''
-    plot_learning_curve = ''
-    plot_feature_importances = ''
-    
-    scaler_X_path = ''
-    scaler_y_path = ''
-    labelencoder_path = ''
+        # Converting list of features columns from string to integer
+        features = list(map(int, features.split()))
+        feature_names = list(map(lambda index: column_names[index], features))
         
-    model = None
-    scaler_X = None
-    scaler_y = None
-    is_polynomial_regression = False
-    degree = None
-    cmatrix = None
-    
-    toaster.show_toast(app_name, 'Dataset successfully imported', duration=5)
-    
-    ############## PROBLEM TYPE IS REGRESSION ##############
-    if problem_type == 'regression':
-    
-        # Plots variables
-        generate_plots = False
-        # Generate plots only if there is 1 dimension
-        if X_train.shape[1] == 1:
-            generate_plots = True
-            plot_training_results = path + 'training_results_' + timestamp + '.png'
-            plot_test_results = path + 'test_results_' + timestamp + '.png'
-            plot_labels = [ column_names[features[0]], column_names[target] ]
+        # Converting list of categorical features columns from string to integer if necessary
+        if len(categorical_features) > 0:
+            categorical_features = list(map(int, categorical_features.split()))
+            # Find the right index of the column in features list
+            categorical_features = np.array(list(map(lambda index: features.index(index), categorical_features)), dtype=int)
         
-        if algorithm == None:
-            algorithm = 'linear_regression'
+        # Converting target column from string to integer  
+        target = int(target)
+    
+        # Importing the dataset
+        dataset = pd.read_csv(file_path)
+        dataset = dataset.fillna(dataset.mean())
+        dataset = dataset.dropna()
+        X = dataset.iloc[:, features].values
+        y = dataset.iloc[:, target].values
+    
+        # Encoding categorical features
+        if len(categorical_features) > 0:
+            # One hot encoding on X[:, indices]
+            X = one_hot_encode(X, categorical_features)
         
-        # Selecting the right regression algorithm
-        if algorithm == 'linear_regression':
-            model = fit_linear_regression(X_train, y_train)
+        # Encoding categorical target in case of a classification problem
+        labelencoder = None
+        if problem_type == 'classification':
+            y, labelencoder = encode_categorical_data(y)
             
-            if generate_plots:
-                save_linear_regression_plot(X_train, y_train, model, plot_labels, 'Training results', plot_training_results)
-                save_linear_regression_plot(X_test, y_test, model, plot_labels, 'Test results', plot_test_results)
-
-        elif algorithm == 'polynomial_regression':
-            is_polynomial_regression = True
-            degree = int(get_parameter_value('degree', algorithm_parameters, 2))
-            model, polynomial_regressor = fit_polynomial_regression(X_train, y_train, degree)
-            
-            if generate_plots:
-                save_polynomial_regression_plot(X_train, y_train, model, polynomial_regressor, plot_labels, 'Training results', plot_training_results)
-                save_polynomial_regression_plot(X_test, y_test, model, polynomial_regressor, plot_labels, 'Test results', plot_test_results)
-
-        elif algorithm == 'support_vector_regression':
-            model, X_train, y_train, X_test, y_test, scaler_X, scaler_y = fit_sv_regression(X_train, y_train, X_test, y_test)
-            
-            if generate_plots:
-                save_regression_plot_using_grid(X_train, y_train, model, plot_labels, 'Training results', plot_training_results)
-                save_regression_plot_using_grid(X_test, y_test, model, plot_labels, 'Test results', plot_test_results)
-
-        elif algorithm == 'decision_tree_regression':
-            criterion = get_parameter_value('criterion', algorithm_parameters, 'mse')
-            model = fit_decision_tree_regression(X_train, y_train, criterion)
-            
-            if generate_plots:
-                save_regression_plot_using_grid(X_train, y_train, model, plot_labels, 'Training results', plot_training_results)
-                save_regression_plot_using_grid(X_test, y_test, model, plot_labels, 'Test results', plot_test_results)
-
-        elif algorithm == 'random_forest_regression':
-            criterion = get_parameter_value('criterion', algorithm_parameters, 'mse')
-            n_estimators = int(get_parameter_value('n_estimators', algorithm_parameters, 10))
-            model = fit_random_forest_regression(X_train, y_train, n_estimators, criterion)
-            
-            if generate_plots:
-                save_regression_plot_using_grid(X_train, y_train, model, plot_labels, 'Training results', plot_training_results)
-                save_regression_plot_using_grid(X_test, y_test, model, plot_labels, 'Test results', plot_test_results)
+        # Splitting the dataset into training set and test set
+        X_train, X_test, y_train, y_test = split_data_set(X, y)
+    
+        now = time.localtime()
+        timestamp = time.strftime("%Y%m%d%H%M%S", now)
+    
+        if path == None:
+            path = 'C:/Temp/'
+        model_path = path + 'model' + '_' + timestamp + '.model'
         
-    ############## PROBLEM TYPE IS CLASSIFICATION ##############
-    elif problem_type == 'classification':
-    
-        # Feature scaling
-        X_train, scaler_X = feature_scaling(X_train)
-        X_test, _ = feature_scaling(X_test, scaler_X)
+        plot_training_results = ''
+        plot_test_results = ''
+        plot_confusion_matrix = ''
+        plot_roc = ''
+        plot_ks_statistic = ''
+        plot_precision_recall = ''
+        plot_cumulative_gain = ''
+        plot_lift_curve = ''
+        plot_learning_curve = ''
+        plot_feature_importances = ''
         
-        # Plots variables
-        generate_plots = False
-        # Generate plots only if there is 2 dimensions and 2 classes in target
-        if X_train.shape[1] == 2 and len(np.unique(y)) == 2:
-            generate_plots = True
-            plot_training_results = path + 'training_results_' + timestamp + '.png'
-            plot_test_results = path + 'test_results_' + timestamp + '.png'
-            plot_labels = [ column_names[features[0]], column_names[features[1]] ]
+        scaler_X_path = ''
+        scaler_y_path = ''
+        labelencoder_path = ''
             
-        if algorithm == None:
-            algorithm = 'logistic_regression'
+        model = None
+        scaler_X = None
+        scaler_y = None
+        is_polynomial_regression = False
+        degree = None
+        cmatrix = None
         
-        # Selecting the right classification algorithm
-        if algorithm == 'logistic_regression':
-            solver = get_parameter_value('solver', algorithm_parameters, 'liblinear')
-            model = fit_logistic_regression(X_train, y_train, solver)
-
-        elif algorithm == 'knn':
-            n_neighbors = int(get_parameter_value('n_neighbors', algorithm_parameters, 5))
-            model = fit_knn(X_train, y_train, n_neighbors)
-
-        elif algorithm == 'svm':
-            kernel = get_parameter_value('kernel', algorithm_parameters, 'rbf')
-            gamma = float(get_parameter_value('gamma', algorithm_parameters, 0.1))
-            model = fit_svm(X_train, y_train, kernel, gamma)
-
-        elif algorithm == 'kernel_svm':
-            kernel = get_parameter_value('kernel', algorithm_parameters, 'rbf')
-            gamma = float(get_parameter_value('gamma', algorithm_parameters, 0.1))
-            degree = int(get_parameter_value('degree', algorithm_parameters, 2))
-            model = fit_kernel_svm(X_train, y_train, kernel, degree, gamma)
-
-        elif algorithm == 'naive_bayes':
-            model = fit_naive_bayes(X_train, y_train)
-
-        elif algorithm == 'decision_tree_classification':
-            criterion = get_parameter_value('criterion', algorithm_parameters, 'entropy')
-            splitter = get_parameter_value('splitter', algorithm_parameters, 'best')
-            model = fit_decision_tree_classification(X_train, y_train, criterion, splitter)
-
-        elif algorithm == 'random_forest_classification':
-            n_estimators = int(get_parameter_value('n_estimators', algorithm_parameters, 10))
-            criterion = get_parameter_value('criterion', algorithm_parameters, 'entropy')
-            model = fit_random_forest_classification(X_train, y_train, n_estimators, criterion)
+        toaster.show_toast(app_name, 'Dataset successfully imported', duration=5)
+        dataset_imported = True
+        
+    except Exception as e:
+        
+        toaster.show_toast(app_name, 'Error raised while importing dataset', duration=5)
+        errors.append('Error raised while importing dataset: ' + str(e))
+        
+    if dataset_imported:
+        
+        training_done = False
+        
+        try:
+        
+            ############## PROBLEM TYPE IS REGRESSION ##############
+            if problem_type == 'regression':
             
-        # Generate plots
-        if generate_plots:
-            save_classification_plot(X_train, y_train, model, plot_labels, 'Training results', plot_training_results)
-            save_classification_plot(X_test, y_test, model, plot_labels, 'Test results', plot_test_results)
+                # Plots variables
+                generate_plots = False
+                # Generate plots only if there is 1 dimension
+                if X_train.shape[1] == 1:
+                    generate_plots = True
+                    plot_training_results = path + 'training_results_' + timestamp + '.png'
+                    plot_test_results = path + 'test_results_' + timestamp + '.png'
+                    plot_labels = [ column_names[features[0]], column_names[target] ]
+                
+                if algorithm == None:
+                    algorithm = 'linear_regression'
+                
+                # Selecting the right regression algorithm
+                if algorithm == 'linear_regression':
+                    model = fit_linear_regression(X_train, y_train)
+                    
+                    if generate_plots:
+                        save_linear_regression_plot(X_train, y_train, model, plot_labels, 'Training results', plot_training_results)
+                        save_linear_regression_plot(X_test, y_test, model, plot_labels, 'Test results', plot_test_results)
         
-        # Generate confusion matrix when target is boolean
-        if len(np.unique(y)) == 2:
-            cmatrix = get_confusion_matrix(y_test, model.predict(X_test))
-    
-    toaster.show_toast(app_name, 'Training ended successfully', duration=5)
-    
-    # Generate metrics and estimators plots
-    if problem_type == 'classification':            
-        plot_confusion_matrix = path + 'confusion_matrix_' + timestamp + '.png'
-        save_confusion_matrix_plot(y_test, model.predict(X_test), 'Confusion matrix', plot_confusion_matrix)
+                elif algorithm == 'polynomial_regression':
+                    is_polynomial_regression = True
+                    degree = int(get_parameter_value('degree', algorithm_parameters, 2))
+                    model, polynomial_regressor = fit_polynomial_regression(X_train, y_train, degree)
+                    
+                    if generate_plots:
+                        save_polynomial_regression_plot(X_train, y_train, model, polynomial_regressor, plot_labels, 'Training results', plot_training_results)
+                        save_polynomial_regression_plot(X_test, y_test, model, polynomial_regressor, plot_labels, 'Test results', plot_test_results)
         
-#        plot_roc = path + 'roc_' + timestamp + '.png'
-#        save_roc_plot(model.predict(X_test), model.predict_proba(X_test), 'ROC curves', plot_roc)
-#        
-#        plot_ks_statistic = path + 'ks_statistic_' + timestamp + '.png'
-#        save_ks_statistic_plot(model.predict(X_test), model.predict_proba(X_test), 'KS Statistic', plot_ks_statistic)
-#        
-#        plot_precision_recall = path + 'precision_recall_' + timestamp + '.png'
-#        save_precision_recall_plot(model.predict(X_test), model.predict_proba(X_test), 'Precision recall', plot_precision_recall)
-#        
-#        plot_cumulative_gain = path + 'cumulative_gain_' + timestamp + '.png'
-#        save_cumulative_gain_plot(model.predict(X_test), model.predict_proba(X_test), 'Cumulative gain', plot_cumulative_gain)
-#        
-#        plot_lift_curve = path + 'lift_curve_' + timestamp + '.png'
-#        save_lift_curve_plot(model.predict(X_test), model.predict_proba(X_test), 'Lift curve', plot_lift_curve)
-    
-    plot_learning_curve = path + 'learning_curve_' + timestamp + '.png'
-    save_learning_curve_plot(model, X_train, y_train, 'Learning curve', plot_learning_curve)
-    
-    if hasattr(model, 'feature_importances_') and len(features) > 1:
-        plot_feature_importances = path + 'feature_importances_' + timestamp + '.png'
-        save_feature_importances_plot(model, feature_names, 'Feature importances', plot_feature_importances)
-    
-    toaster.show_toast(app_name, 'Plots generated successfully', duration=5)
-    
-    # Saving the trained model 
-    model_path = save_model(model_path, model)
-    
-    # Saving the labelencoder
-    if labelencoder:
-        labelencoder_path = path + 'labelencoder_' + timestamp + '.labelencoder'
-        save_label_encoder(labelencoder_path, labelencoder)
-
-    # Saving the scalers
-    if scaler_X:
-        scaler_X_path = path + 'scaler_X_' + timestamp + '.scaler'
-        save_scaler(scaler_X_path, scaler_X)
-    if scaler_y:
-        scaler_y_path = path + 'scaler_y_' + timestamp + '.scaler'
-        save_scaler(scaler_y_path, scaler_y)
-    
-    # Calculation of model score
-    model_score = get_model_score(model, X_test, y_test, is_polynomial_regression, degree)
+                elif algorithm == 'support_vector_regression':
+                    model, X_train, y_train, X_test, y_test, scaler_X, scaler_y = fit_sv_regression(X_train, y_train, X_test, y_test)
+                    
+                    if generate_plots:
+                        save_regression_plot_using_grid(X_train, y_train, model, plot_labels, 'Training results', plot_training_results)
+                        save_regression_plot_using_grid(X_test, y_test, model, plot_labels, 'Test results', plot_test_results)
         
-    model_path = ''.join(model_path)
+                elif algorithm == 'decision_tree_regression':
+                    criterion = get_parameter_value('criterion', algorithm_parameters, 'mse')
+                    model = fit_decision_tree_regression(X_train, y_train, criterion)
+                    
+                    if generate_plots:
+                        save_regression_plot_using_grid(X_train, y_train, model, plot_labels, 'Training results', plot_training_results)
+                        save_regression_plot_using_grid(X_test, y_test, model, plot_labels, 'Test results', plot_test_results)
+        
+                elif algorithm == 'random_forest_regression':
+                    criterion = get_parameter_value('criterion', algorithm_parameters, 'mse')
+                    n_estimators = int(get_parameter_value('n_estimators', algorithm_parameters, 10))
+                    model = fit_random_forest_regression(X_train, y_train, n_estimators, criterion)
+                    
+                    if generate_plots:
+                        save_regression_plot_using_grid(X_train, y_train, model, plot_labels, 'Training results', plot_training_results)
+                        save_regression_plot_using_grid(X_test, y_test, model, plot_labels, 'Test results', plot_test_results)
+                
+            ############## PROBLEM TYPE IS CLASSIFICATION ##############
+            elif problem_type == 'classification':
+            
+                # Feature scaling
+                X_train, scaler_X = feature_scaling(X_train)
+                X_test, _ = feature_scaling(X_test, scaler_X)
+                
+                # Plots variables
+                generate_plots = False
+                # Generate plots only if there is 2 dimensions and 2 classes in target
+                if X_train.shape[1] == 2 and len(np.unique(y)) == 2:
+                    generate_plots = True
+                    plot_training_results = path + 'training_results_' + timestamp + '.png'
+                    plot_test_results = path + 'test_results_' + timestamp + '.png'
+                    plot_labels = [ column_names[features[0]], column_names[features[1]] ]
+                    
+                if algorithm == None:
+                    algorithm = 'logistic_regression'
+                
+                # Selecting the right classification algorithm
+                if algorithm == 'logistic_regression':
+                    solver = get_parameter_value('solver', algorithm_parameters, 'liblinear')
+                    model = fit_logistic_regression(X_train, y_train, solver)
+        
+                elif algorithm == 'knn':
+                    n_neighbors = int(get_parameter_value('n_neighbors', algorithm_parameters, 5))
+                    model = fit_knn(X_train, y_train, n_neighbors)
+        
+                elif algorithm == 'svm':
+                    kernel = get_parameter_value('kernel', algorithm_parameters, 'rbf')
+                    gamma = float(get_parameter_value('gamma', algorithm_parameters, 0.1))
+                    model = fit_svm(X_train, y_train, kernel, gamma)
+        
+                elif algorithm == 'kernel_svm':
+                    kernel = get_parameter_value('kernel', algorithm_parameters, 'rbf')
+                    gamma = float(get_parameter_value('gamma', algorithm_parameters, 0.1))
+                    degree = int(get_parameter_value('degree', algorithm_parameters, 2))
+                    model = fit_kernel_svm(X_train, y_train, kernel, degree, gamma)
+        
+                elif algorithm == 'naive_bayes':
+                    model = fit_naive_bayes(X_train, y_train)
+        
+                elif algorithm == 'decision_tree_classification':
+                    criterion = get_parameter_value('criterion', algorithm_parameters, 'entropy')
+                    splitter = get_parameter_value('splitter', algorithm_parameters, 'best')
+                    model = fit_decision_tree_classification(X_train, y_train, criterion, splitter)
+        
+                elif algorithm == 'random_forest_classification':
+                    n_estimators = int(get_parameter_value('n_estimators', algorithm_parameters, 10))
+                    criterion = get_parameter_value('criterion', algorithm_parameters, 'entropy')
+                    model = fit_random_forest_classification(X_train, y_train, n_estimators, criterion)
+                    
+                # Generate plots
+                if generate_plots:
+                    save_classification_plot(X_train, y_train, model, plot_labels, 'Training results', plot_training_results)
+                    save_classification_plot(X_test, y_test, model, plot_labels, 'Test results', plot_test_results)
+                
+                # Generate confusion matrix when target is boolean
+                if len(np.unique(y)) == 2:
+                    cmatrix = get_confusion_matrix(y_test, model.predict(X_test))
+            
+            toaster.show_toast(app_name, 'Training ended successfully', duration=5)
+            training_done = True
+        
+        except Exception as e:
+           
+            toaster.show_toast(app_name, 'Error during training', duration=5)
+            errors.append('Error raised during training: ' + str(e))
+            
+        if training_done:
+            
+            try:
+                
+                # Generate metrics and estimators plots
+                if problem_type == 'classification':            
+                    plot_confusion_matrix = path + 'confusion_matrix_' + timestamp + '.png'
+                    save_confusion_matrix_plot(y_test, model.predict(X_test), 'Confusion matrix', plot_confusion_matrix)
+                
+                plot_learning_curve = path + 'learning_curve_' + timestamp + '.png'
+                save_learning_curve_plot(model, X_train, y_train, 'Learning curve', plot_learning_curve)
+                
+                if hasattr(model, 'feature_importances_') and len(features) > 1:
+                    plot_feature_importances = path + 'feature_importances_' + timestamp + '.png'
+                    try:
+                        
+                        save_feature_importances_plot(model, feature_names, 'Feature importances', plot_feature_importances)
+                        
+                    except:
+                        
+                        plot_feature_importances = ''
+                
+                toaster.show_toast(app_name, 'Plots generated successfully', duration=5)
+            
+            except:
+                
+                toaster.show_toast(app_name, 'Error raised while generating plots', duration=5)
+                errors.append('Error raised while generating plots')
+            
+            try:
+                
+                # Saving the trained model 
+                model_path = save_model(model_path, model)
+                
+                # Saving the labelencoder
+                if labelencoder:
+                    labelencoder_path = path + 'labelencoder_' + timestamp + '.labelencoder'
+                    save_label_encoder(labelencoder_path, labelencoder)
+            
+                # Saving the scalers
+                if scaler_X:
+                    scaler_X_path = path + 'scaler_X_' + timestamp + '.scaler'
+                    save_scaler(scaler_X_path, scaler_X)
+                if scaler_y:
+                    scaler_y_path = path + 'scaler_y_' + timestamp + '.scaler'
+                    save_scaler(scaler_y_path, scaler_y)
+                
+                toaster.show_toast(app_name, 'Model saved successfully', duration=5)
+            
+            except Exception as e:
+                
+                toaster.show_toast(app_name, 'Error raised while saving model', duration=5)
+                errors.append('Error raised while saving model: ' + str(e))
+            
+            try:
+            
+                # Calculation of model score
+                model_score = get_model_score(model, X_test, y_test, is_polynomial_regression, degree)
+                    
+                model_path = ''.join(model_path)
+                
+            except Exception as e:
+                
+                errors.append('Error raised while calculating model score: ' + str(e))
     
     json_object = {
+            "errors": errors,
             "model": model_path,
             "scaler_X": scaler_X_path,
             "scaler_y": scaler_y_path,
@@ -568,8 +608,6 @@ def process(file_path, features, target, categorical_features, problem_type, alg
             "plot_feature_importances": plot_feature_importances
     }
     json_string = json.dumps(json_object)
-
-    toaster.show_toast(app_name, 'Model and results exported successfully', duration=5)
     
     return json_string
 
@@ -577,20 +615,20 @@ def process(file_path, features, target, categorical_features, problem_type, alg
 if __name__ == '__main__':
     
     # For testing purposes
-    file = 'data.csv'
-    column_names = 'a::b::c::d::e'
-    features = '0 1 2 3'
+    file = ''
+    column_names = ''
+    features = ''
     categorical_features = ''
-    target = '4'
+    target = ''
     
     # classification, regression
-    problem_type = 'classification'
+    problem_type = ''
     
     # linear_regression, polynomial_regression, support_vector_regression, decision_tree_regression, random_forest_regression
     # logistic_regression, knn, svm, kernel_svm, naive_bayes, decision_tree_classification, random_forest_classification
-    algorithm = 'decision_tree_classification'
+    algorithm = ''
     algorithm_parameters = ''
-    path = 'C:/temp/'
+    path = ''
     
     result = process(file, features, target, categorical_features, problem_type, algorithm, algorithm_parameters, path, column_names)
 

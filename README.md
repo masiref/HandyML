@@ -49,7 +49,9 @@ If using Anaconda, launch Anaconda Prompt and execute following commands:
 
 `conda install numpy pandas scikit-learn`
 
-`pip install matplotlib win10toast scikit-plot`
+`pip install matplotlib scikit-plot`
+
+`pip install win10toast` (add options `--user --ignore-installed` when installed on a Windows 7 machine)
 
 ##### 1.3.1. NumPy
 Developed with NumPy 1.16.4.

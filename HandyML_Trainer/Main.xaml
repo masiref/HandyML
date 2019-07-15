@@ -58,6 +58,8 @@
       <AssemblyReference>System.Web</AssemblyReference>
       <AssemblyReference>System.Data.DataSetExtensions</AssemblyReference>
       <AssemblyReference>Newtonsoft.Json</AssemblyReference>
+      <AssemblyReference>System.Runtime.WindowsRuntime</AssemblyReference>
+      <AssemblyReference>System.Collections.Immutable</AssemblyReference>
     </sco:Collection>
   </TextExpression.ReferencesForImplementation>
   <Sequence DisplayName="Main" sap:VirtualizedContainerService.HintSize="976,2628" sap2010:WorkflowViewState.IdRef="Sequence_1">
@@ -273,6 +275,7 @@
                 <Variable x:TypeArguments="x:String" Name="str_PlotLiftCurve" />
                 <Variable x:TypeArguments="x:String" Name="str_PlotLearningCurve" />
                 <Variable x:TypeArguments="x:String" Name="str_PlotFeatureImportances" />
+                <Variable x:TypeArguments="s:String[]" Name="arr_Errors" />
               </Flowchart.Variables>
               <sap:WorkflowViewStateService.ViewState>
                 <scg:Dictionary x:TypeArguments="x:String, x:Object">
@@ -306,7 +309,7 @@
                         <av:PointCollection x:Key="ConnectorLocation">300,446.5 300,506.5</av:PointCollection>
                       </scg:Dictionary>
                     </sap:WorkflowViewStateService.ViewState>
-                    <ui:InvokeWorkflowFile ContinueOnError="{x:Null}" DisplayName="2. Select your features" sap:VirtualizedContainerService.HintSize="314,87" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_3" UnSafe="False" WorkflowFileName="1_2_Select_your_features.xaml">
+                    <ui:InvokeWorkflowFile ContinueOnError="{x:Null}" DisplayName="2. Select your features" sap:VirtualizedContainerService.HintSize="200,51" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_3" UnSafe="False" WorkflowFileName="1_2_Select_your_features.xaml">
                       <ui:InvokeWorkflowFile.Arguments>
                         <InArgument x:TypeArguments="scg:List(x:String)" x:Key="argIn_list_ColumnNames">[list_ColumnNames]</InArgument>
                         <OutArgument x:TypeArguments="x:Boolean" x:Key="argOut_bool_FormFilled">[bool_NextStep]</OutArgument>
@@ -587,9 +590,9 @@
                                                           <x:Boolean x:Key="IsExpanded">True</x:Boolean>
                                                         </scg:Dictionary>
                                                       </sap:WorkflowViewStateService.ViewState>
-                                                      <TryCatch DisplayName="Try Catch" sap:VirtualizedContainerService.HintSize="587,3102" sap2010:WorkflowViewState.IdRef="TryCatch_2">
+                                                      <TryCatch DisplayName="Try Catch" sap:VirtualizedContainerService.HintSize="587,3202" sap2010:WorkflowViewState.IdRef="TryCatch_2">
                                                         <TryCatch.Try>
-                                                          <Sequence sap:VirtualizedContainerService.HintSize="569,2875" sap2010:WorkflowViewState.IdRef="Sequence_17">
+                                                          <Sequence sap:VirtualizedContainerService.HintSize="569,2975" sap2010:WorkflowViewState.IdRef="Sequence_17">
                                                             <Sequence.Variables>
                                                               <Variable x:TypeArguments="njl:JObject" Name="jobject_TrainResult" />
                                                               <Variable x:TypeArguments="x:String" Name="str_ColumnNames">
@@ -687,6 +690,14 @@
                                                                 <InArgument x:TypeArguments="x:String" x:Key="argIn_str_FolderPath">[str_FolderPath]</InArgument>
                                                               </ui:InvokeWorkflowFile.Arguments>
                                                             </ui:InvokeWorkflowFile>
+                                                            <Assign sap:VirtualizedContainerService.HintSize="547,60" sap2010:WorkflowViewState.IdRef="Assign_35">
+                                                              <Assign.To>
+                                                                <OutArgument x:TypeArguments="s:String[]">[arr_Errors]</OutArgument>
+                                                              </Assign.To>
+                                                              <Assign.Value>
+                                                                <InArgument x:TypeArguments="s:String[]">[jobject_TrainResult.Item("errors").ToObject(Of String())]</InArgument>
+                                                              </Assign.Value>
+                                                            </Assign>
                                                             <Assign sap:VirtualizedContainerService.HintSize="547,60" sap2010:WorkflowViewState.IdRef="Assign_8">
                                                               <Assign.To>
                                                                 <OutArgument x:TypeArguments="x:Double">[dbl_Score]</OutArgument>
@@ -870,7 +881,7 @@
                                                             <av:Size x:Key="ShapeSize">200,51</av:Size>
                                                           </scg:Dictionary>
                                                         </sap:WorkflowViewStateService.ViewState>
-                                                        <ui:InvokeWorkflowFile ContinueOnError="{x:Null}" DisplayName="6. Report" sap:VirtualizedContainerService.HintSize="314,87" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_8" UnSafe="False" WorkflowFileName="1_6_Report.xaml">
+                                                        <ui:InvokeWorkflowFile ContinueOnError="{x:Null}" DisplayName="6. Report" sap:VirtualizedContainerService.HintSize="200,51" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_8" UnSafe="False" WorkflowFileName="1_6_Report.xaml">
                                                           <ui:InvokeWorkflowFile.Arguments>
                                                             <InArgument x:TypeArguments="x:String" x:Key="argIn_str_ModelPath">[str_ModelPath]</InArgument>
                                                             <InArgument x:TypeArguments="x:Double" x:Key="argIn_dbl_Score">[dbl_Score]</InArgument>
@@ -894,6 +905,7 @@
                                                             <InArgument x:TypeArguments="x:String" x:Key="argIn_str_PlotLiftCurve">[str_PlotLiftCurve]</InArgument>
                                                             <InArgument x:TypeArguments="x:String" x:Key="argIn_str_PlotLearningCurve">[str_PlotLearningCurve]</InArgument>
                                                             <InArgument x:TypeArguments="x:String" x:Key="argIn_str_PlotFeatureImportances">[str_PlotFeatureImportances]</InArgument>
+                                                            <InArgument x:TypeArguments="x:String" x:Key="argIn_str_Errors">["[""" + String.Join(""", """, arr_Errors) + """]"]</InArgument>
                                                           </ui:InvokeWorkflowFile.Arguments>
                                                           <sap:WorkflowViewStateService.ViewState>
                                                             <scg:Dictionary x:TypeArguments="x:String, x:Object">

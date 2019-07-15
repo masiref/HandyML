@@ -22,7 +22,7 @@
             </div>
         </header>
         <main class="main">
-            <div class="ui icon success message">
+            <div class="ui icon success message" id="success-message" style="display: none;">
                 <i class="download icon"></i>
                 <div class="content">
                     <div class="header">
@@ -34,7 +34,17 @@
                     </p>
                 </div>
             </div>
+            <div class="ui icon error message" id="error-message" style="display: none;">
+                <i class="exclamation triangle icon"></i>
+                <div class="content">
+                    <div class="header">
+                        Error(s) during model training
+                    </div>
+                    <ul class="list"></ul>
+                </div>
+            </div>
             <form action="#" class="form">
+                <input type="hidden" id="errors" value="{errors}">
                 <input type="hidden" id="model-path" value="{model-path}">
                 <input type="hidden" id="results-path" value="{results-path}">
                 <input type="hidden" id="template-path" value="{template-path}">
@@ -95,7 +105,7 @@
                         </p>
                     </div>
                 </div>
-                <div class="ui icon info message">
+                <div class="ui icon info message" id="predictor-message" style="display: none;">
                     <i class="copy icon"></i>
                     <div class="content">
                         <div class="header">
