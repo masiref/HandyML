@@ -69,24 +69,24 @@ def predict(X, model):
         # Avoiding error: A sparse matrix was passed, but dense data is required. Use X.toarray() to convert to a dense numpy array.
         return model.predict(X.toarray())
 
-def process(model_path, file_path, features, target, categorical_features, problem_type, algorithm, algorithm_parameters, path, scaler_X_path, scaler_y_path, labelencoder_path):
+def process(model_path, file_path, features, target, problem_type, algorithm, algorithm_parameters, path, scaler_X_path, scaler_y_path, labelencoder_path, one_hot_encoder_path, dataset_mean_path):
     
     # Loading the model from disk
     model = load_sklearn_component(model_path)
 
     # Converting list of features columns from string to integer    
     features = list(map(int, features.split()))
-    if len(categorical_features) > 0:
-        categorical_features = list(map(int, categorical_features.split()))
 
     # Importing the dataset
     dataset = pd.read_csv(file_path)
+    mean = pd.read_pickle(dataset_mean_path)
+    dataset = dataset.fillna(mean)
+    dataset = dataset.fillna(dataset.mode().iloc[0])
     X = dataset.iloc[:, features].values
     
-    # Encoding categorical features
-    if len(categorical_features) > 0:
-        # One hot encoding on X[:, indices]
-        X = one_hot_encode(X, categorical_features)
+    if one_hot_encoder_path:
+        one_hot_encoder = load_sklearn_component(one_hot_encoder_path)
+        X = one_hot_encoder.transform(X)
 
     if scaler_X_path:
         scaler_X = load_sklearn_component(scaler_X_path)
@@ -136,7 +136,6 @@ if __name__ == '__main__':
     model = ''
     file = ''
     features = ''
-    categorical_features = ''
     target = ''
     
     # classification, regression
@@ -149,8 +148,10 @@ if __name__ == '__main__':
 
     path = ''
 
+    one_hot_encoder = ''
     scaler_X = ''
     scaler_y = ''
     labelencoder = ''
+    dataset_mean = ''
     
-    result = process(model, file, features, target, categorical_features, problem_type, algorithm, algorithm_parameters, path, scaler_X, scaler_y, labelencoder)
+    result = process(model, file, features, target, problem_type, algorithm, algorithm_parameters, path, scaler_X, scaler_y, labelencoder, one_hot_encoder)

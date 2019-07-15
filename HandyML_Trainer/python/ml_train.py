@@ -50,11 +50,8 @@ def one_hot_encode(data, indices):
     
     transformer = ColumnTransformer([('one_hot_encoder', OneHotEncoder(), indices)], remainder = 'passthrough')
     data = transformer.fit_transform(data)
-
-    # Avoiding the Dummy Variable trap
-    data = data[:, 1:]
     
-    return data
+    return data, transformer
 
 def feature_scaling(data, scaler = None):
 
@@ -85,10 +82,6 @@ def get_parameter_value(name, parameters, default_value):
 
     return default_value
 
-def save_model(path, model):
-
-    return dump(model, path)
-
 def get_model_score(model, X_test, y_test, is_polynomial_regression = False, degree = None):
 
     if is_polynomial_regression:
@@ -100,14 +93,6 @@ def get_model_score(model, X_test, y_test, is_polynomial_regression = False, deg
     except TypeError:
         # Avoiding error: A sparse matrix was passed, but dense data is required. Use X.toarray() to convert to a dense numpy array.
         return model.score(X_test.toarray(), y_test)
-
-def save_scaler(path, scaler):
-
-    return dump(scaler, path)
-
-def save_label_encoder(path, labelencoder):
-    
-    return dump(labelencoder, path)
         
 def save_regression_plot(scatter_X, scatter_y, plot_X, plot_y, title, xlabel, ylabel, path):
     
@@ -312,7 +297,31 @@ def process(file_path, features, target, categorical_features, problem_type, alg
 
     errors = []
     toaster = ToastNotifier()
+    
+    model_path = ''
+    dataset_mean_path = ''
+    one_hot_encoder_path = ''
+    scaler_X_path = ''
+    scaler_y_path = ''
+    labelencoder_path = ''
+    model = None
+    scaler_X = None
+    scaler_y = None
+    is_polynomial_regression = False
+    degree = None
+    cmatrix = None
     model_score = 0
+    
+    plot_training_results = ''
+    plot_test_results = ''
+    plot_confusion_matrix = ''
+    plot_roc = ''
+    plot_ks_statistic = ''
+    plot_precision_recall = ''
+    plot_cumulative_gain = ''
+    plot_lift_curve = ''
+    plot_learning_curve = ''
+    plot_feature_importances = ''
     
     dataset_imported = False
     
@@ -337,15 +346,17 @@ def process(file_path, features, target, categorical_features, problem_type, alg
     
         # Importing the dataset
         dataset = pd.read_csv(file_path)
-        dataset = dataset.fillna(dataset.mean())
+        mean = dataset.mean()
+        dataset = dataset.fillna(mean)
         dataset = dataset.dropna()
         X = dataset.iloc[:, features].values
         y = dataset.iloc[:, target].values
     
         # Encoding categorical features
+        one_hot_encoder = None
         if len(categorical_features) > 0:
             # One hot encoding on X[:, indices]
-            X = one_hot_encode(X, categorical_features)
+            X, one_hot_encoder = one_hot_encode(X, categorical_features)
         
         # Encoding categorical target in case of a classification problem
         labelencoder = None
@@ -361,28 +372,6 @@ def process(file_path, features, target, categorical_features, problem_type, alg
         if path == None:
             path = 'C:/Temp/'
         model_path = path + 'model' + '_' + timestamp + '.model'
-        
-        plot_training_results = ''
-        plot_test_results = ''
-        plot_confusion_matrix = ''
-        plot_roc = ''
-        plot_ks_statistic = ''
-        plot_precision_recall = ''
-        plot_cumulative_gain = ''
-        plot_lift_curve = ''
-        plot_learning_curve = ''
-        plot_feature_importances = ''
-        
-        scaler_X_path = ''
-        scaler_y_path = ''
-        labelencoder_path = ''
-            
-        model = None
-        scaler_X = None
-        scaler_y = None
-        is_polynomial_regression = False
-        degree = None
-        cmatrix = None
         
         toaster.show_toast(app_name, 'Dataset successfully imported', duration=5)
         dataset_imported = True
@@ -554,21 +543,30 @@ def process(file_path, features, target, categorical_features, problem_type, alg
             
             try:
                 
-                # Saving the trained model 
-                model_path = save_model(model_path, model)
+                # Saving the trained model
+                dump(model, model_path)
+                
+                # Saving dataset mean
+                dataset_mean_path = path + 'dataset_mean_' + timestamp + '.pickle'
+                mean.to_pickle(dataset_mean_path)
+                
+                # Saving the one hot encoder
+                if one_hot_encoder:
+                    one_hot_encoder_path = path + 'one_hot_encoder_' + timestamp + '.pickle'
+                    dump(one_hot_encoder, one_hot_encoder_path)
                 
                 # Saving the labelencoder
                 if labelencoder:
-                    labelencoder_path = path + 'labelencoder_' + timestamp + '.labelencoder'
-                    save_label_encoder(labelencoder_path, labelencoder)
+                    labelencoder_path = path + 'labelencoder_' + timestamp + '.pickle'
+                    dump(labelencoder, labelencoder_path)
             
                 # Saving the scalers
                 if scaler_X:
-                    scaler_X_path = path + 'scaler_X_' + timestamp + '.scaler'
-                    save_scaler(scaler_X_path, scaler_X)
+                    scaler_X_path = path + 'scaler_X_' + timestamp + '.pickle'
+                    dump(scaler_X, scaler_X_path)
                 if scaler_y:
-                    scaler_y_path = path + 'scaler_y_' + timestamp + '.scaler'
-                    save_scaler(scaler_y_path, scaler_y)
+                    scaler_y_path = path + 'scaler_y_' + timestamp + '.pickle'
+                    dump(scaler_y, scaler_y_path)
                 
                 toaster.show_toast(app_name, 'Model saved successfully', duration=5)
             
@@ -582,30 +580,32 @@ def process(file_path, features, target, categorical_features, problem_type, alg
                 # Calculation of model score
                 model_score = get_model_score(model, X_test, y_test, is_polynomial_regression, degree)
                     
-                model_path = ''.join(model_path)
+                #model_path = ''.join(model_path)
                 
             except Exception as e:
                 
                 errors.append('Error raised while calculating model score: ' + str(e))
     
     json_object = {
-            "errors": errors,
-            "model": model_path,
-            "scaler_X": scaler_X_path,
-            "scaler_y": scaler_y_path,
-            "labelencoder": labelencoder_path,
-            "score": model_score,
-            "confusion_matrix": cmatrix,
-            "plot_training_results": plot_training_results,
-            "plot_test_results": plot_test_results,
-            "plot_confusion_matrix": plot_confusion_matrix,
-            "plot_roc": plot_roc,
-            "plot_ks_statistic": plot_ks_statistic,
-            "plot_precision_recall": plot_precision_recall,
-            "plot_cumulative_gain": plot_cumulative_gain,
-            "plot_lift_curve": plot_lift_curve,
-            "plot_learning_curve": plot_learning_curve,
-            "plot_feature_importances": plot_feature_importances
+        "errors": errors,
+        "model": model_path,
+        "dataset_mean": dataset_mean_path,
+        "one_hot_encoder": one_hot_encoder_path,
+        "scaler_X": scaler_X_path,
+        "scaler_y": scaler_y_path,
+        "labelencoder": labelencoder_path,
+        "score": model_score,
+        "confusion_matrix": cmatrix,
+        "plot_training_results": plot_training_results,
+        "plot_test_results": plot_test_results,
+        "plot_confusion_matrix": plot_confusion_matrix,
+        "plot_roc": plot_roc,
+        "plot_ks_statistic": plot_ks_statistic,
+        "plot_precision_recall": plot_precision_recall,
+        "plot_cumulative_gain": plot_cumulative_gain,
+        "plot_lift_curve": plot_lift_curve,
+        "plot_learning_curve": plot_learning_curve,
+        "plot_feature_importances": plot_feature_importances
     }
     json_string = json.dumps(json_object)
     

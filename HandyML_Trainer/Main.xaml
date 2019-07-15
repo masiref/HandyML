@@ -58,8 +58,8 @@
       <AssemblyReference>System.Web</AssemblyReference>
       <AssemblyReference>System.Data.DataSetExtensions</AssemblyReference>
       <AssemblyReference>Newtonsoft.Json</AssemblyReference>
-      <AssemblyReference>System.Runtime.WindowsRuntime</AssemblyReference>
       <AssemblyReference>System.Collections.Immutable</AssemblyReference>
+      <AssemblyReference>System.Runtime.WindowsRuntime</AssemblyReference>
     </sco:Collection>
   </TextExpression.ReferencesForImplementation>
   <Sequence DisplayName="Main" sap:VirtualizedContainerService.HintSize="976,2628" sap2010:WorkflowViewState.IdRef="Sequence_1">
@@ -276,6 +276,8 @@
                 <Variable x:TypeArguments="x:String" Name="str_PlotLearningCurve" />
                 <Variable x:TypeArguments="x:String" Name="str_PlotFeatureImportances" />
                 <Variable x:TypeArguments="s:String[]" Name="arr_Errors" />
+                <Variable x:TypeArguments="x:String" Name="str_OneHotEncoderPath" />
+                <Variable x:TypeArguments="x:String" Name="str_DatasetMeanPath" />
               </Flowchart.Variables>
               <sap:WorkflowViewStateService.ViewState>
                 <scg:Dictionary x:TypeArguments="x:String, x:Object">
@@ -590,9 +592,9 @@
                                                           <x:Boolean x:Key="IsExpanded">True</x:Boolean>
                                                         </scg:Dictionary>
                                                       </sap:WorkflowViewStateService.ViewState>
-                                                      <TryCatch DisplayName="Try Catch" sap:VirtualizedContainerService.HintSize="587,3202" sap2010:WorkflowViewState.IdRef="TryCatch_2">
+                                                      <TryCatch DisplayName="Try Catch" sap:VirtualizedContainerService.HintSize="587,3402" sap2010:WorkflowViewState.IdRef="TryCatch_2">
                                                         <TryCatch.Try>
-                                                          <Sequence sap:VirtualizedContainerService.HintSize="569,2975" sap2010:WorkflowViewState.IdRef="Sequence_17">
+                                                          <Sequence sap:VirtualizedContainerService.HintSize="569,3175" sap2010:WorkflowViewState.IdRef="Sequence_17">
                                                             <Sequence.Variables>
                                                               <Variable x:TypeArguments="njl:JObject" Name="jobject_TrainResult" />
                                                               <Variable x:TypeArguments="x:String" Name="str_ColumnNames">
@@ -712,6 +714,22 @@
                                                               </Assign.To>
                                                               <Assign.Value>
                                                                 <InArgument x:TypeArguments="x:String">[jobject_TrainResult.Item("model").ToString.Replace("/", "\")]</InArgument>
+                                                              </Assign.Value>
+                                                            </Assign>
+                                                            <Assign sap:VirtualizedContainerService.HintSize="547,60" sap2010:WorkflowViewState.IdRef="Assign_37">
+                                                              <Assign.To>
+                                                                <OutArgument x:TypeArguments="x:String">[str_DatasetMeanPath]</OutArgument>
+                                                              </Assign.To>
+                                                              <Assign.Value>
+                                                                <InArgument x:TypeArguments="x:String">[jobject_TrainResult.Item("dataset_mean").ToString.Replace("/", "\")]</InArgument>
+                                                              </Assign.Value>
+                                                            </Assign>
+                                                            <Assign sap:VirtualizedContainerService.HintSize="547,60" sap2010:WorkflowViewState.IdRef="Assign_36">
+                                                              <Assign.To>
+                                                                <OutArgument x:TypeArguments="x:String">[str_OneHotEncoderPath]</OutArgument>
+                                                              </Assign.To>
+                                                              <Assign.Value>
+                                                                <InArgument x:TypeArguments="x:String">[jobject_TrainResult.Item("one_hot_encoder").ToString.Replace("/", "\")]</InArgument>
                                                               </Assign.Value>
                                                             </Assign>
                                                             <Assign sap:VirtualizedContainerService.HintSize="547,60" sap2010:WorkflowViewState.IdRef="Assign_24">
@@ -881,7 +899,7 @@
                                                             <av:Size x:Key="ShapeSize">200,51</av:Size>
                                                           </scg:Dictionary>
                                                         </sap:WorkflowViewStateService.ViewState>
-                                                        <ui:InvokeWorkflowFile ContinueOnError="{x:Null}" DisplayName="6. Report" sap:VirtualizedContainerService.HintSize="200,51" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_8" UnSafe="False" WorkflowFileName="1_6_Report.xaml">
+                                                        <ui:InvokeWorkflowFile ContinueOnError="{x:Null}" DisplayName="6. Report" sap:VirtualizedContainerService.HintSize="314,87" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_8" UnSafe="False" WorkflowFileName="1_6_Report.xaml">
                                                           <ui:InvokeWorkflowFile.Arguments>
                                                             <InArgument x:TypeArguments="x:String" x:Key="argIn_str_ModelPath">[str_ModelPath]</InArgument>
                                                             <InArgument x:TypeArguments="x:Double" x:Key="argIn_dbl_Score">[dbl_Score]</InArgument>
@@ -906,6 +924,8 @@
                                                             <InArgument x:TypeArguments="x:String" x:Key="argIn_str_PlotLearningCurve">[str_PlotLearningCurve]</InArgument>
                                                             <InArgument x:TypeArguments="x:String" x:Key="argIn_str_PlotFeatureImportances">[str_PlotFeatureImportances]</InArgument>
                                                             <InArgument x:TypeArguments="x:String" x:Key="argIn_str_Errors">["[""" + String.Join(""", """, arr_Errors) + """]"]</InArgument>
+                                                            <InArgument x:TypeArguments="x:String" x:Key="argIn_str_OneHotEncoderPath">[str_OneHotEncoderPath]</InArgument>
+                                                            <InArgument x:TypeArguments="x:String" x:Key="argIn_str_DatasetMeanPath">[str_DatasetMeanPath]</InArgument>
                                                           </ui:InvokeWorkflowFile.Arguments>
                                                           <sap:WorkflowViewStateService.ViewState>
                                                             <scg:Dictionary x:TypeArguments="x:String, x:Object">
