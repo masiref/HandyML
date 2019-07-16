@@ -336,11 +336,10 @@ def process(file_path, features, target, categorical_features, problem_type, alg
         features = list(map(int, features.split()))
         feature_names = list(map(lambda index: column_names[index], features))
         
+        # Categorical features are determined in HandyML_Trainer UiPath script, but we prefer to redo the job in Python (more reliable)
         # Converting list of categorical features columns from string to integer if necessary
-        if len(categorical_features) > 0:
-            categorical_features = list(map(int, categorical_features.split()))
-            # Find the right index of the column in features list
-            categorical_features = np.array(list(map(lambda index: features.index(index), categorical_features)), dtype=int)
+        # if len(categorical_features) > 0:
+        #     categorical_features = list(map(int, categorical_features.split()))
         
         # Converting target column from string to integer  
         target = int(target)
@@ -353,10 +352,19 @@ def process(file_path, features, target, categorical_features, problem_type, alg
         dataset = dataset.dropna()
         X = dataset.iloc[:, features].values
         y = dataset.iloc[:, target].values
-    
+        
+        # Determining categorical features
+        categorical_features = []
+        types = dataset.dtypes
+        for i, type_ in enumerate(types):
+            if i in features and type_ == np.object or type_ == np.bool:
+                categorical_features.append(i)
+        
         # Encoding categorical features
         one_hot_encoder = None
         if len(categorical_features) > 0:
+            # Find the right index of the column in features list
+            categorical_features = np.array(list(map(lambda index: features.index(index), categorical_features)), dtype=int)
             # One hot encoding on X[:, indices]
             X, one_hot_encoder = one_hot_encode(X, categorical_features)
         
@@ -364,6 +372,9 @@ def process(file_path, features, target, categorical_features, problem_type, alg
         labelencoder = None
         if problem_type == 'classification':
             y, labelencoder = encode_categorical_data(y)
+        # Checking target in case of a regression problem
+        elif problem_type == 'regression' and dataset.iloc[target].dtype != np.float64 and dataset.iloc[target].dtype != np.int64:
+            raise TypeError('Problem type is regression but found categorical data in target')
             
         # Splitting the dataset into training set and test set
         X_train, X_test, y_train, y_test = split_data_set(X, y)
