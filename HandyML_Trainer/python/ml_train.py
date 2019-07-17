@@ -373,7 +373,7 @@ def process(file_path, features, target, categorical_features, problem_type, alg
         if problem_type == 'classification':
             y, labelencoder = encode_categorical_data(y)
         # Checking target in case of a regression problem
-        elif problem_type == 'regression' and dataset.iloc[target].dtype != np.float64 and dataset.iloc[target].dtype != np.int64:
+        elif problem_type == 'regression' and dataset.iloc[:, target].dtype != np.float64 and dataset.iloc[:, target].dtype != np.int64:
             raise TypeError('Problem type is regression but found categorical data in target')
             
         # Splitting the dataset into training set and test set
