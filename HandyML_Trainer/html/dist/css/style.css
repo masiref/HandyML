@@ -13306,7 +13306,8 @@ body {
     font-size: 1.6rem;
     color: #999;
     transition: all;
-    cursor: pointer; }
+    cursor: pointer;
+    transition: all .2s; }
     .form__input--browse:hover, .form__textarea--browse:hover, .form__select--browse:hover {
       color: #777; }
 
