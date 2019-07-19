@@ -28,6 +28,7 @@ Eventually, we created **two UiPath robots**:
 
 ## What's next for Machine learning for non-datascientists
 We can hope adding more supervised learning algorithms and add more parameters to existing ones.
+Create an unattended version of HandyML Predictor.
 Also, why not integrate Deep Learning?
 
 ## Quick installation guide
