@@ -12,6 +12,9 @@
 <link href="css/style.css" rel="stylesheet"></head>
 
 <body class="bg">
+    <div class="ui page dimmer">
+        <div class="ui loader"></div>
+    </div>
     <div class="ui container">
         <header class="top header">
             <div class="header__text-box">
@@ -75,6 +78,11 @@
                     </h2>
                     <div class="form__group">
                         <input type="text" class="form__input" id="path" value="" required>
+                        <span id="path-browse" class="form__input--browse">
+                            <i class="ellipsis horizontal icon"></i>
+                        </span>
+                        <input type="file" id="path-file" value="" accept="application/vnd.openxmlformats-officedocument.spreadsheetml.sheet, application/vnd.ms-excel">
+                        <input type="hidden" id="content-file">
                         <label for="path" class="form__label">Excel file path</label>
                     </div>
                     <div class="form__group">
