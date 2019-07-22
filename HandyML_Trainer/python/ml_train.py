@@ -288,7 +288,13 @@ def process(file_path, features, target, categorical_features, problem_type, alg
     errors = []
     toaster = ToastNotifier()
     
-    model_path = ''
+    now = time.localtime()
+    timestamp = time.strftime("%Y%m%d%H%M%S", now)
+
+    if path == None:
+        path = 'C:/Temp/'
+    model_path = path + 'model' + '_' + timestamp + '.model'
+
     dataset_mean_path = ''
     dataset_mode_path = ''
     one_hot_encoder_path = ''
@@ -367,13 +373,6 @@ def process(file_path, features, target, categorical_features, problem_type, alg
             
         # Splitting the dataset into training set and test set
         X_train, X_test, y_train, y_test = split_data_set(X, y)
-    
-        now = time.localtime()
-        timestamp = time.strftime("%Y%m%d%H%M%S", now)
-    
-        if path == None:
-            path = 'C:/Temp/'
-        model_path = path + 'model' + '_' + timestamp + '.model'
         
         toaster.show_toast(app_name, 'Dataset successfully imported', duration=5)
         dataset_imported = True
@@ -617,20 +616,21 @@ def process(file_path, features, target, categorical_features, problem_type, alg
 if __name__ == '__main__':
     
     # For testing purposes
-    file = ''
-    column_names = ''
-    features = ''
-    categorical_features = ''
-    target = ''
+    file = 'c:/temp/data.csv'
+    column_names = 'a::b::c::d::e::f::g::h'
+    features = '1 2 4 5 6 7'
+    categorical_features = '1 2'
+    target = '3'
     
     # classification, regression
-    problem_type = ''
+    problem_type = 'regression'
     
     # linear_regression, polynomial_regression, support_vector_regression, decision_tree_regression, random_forest_regression
     # logistic_regression, knn, svm, kernel_svm, naive_bayes, decision_tree_classification, random_forest_classification
-    algorithm = ''
+    algorithm = 'polynomial_regression'
     algorithm_parameters = ''
-    path = ''
+    path = 'c:/temp/'
     
     result = process(file, features, target, categorical_features, problem_type, algorithm, algorithm_parameters, path, column_names)
 
+    print(result)
