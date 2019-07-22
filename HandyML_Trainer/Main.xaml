@@ -1,4 +1,4 @@
-<Activity mc:Ignorable="sap sap2010" x:Class="Main" mva:VisualBasic.Settings="{x:Null}" sap:VirtualizedContainerService.HintSize="1016,2708" sap2010:WorkflowViewState.IdRef="1_Data_Preprocessing_Phase_1" xmlns="http://schemas.microsoft.com/netfx/2009/xaml/activities" xmlns:av="http://schemas.microsoft.com/winfx/2006/xaml/presentation" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:mva="clr-namespace:Microsoft.VisualBasic.Activities;assembly=System.Activities" xmlns:njl="clr-namespace:Newtonsoft.Json.Linq;assembly=Newtonsoft.Json" xmlns:s="clr-namespace:System;assembly=mscorlib" xmlns:sap="http://schemas.microsoft.com/netfx/2009/xaml/activities/presentation" xmlns:sap2010="http://schemas.microsoft.com/netfx/2010/xaml/activities/presentation" xmlns:scg="clr-namespace:System.Collections.Generic;assembly=mscorlib" xmlns:sco="clr-namespace:System.Collections.ObjectModel;assembly=mscorlib" xmlns:sd="clr-namespace:System.Data;assembly=System.Data" xmlns:ui="http://schemas.uipath.com/workflow/activities" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+<Activity mc:Ignorable="sap sap2010" x:Class="Main" mva:VisualBasic.Settings="{x:Null}" sap:VirtualizedContainerService.HintSize="1016,2748" sap2010:WorkflowViewState.IdRef="1_Data_Preprocessing_Phase_1" xmlns="http://schemas.microsoft.com/netfx/2009/xaml/activities" xmlns:av="http://schemas.microsoft.com/winfx/2006/xaml/presentation" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:mva="clr-namespace:Microsoft.VisualBasic.Activities;assembly=System.Activities" xmlns:njl="clr-namespace:Newtonsoft.Json.Linq;assembly=Newtonsoft.Json" xmlns:s="clr-namespace:System;assembly=mscorlib" xmlns:sap="http://schemas.microsoft.com/netfx/2009/xaml/activities/presentation" xmlns:sap2010="http://schemas.microsoft.com/netfx/2010/xaml/activities/presentation" xmlns:scg="clr-namespace:System.Collections.Generic;assembly=mscorlib" xmlns:sco="clr-namespace:System.Collections.ObjectModel;assembly=mscorlib" xmlns:sd="clr-namespace:System.Data;assembly=System.Data" xmlns:ui="http://schemas.uipath.com/workflow/activities" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
   <TextExpression.NamespacesForImplementation>
     <sco:Collection x:TypeArguments="x:String">
       <x:String>System.Activities</x:String>
@@ -59,7 +59,6 @@
       <AssemblyReference>System.Data.DataSetExtensions</AssemblyReference>
       <AssemblyReference>Newtonsoft.Json</AssemblyReference>
       <AssemblyReference>System.Collections.Immutable</AssemblyReference>
-      <AssemblyReference>System.Runtime.WindowsRuntime</AssemblyReference>
     </sco:Collection>
   </TextExpression.ReferencesForImplementation>
   <Sequence DisplayName="Main" sap:VirtualizedContainerService.HintSize="976,2628" sap2010:WorkflowViewState.IdRef="Sequence_1">
@@ -261,7 +260,6 @@
                 <Variable x:TypeArguments="x:String" Name="str_ModelPath" />
                 <Variable x:TypeArguments="x:String" Name="str_FolderPath" />
                 <Variable x:TypeArguments="x:String" Name="str_ResultsPath" />
-                <Variable x:TypeArguments="x:String" Name="str_ConfusionMatrix" />
                 <Variable x:TypeArguments="x:String" Name="str_PlotTrainingResults" />
                 <Variable x:TypeArguments="x:String" Name="str_PlotTestResults" />
                 <Variable x:TypeArguments="x:String" Name="str_ScalerXPath" />
@@ -578,7 +576,7 @@
                                                         <av:PointCollection x:Key="ConnectorLocation">150,1495.02 150,1604.5</av:PointCollection>
                                                       </scg:Dictionary>
                                                     </sap:WorkflowViewStateService.ViewState>
-                                                    <Sequence DisplayName="=== Train model ===" sap:VirtualizedContainerService.HintSize="609,3753" sap2010:WorkflowViewState.IdRef="Sequence_16">
+                                                    <Sequence DisplayName="=== Train model ===" sap:VirtualizedContainerService.HintSize="200,51" sap2010:WorkflowViewState.IdRef="Sequence_16">
                                                       <Sequence.Variables>
                                                         <Variable x:TypeArguments="x:String" Name="str_Features" />
                                                         <Variable x:TypeArguments="x:String" Name="str_CategoricalFeatures" />
@@ -593,9 +591,9 @@
                                                           <x:Boolean x:Key="IsExpanded">True</x:Boolean>
                                                         </scg:Dictionary>
                                                       </sap:WorkflowViewStateService.ViewState>
-                                                      <TryCatch DisplayName="Try Catch" sap:VirtualizedContainerService.HintSize="587,3629" sap2010:WorkflowViewState.IdRef="TryCatch_2">
+                                                      <TryCatch DisplayName="Try Catch" sap:VirtualizedContainerService.HintSize="587,3529" sap2010:WorkflowViewState.IdRef="TryCatch_2">
                                                         <TryCatch.Try>
-                                                          <Sequence sap:VirtualizedContainerService.HintSize="569,3402" sap2010:WorkflowViewState.IdRef="Sequence_17">
+                                                          <Sequence sap:VirtualizedContainerService.HintSize="569,3302" sap2010:WorkflowViewState.IdRef="Sequence_17">
                                                             <Sequence.Variables>
                                                               <Variable x:TypeArguments="njl:JObject" Name="jobject_TrainResult" />
                                                               <Variable x:TypeArguments="x:String" Name="str_ColumnNames">
@@ -765,14 +763,6 @@
                                                                 <InArgument x:TypeArguments="x:String">[jobject_TrainResult.Item("labelencoder").ToString.Replace("/", "\")]</InArgument>
                                                               </Assign.Value>
                                                             </Assign>
-                                                            <Assign sap:VirtualizedContainerService.HintSize="547,60" sap2010:WorkflowViewState.IdRef="Assign_18">
-                                                              <Assign.To>
-                                                                <OutArgument x:TypeArguments="x:String">[str_ConfusionMatrix]</OutArgument>
-                                                              </Assign.To>
-                                                              <Assign.Value>
-                                                                <InArgument x:TypeArguments="x:String">[jobject_TrainResult.Item("confusion_matrix").ToString]</InArgument>
-                                                              </Assign.Value>
-                                                            </Assign>
                                                             <Assign sap:VirtualizedContainerService.HintSize="547,60" sap2010:WorkflowViewState.IdRef="Assign_17">
                                                               <Assign.To>
                                                                 <OutArgument x:TypeArguments="x:String">[str_ResultsPath]</OutArgument>
@@ -909,7 +899,7 @@
                                                             <av:Size x:Key="ShapeSize">200,51</av:Size>
                                                           </scg:Dictionary>
                                                         </sap:WorkflowViewStateService.ViewState>
-                                                        <ui:InvokeWorkflowFile ContinueOnError="{x:Null}" DisplayName="6. Report" sap:VirtualizedContainerService.HintSize="200,51" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_8" UnSafe="False" WorkflowFileName="1_6_Report.xaml">
+                                                        <ui:InvokeWorkflowFile ContinueOnError="{x:Null}" DisplayName="6. Report" sap:VirtualizedContainerService.HintSize="314,87" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_8" UnSafe="False" WorkflowFileName="1_6_Report.xaml">
                                                           <ui:InvokeWorkflowFile.Arguments>
                                                             <InArgument x:TypeArguments="x:String" x:Key="argIn_str_ModelPath">[str_ModelPath]</InArgument>
                                                             <InArgument x:TypeArguments="x:Double" x:Key="argIn_dbl_Score">[dbl_Score]</InArgument>
@@ -919,7 +909,6 @@
                                                             <InArgument x:TypeArguments="x:String" x:Key="argIn_str_PredictorTemplatePath">[str_ModelPath.Replace(".model", ".template.xlsx")]</InArgument>
                                                             <InArgument x:TypeArguments="x:String" x:Key="argIn_str_ConfigPath">[str_ConfigFilepath]</InArgument>
                                                             <InArgument x:TypeArguments="scg:List(x:String)" x:Key="argIn_list_ColumnNames">[list_ColumnNames]</InArgument>
-                                                            <InArgument x:TypeArguments="x:String" x:Key="argIn_str_ConfusionMatrix">[str_ConfusionMatrix]</InArgument>
                                                             <InArgument x:TypeArguments="x:String" x:Key="argIn_str_PlotTrainingResults">[str_PlotTrainingResults]</InArgument>
                                                             <InArgument x:TypeArguments="x:String" x:Key="argIn_str_PlotTestResults">[str_PlotTestResults]</InArgument>
                                                             <InArgument x:TypeArguments="x:String" x:Key="argIn_str_ScalerXPath">[str_ScalerXPath]</InArgument>

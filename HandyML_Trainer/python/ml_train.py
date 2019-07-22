@@ -183,16 +183,6 @@ def save_feature_importances_plot(model, feature_names, title, path):
     plt.savefig(path, bbox_inches = 'tight')
     plt.close()
 
-def get_confusion_matrix(y_test, y_pred):
-
-    cm = confusion_matrix(y_test, y_pred)
-    return {
-        "true_positive": int(cm[0, 0]),
-        "false_positive": int(cm[0, 1]),
-        "true_negative": int(cm[1, 1]),
-        "false_negative": int(cm[1, 0])
-    }
-
 ############## REGRESSION FUNCTIONS ##############
 def fit_linear_regression(X_train, y_train):
 
@@ -310,7 +300,6 @@ def process(file_path, features, target, categorical_features, problem_type, alg
     scaler_y = None
     is_polynomial_regression = False
     degree = None
-    cmatrix = None
     model_score = 0
     
     plot_training_results = ''
@@ -512,10 +501,6 @@ def process(file_path, features, target, categorical_features, problem_type, alg
                 if generate_plots:
                     save_classification_plot(X_train, y_train, model, plot_labels, 'Training results', plot_training_results)
                     save_classification_plot(X_test, y_test, model, plot_labels, 'Test results', plot_test_results)
-                
-                # Generate confusion matrix when target is boolean
-                if len(np.unique(y)) == 2:
-                    cmatrix = get_confusion_matrix(y_test, model.predict(X_test))
             
             toaster.show_toast(app_name, 'Training ended successfully', duration=5)
             training_done = True
@@ -613,7 +598,6 @@ def process(file_path, features, target, categorical_features, problem_type, alg
         "scaler_y": scaler_y_path,
         "labelencoder": labelencoder_path,
         "score": model_score,
-        "confusion_matrix": cmatrix,
         "plot_training_results": plot_training_results,
         "plot_test_results": plot_test_results,
         "plot_confusion_matrix": plot_confusion_matrix,

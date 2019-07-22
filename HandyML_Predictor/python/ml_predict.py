@@ -17,26 +17,6 @@ from win10toast import ToastNotifier
 app_name = 'HandyML Predictor'
 
 ############## GENERIC FUNCTIONS ##############
-def one_hot_encode(data, indices):
-    
-    transformer = ColumnTransformer([('one_hot_encoder', OneHotEncoder(), indices)], remainder = 'passthrough')
-    data = np.array(transformer.fit_transform(data), dtype = np.float)
-
-    # Avoiding the Dummy Variable trap
-    data = data[:, 1:]
-    
-    return data
-
-def feature_scaling(data, scaler = None):
-
-    if scaler == None:
-        scaler = StandardScaler()
-        data = scaler.fit_transform(data)
-    else:
-        data = scaler.transform(data)
-    
-    return data, scaler
-
 def get_parameter_value(name, parameters, default_value):
 
     if len(parameters) > 0:
@@ -55,7 +35,7 @@ def load_sklearn_component(component_path):
 
     return load(component_path, mmap_mode = None)
 
-   ############## PREDICT FUNCTIONS ##############
+############## PREDICT FUNCTIONS ##############
 def predict_polynomial (X, model, degree):
 
     poly_reg = PolynomialFeatures(degree)
