@@ -1,4 +1,4 @@
-<Activity mc:Ignorable="sap sap2010" x:Class="Main" mva:VisualBasic.Settings="{x:Null}" sap:VirtualizedContainerService.HintSize="1633,8121" sap2010:WorkflowViewState.IdRef="ActivityBuilder_1" xmlns="http://schemas.microsoft.com/netfx/2009/xaml/activities" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:mva="clr-namespace:Microsoft.VisualBasic.Activities;assembly=System.Activities" xmlns:njl="clr-namespace:Newtonsoft.Json.Linq;assembly=Newtonsoft.Json" xmlns:s="clr-namespace:System;assembly=mscorlib" xmlns:sap="http://schemas.microsoft.com/netfx/2009/xaml/activities/presentation" xmlns:sap2010="http://schemas.microsoft.com/netfx/2010/xaml/activities/presentation" xmlns:scg="clr-namespace:System.Collections.Generic;assembly=mscorlib" xmlns:sco="clr-namespace:System.Collections.ObjectModel;assembly=mscorlib" xmlns:sd="clr-namespace:System.Data;assembly=System.Data" xmlns:ui="http://schemas.uipath.com/workflow/activities" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+<Activity mc:Ignorable="sap sap2010" x:Class="Main" mva:VisualBasic.Settings="{x:Null}" sap:VirtualizedContainerService.HintSize="673,1288" sap2010:WorkflowViewState.IdRef="ActivityBuilder_1" xmlns="http://schemas.microsoft.com/netfx/2009/xaml/activities" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:mva="clr-namespace:Microsoft.VisualBasic.Activities;assembly=System.Activities" xmlns:njl="clr-namespace:Newtonsoft.Json.Linq;assembly=Newtonsoft.Json" xmlns:s="clr-namespace:System;assembly=mscorlib" xmlns:sap="http://schemas.microsoft.com/netfx/2009/xaml/activities/presentation" xmlns:sap2010="http://schemas.microsoft.com/netfx/2010/xaml/activities/presentation" xmlns:scg="clr-namespace:System.Collections.Generic;assembly=mscorlib" xmlns:sco="clr-namespace:System.Collections.ObjectModel;assembly=mscorlib" xmlns:sd="clr-namespace:System.Data;assembly=System.Data" xmlns:ui="http://schemas.uipath.com/workflow/activities" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
   <TextExpression.NamespacesForImplementation>
     <sco:Collection x:TypeArguments="x:String">
       <x:String>System.Activities</x:String>
@@ -56,10 +56,9 @@
       <AssemblyReference>System.Collections.Immutable</AssemblyReference>
       <AssemblyReference>System.Data.DataSetExtensions</AssemblyReference>
       <AssemblyReference>Microsoft.VisualStudio.Services.Common</AssemblyReference>
-      <AssemblyReference>System.Runtime.WindowsRuntime</AssemblyReference>
     </sco:Collection>
   </TextExpression.ReferencesForImplementation>
-  <Sequence DisplayName="Main" sap:VirtualizedContainerService.HintSize="1593,8001" sap2010:WorkflowViewState.IdRef="Sequence_5">
+  <Sequence DisplayName="Main" sap:VirtualizedContainerService.HintSize="633,1168" sap2010:WorkflowViewState.IdRef="Sequence_5">
     <Sequence.Variables>
       <Variable x:TypeArguments="x:String" Name="str_Filepath" />
       <Variable x:TypeArguments="x:Boolean" Default="False" Name="bool_FilePathIsConsistent" />
@@ -82,15 +81,16 @@
         <x:Boolean x:Key="IsExpanded">True</x:Boolean>
       </scg:Dictionary>
     </sap:WorkflowViewStateService.ViewState>
-    <TryCatch DisplayName="Try Catch" sap:VirtualizedContainerService.HintSize="1571,287" sap2010:WorkflowViewState.IdRef="TryCatch_2">
+    <TryCatch sap2010:Annotation.AnnotationText="Checking if all prerequisites are met." DisplayName="Try Catch" sap:VirtualizedContainerService.HintSize="611,96" sap2010:WorkflowViewState.IdRef="TryCatch_2">
       <sap:WorkflowViewStateService.ViewState>
         <scg:Dictionary x:TypeArguments="x:String, x:Object">
-          <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+          <x:Boolean x:Key="IsExpanded">False</x:Boolean>
           <x:Boolean x:Key="IsPinned">False</x:Boolean>
+          <x:Boolean x:Key="IsAnnotationDocked">True</x:Boolean>
         </scg:Dictionary>
       </sap:WorkflowViewStateService.ViewState>
       <TryCatch.Try>
-        <Sequence DisplayName="Check prerequisites" sap:VirtualizedContainerService.HintSize="200,51" sap2010:WorkflowViewState.IdRef="Sequence_9">
+        <Sequence DisplayName="Check prerequisites" sap:VirtualizedContainerService.HintSize="200,52" sap2010:WorkflowViewState.IdRef="Sequence_9">
           <Sequence.Variables>
             <Variable x:TypeArguments="x:String" Default="Environment variable {0} is not set. Check README.MD file." Name="C_ERR_ENVIRONMENT_VARIABLE_NOT_SET" />
           </Sequence.Variables>
@@ -223,7 +223,7 @@
         </Sequence>
       </TryCatch.Try>
       <TryCatch.Catches>
-        <Catch x:TypeArguments="s:Exception" sap:VirtualizedContainerService.HintSize="404,21" sap2010:WorkflowViewState.IdRef="Catch`1_2">
+        <Catch x:TypeArguments="s:Exception" sap:VirtualizedContainerService.HintSize="404,22" sap2010:WorkflowViewState.IdRef="Catch`1_2">
           <sap:WorkflowViewStateService.ViewState>
             <scg:Dictionary x:TypeArguments="x:String, x:Object">
               <x:Boolean x:Key="IsExpanded">False</x:Boolean>
@@ -239,7 +239,7 @@
         </Catch>
       </TryCatch.Catches>
     </TryCatch>
-    <If Condition="[bool_PrerequisitesAreMet]" DisplayName="If prerequisites are met then do the job!" sap:VirtualizedContainerService.HintSize="1571,7550" sap2010:WorkflowViewState.IdRef="If_11">
+    <If Condition="[bool_PrerequisitesAreMet]" DisplayName="If prerequisites are met then do the job!" sap:VirtualizedContainerService.HintSize="611,908" sap2010:WorkflowViewState.IdRef="If_11">
       <sap:WorkflowViewStateService.ViewState>
         <scg:Dictionary x:TypeArguments="x:String, x:Object">
           <x:Boolean x:Key="IsExpanded">True</x:Boolean>
@@ -247,74 +247,83 @@
         </scg:Dictionary>
       </sap:WorkflowViewStateService.ViewState>
       <If.Then>
-        <Sequence sap:VirtualizedContainerService.HintSize="1446,7402" sap2010:WorkflowViewState.IdRef="Sequence_10">
+        <Sequence sap:VirtualizedContainerService.HintSize="486,758" sap2010:WorkflowViewState.IdRef="Sequence_10">
           <sap:WorkflowViewStateService.ViewState>
             <scg:Dictionary x:TypeArguments="x:String, x:Object">
               <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+              <x:Boolean x:Key="IsPinned">False</x:Boolean>
             </scg:Dictionary>
           </sap:WorkflowViewStateService.ViewState>
-          <ui:InputDialog Options="{x:Null}" DisplayName="Input Dialog" sap:VirtualizedContainerService.HintSize="1424,92" sap2010:WorkflowViewState.IdRef="InputDialog_1" IsPassword="False" Label="File path" Title="Please specify the path of Excel template file generated with HandyML_Trainer">
+          <ui:InputDialog Options="{x:Null}" DisplayName="Input Dialog" sap:VirtualizedContainerService.HintSize="464,92" sap2010:WorkflowViewState.IdRef="InputDialog_1" IsPassword="False" Label="File path" Title="Please specify the path of Excel template file generated with HandyML_Trainer">
             <ui:InputDialog.Result>
               <OutArgument x:TypeArguments="x:String">[str_Filepath]</OutArgument>
             </ui:InputDialog.Result>
           </ui:InputDialog>
-          <TryCatch DisplayName="Try Catch" sap:VirtualizedContainerService.HintSize="1424,3256" sap2010:WorkflowViewState.IdRef="TryCatch_1">
+          <TryCatch sap2010:Annotation.AnnotationText="Checking template file consistency." DisplayName="Try Catch" sap:VirtualizedContainerService.HintSize="464,96" sap2010:WorkflowViewState.IdRef="TryCatch_1">
             <sap:WorkflowViewStateService.ViewState>
               <scg:Dictionary x:TypeArguments="x:String, x:Object">
-                <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                <x:Boolean x:Key="IsExpanded">False</x:Boolean>
                 <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                <x:Boolean x:Key="IsAnnotationDocked">True</x:Boolean>
               </scg:Dictionary>
             </sap:WorkflowViewStateService.ViewState>
             <TryCatch.Try>
-              <Sequence DisplayName="Check consistency of Filepath" sap:VirtualizedContainerService.HintSize="1406,3029" sap2010:WorkflowViewState.IdRef="Sequence_3">
+              <Sequence DisplayName="Check consistency of Filepath" sap:VirtualizedContainerService.HintSize="200,52" sap2010:WorkflowViewState.IdRef="Sequence_3">
                 <Sequence.Variables>
                   <Variable x:TypeArguments="x:Boolean" Name="bool_FileExists" />
                 </Sequence.Variables>
                 <sap:WorkflowViewStateService.ViewState>
                   <scg:Dictionary x:TypeArguments="x:String, x:Object">
-                    <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                    <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+                    <x:Boolean x:Key="IsPinned">False</x:Boolean>
                   </scg:Dictionary>
                 </sap:WorkflowViewStateService.ViewState>
-                <ui:PathExists DisplayName="Path Exists" Exists="[bool_FileExists]" sap:VirtualizedContainerService.HintSize="1384,89" sap2010:WorkflowViewState.IdRef="PathExists_1" Path="[str_Filepath]" PathType="File" />
-                <If Condition="[bool_FileExists]" DisplayName="Check file existence" sap:VirtualizedContainerService.HintSize="1384,2776" sap2010:WorkflowViewState.IdRef="If_4">
+                <ui:PathExists DisplayName="Path Exists" Exists="[bool_FileExists]" sap:VirtualizedContainerService.HintSize="314,90" sap2010:WorkflowViewState.IdRef="PathExists_1" Path="[str_Filepath]" PathType="File" />
+                <If Condition="[bool_FileExists]" DisplayName="Check file existence" sap:VirtualizedContainerService.HintSize="314,52" sap2010:WorkflowViewState.IdRef="If_4">
+                  <sap:WorkflowViewStateService.ViewState>
+                    <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                      <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+                      <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                    </scg:Dictionary>
+                  </sap:WorkflowViewStateService.ViewState>
                   <If.Then>
-                    <If Condition="[str_Filepath.ToLower.EndsWith(&quot;.xlsx&quot;)]" DisplayName="Check file extension" sap:VirtualizedContainerService.HintSize="1159,2628" sap2010:WorkflowViewState.IdRef="If_3">
+                    <If Condition="[str_Filepath.ToLower.EndsWith(&quot;.xlsx&quot;)]" DisplayName="Check file extension" sap:VirtualizedContainerService.HintSize="1159,2641" sap2010:WorkflowViewState.IdRef="If_3">
                       <If.Then>
-                        <Sequence sap:VirtualizedContainerService.HintSize="934,2480" sap2010:WorkflowViewState.IdRef="Sequence_2">
+                        <Sequence sap:VirtualizedContainerService.HintSize="934,2491" sap2010:WorkflowViewState.IdRef="Sequence_2">
                           <sap:WorkflowViewStateService.ViewState>
                             <scg:Dictionary x:TypeArguments="x:String, x:Object">
                               <x:Boolean x:Key="IsExpanded">True</x:Boolean>
                             </scg:Dictionary>
                           </sap:WorkflowViewStateService.ViewState>
-                          <ui:ReadCell Cell="B1" DisplayName="Read Cell" sap:VirtualizedContainerService.HintSize="912,87" sap2010:WorkflowViewState.IdRef="ReadCell_1" SheetName="HandyML_Predictor" WorkbookPath="[str_Filepath]">
+                          <ui:ReadCell Cell="B1" DisplayName="Model path" sap:VirtualizedContainerService.HintSize="912,87" sap2010:WorkflowViewState.IdRef="ReadCell_1" SheetName="HandyML_Predictor" WorkbookPath="[str_Filepath]">
                             <ui:ReadCell.Result>
                               <OutArgument x:TypeArguments="x:String">[str_ModelPath]</OutArgument>
                             </ui:ReadCell.Result>
                           </ui:ReadCell>
-                          <ui:ReadCell Cell="B2" DisplayName="Read Cell" sap:VirtualizedContainerService.HintSize="912,87" sap2010:WorkflowViewState.IdRef="ReadCell_2" SheetName="HandyML_Predictor" WorkbookPath="[str_Filepath]">
+                          <ui:ReadCell Cell="B2" DisplayName="Configuration file" sap:VirtualizedContainerService.HintSize="912,87" sap2010:WorkflowViewState.IdRef="ReadCell_2" SheetName="HandyML_Predictor" WorkbookPath="[str_Filepath]">
                             <ui:ReadCell.Result>
                               <OutArgument x:TypeArguments="x:String">[str_ConfigurationFilePath]</OutArgument>
                             </ui:ReadCell.Result>
                           </ui:ReadCell>
-                          <ui:PathExists DisplayName="Path Exists" Exists="[bool_FileExists]" sap:VirtualizedContainerService.HintSize="912,89" sap2010:WorkflowViewState.IdRef="PathExists_2" Path="[str_ModelPath]" PathType="File" />
-                          <If Condition="[bool_FileExists]" DisplayName="Check existence of model path" sap:VirtualizedContainerService.HintSize="912,1973" sap2010:WorkflowViewState.IdRef="If_2">
+                          <ui:PathExists DisplayName="Path Exists" Exists="[bool_FileExists]" sap:VirtualizedContainerService.HintSize="912,90" sap2010:WorkflowViewState.IdRef="PathExists_2" Path="[str_ModelPath]" PathType="File" />
+                          <If Condition="[bool_FileExists]" DisplayName="Check existence of model path" sap:VirtualizedContainerService.HintSize="912,1983" sap2010:WorkflowViewState.IdRef="If_2">
                             <If.Then>
-                              <Sequence sap:VirtualizedContainerService.HintSize="687,1825" sap2010:WorkflowViewState.IdRef="Sequence_1">
+                              <Sequence sap:VirtualizedContainerService.HintSize="687,1833" sap2010:WorkflowViewState.IdRef="Sequence_1">
                                 <sap:WorkflowViewStateService.ViewState>
                                   <scg:Dictionary x:TypeArguments="x:String, x:Object">
                                     <x:Boolean x:Key="IsExpanded">True</x:Boolean>
                                   </scg:Dictionary>
                                 </sap:WorkflowViewStateService.ViewState>
-                                <ui:PathExists DisplayName="Path Exists" Exists="[bool_FileExists]" sap:VirtualizedContainerService.HintSize="665,89" sap2010:WorkflowViewState.IdRef="PathExists_3" Path="[str_ConfigurationFilePath]" PathType="File" />
-                                <If Condition="[bool_FileExists]" DisplayName="Check existence of config file path" sap:VirtualizedContainerService.HintSize="665,1572" sap2010:WorkflowViewState.IdRef="If_1">
+                                <ui:PathExists DisplayName="Path Exists" Exists="[bool_FileExists]" sap:VirtualizedContainerService.HintSize="665,90" sap2010:WorkflowViewState.IdRef="PathExists_3" Path="[str_ConfigurationFilePath]" PathType="File" />
+                                <If Condition="[bool_FileExists]" DisplayName="Check existence of config file path" sap:VirtualizedContainerService.HintSize="665,1579" sap2010:WorkflowViewState.IdRef="If_1">
                                   <If.Then>
-                                    <Sequence sap:VirtualizedContainerService.HintSize="440,1424" sap2010:WorkflowViewState.IdRef="Sequence_12">
+                                    <Sequence sap:VirtualizedContainerService.HintSize="440,1429" sap2010:WorkflowViewState.IdRef="Sequence_12">
                                       <sap:WorkflowViewStateService.ViewState>
                                         <scg:Dictionary x:TypeArguments="x:String, x:Object">
                                           <x:Boolean x:Key="IsExpanded">True</x:Boolean>
                                         </scg:Dictionary>
                                       </sap:WorkflowViewStateService.ViewState>
-                                      <TryCatch DisplayName="Try Catch" sap:VirtualizedContainerService.HintSize="418,1300" sap2010:WorkflowViewState.IdRef="TryCatch_3">
+                                      <TryCatch DisplayName="Try Catch" sap:VirtualizedContainerService.HintSize="418,1305" sap2010:WorkflowViewState.IdRef="TryCatch_3">
                                         <TryCatch.Try>
                                           <Sequence sap:VirtualizedContainerService.HintSize="336,1073" sap2010:WorkflowViewState.IdRef="Sequence_11">
                                             <sap:WorkflowViewStateService.ViewState>
@@ -322,37 +331,37 @@
                                                 <x:Boolean x:Key="IsExpanded">True</x:Boolean>
                                               </scg:Dictionary>
                                             </sap:WorkflowViewStateService.ViewState>
-                                            <ui:ReadCell Cell="B3" DisplayName="Read Cell" sap:VirtualizedContainerService.HintSize="314,87" sap2010:WorkflowViewState.IdRef="ReadCell_7" SheetName="HandyML_Predictor" WorkbookPath="[str_Filepath]">
+                                            <ui:ReadCell Cell="B3" DisplayName="Dataset Mean pickle" sap:VirtualizedContainerService.HintSize="314,87" sap2010:WorkflowViewState.IdRef="ReadCell_7" SheetName="HandyML_Predictor" WorkbookPath="[str_Filepath]">
                                               <ui:ReadCell.Result>
                                                 <OutArgument x:TypeArguments="x:String">[str_DatasetMeanPath]</OutArgument>
                                               </ui:ReadCell.Result>
                                             </ui:ReadCell>
-                                            <ui:ReadCell Cell="B4" DisplayName="Read Cell" sap:VirtualizedContainerService.HintSize="314,87" sap2010:WorkflowViewState.IdRef="ReadCell_8" SheetName="HandyML_Predictor" WorkbookPath="[str_Filepath]">
+                                            <ui:ReadCell Cell="B4" DisplayName="Dataset Mode pickle" sap:VirtualizedContainerService.HintSize="314,87" sap2010:WorkflowViewState.IdRef="ReadCell_8" SheetName="HandyML_Predictor" WorkbookPath="[str_Filepath]">
                                               <ui:ReadCell.Result>
                                                 <OutArgument x:TypeArguments="x:String">[str_DatasetModePath]</OutArgument>
                                               </ui:ReadCell.Result>
                                             </ui:ReadCell>
-                                            <ui:ReadCell Cell="B5" DisplayName="Read Cell" sap:VirtualizedContainerService.HintSize="314,87" sap2010:WorkflowViewState.IdRef="ReadCell_6" SheetName="HandyML_Predictor" WorkbookPath="[str_Filepath]">
+                                            <ui:ReadCell Cell="B5" DisplayName="One hot encoder pickle" sap:VirtualizedContainerService.HintSize="314,87" sap2010:WorkflowViewState.IdRef="ReadCell_6" SheetName="HandyML_Predictor" WorkbookPath="[str_Filepath]">
                                               <ui:ReadCell.Result>
                                                 <OutArgument x:TypeArguments="x:String">[str_OneHotEncoderPath]</OutArgument>
                                               </ui:ReadCell.Result>
                                             </ui:ReadCell>
-                                            <ui:ReadCell Cell="B6" DisplayName="Read Cell" sap:VirtualizedContainerService.HintSize="314,87" sap2010:WorkflowViewState.IdRef="ReadCell_3" SheetName="HandyML_Predictor" WorkbookPath="[str_Filepath]">
+                                            <ui:ReadCell Cell="B6" DisplayName="Scaler X pickle" sap:VirtualizedContainerService.HintSize="314,87" sap2010:WorkflowViewState.IdRef="ReadCell_3" SheetName="HandyML_Predictor" WorkbookPath="[str_Filepath]">
                                               <ui:ReadCell.Result>
                                                 <OutArgument x:TypeArguments="x:String">[str_ScalerXPath]</OutArgument>
                                               </ui:ReadCell.Result>
                                             </ui:ReadCell>
-                                            <ui:ReadCell Cell="B7" DisplayName="Read Cell" sap:VirtualizedContainerService.HintSize="314,87" sap2010:WorkflowViewState.IdRef="ReadCell_4" SheetName="HandyML_Predictor" WorkbookPath="[str_Filepath]">
+                                            <ui:ReadCell Cell="B7" DisplayName="Scaler Y pickle" sap:VirtualizedContainerService.HintSize="314,87" sap2010:WorkflowViewState.IdRef="ReadCell_4" SheetName="HandyML_Predictor" WorkbookPath="[str_Filepath]">
                                               <ui:ReadCell.Result>
                                                 <OutArgument x:TypeArguments="x:String">[str_ScalerYPath]</OutArgument>
                                               </ui:ReadCell.Result>
                                             </ui:ReadCell>
-                                            <ui:ReadCell Cell="B8" DisplayName="Read Cell" sap:VirtualizedContainerService.HintSize="314,87" sap2010:WorkflowViewState.IdRef="ReadCell_5" SheetName="HandyML_Predictor" WorkbookPath="[str_Filepath]">
+                                            <ui:ReadCell Cell="B8" DisplayName="Label encoder pickle" sap:VirtualizedContainerService.HintSize="314,87" sap2010:WorkflowViewState.IdRef="ReadCell_5" SheetName="HandyML_Predictor" WorkbookPath="[str_Filepath]">
                                               <ui:ReadCell.Result>
                                                 <OutArgument x:TypeArguments="x:String">[str_LabelencoderPath]</OutArgument>
                                               </ui:ReadCell.Result>
                                             </ui:ReadCell>
-                                            <ui:ReadRange AddHeaders="True" DataTable="[dt_Data]" DisplayName="Read Range" sap:VirtualizedContainerService.HintSize="314,87" sap2010:WorkflowViewState.IdRef="ReadRange_1" SheetName="data" WorkbookPath="[str_Filepath]">
+                                            <ui:ReadRange AddHeaders="True" DataTable="[dt_Data]" DisplayName="New data to make predictions on" sap:VirtualizedContainerService.HintSize="314,87" sap2010:WorkflowViewState.IdRef="ReadRange_1" SheetName="data" WorkbookPath="[str_Filepath]">
                                               <ui:ReadRange.Range>
                                                 <InArgument x:TypeArguments="x:String">
                                                   <Literal x:TypeArguments="x:String" Value="" />
@@ -370,7 +379,7 @@
                                           </Sequence>
                                         </TryCatch.Try>
                                         <TryCatch.Catches>
-                                          <Catch x:TypeArguments="s:Exception" sap:VirtualizedContainerService.HintSize="404,21" sap2010:WorkflowViewState.IdRef="Catch`1_3">
+                                          <Catch x:TypeArguments="s:Exception" sap:VirtualizedContainerService.HintSize="404,22" sap2010:WorkflowViewState.IdRef="Catch`1_3">
                                             <sap:WorkflowViewStateService.ViewState>
                                               <scg:Dictionary x:TypeArguments="x:String, x:Object">
                                                 <x:Boolean x:Key="IsExpanded">False</x:Boolean>
@@ -412,7 +421,7 @@
               </Sequence>
             </TryCatch.Try>
             <TryCatch.Catches>
-              <Catch x:TypeArguments="s:Exception" sap:VirtualizedContainerService.HintSize="1410,21" sap2010:WorkflowViewState.IdRef="Catch`1_1">
+              <Catch x:TypeArguments="s:Exception" sap:VirtualizedContainerService.HintSize="404,22" sap2010:WorkflowViewState.IdRef="Catch`1_1">
                 <sap:WorkflowViewStateService.ViewState>
                   <scg:Dictionary x:TypeArguments="x:String, x:Object">
                     <x:Boolean x:Key="IsExpanded">False</x:Boolean>
@@ -423,14 +432,19 @@
                   <ActivityAction.Argument>
                     <DelegateInArgument x:TypeArguments="s:Exception" Name="exception" />
                   </ActivityAction.Argument>
-                  <ui:LogMessage DisplayName="Log Message" sap:VirtualizedContainerService.HintSize="314,91" sap2010:WorkflowViewState.IdRef="LogMessage_1" Level="Error" Message="[String.Format(&quot;Specified file path {0} is not consistent: {1}&quot;, str_Filepath, exception.Message)]" />
+                  <ui:LogMessage DisplayName="Log Message" sap:VirtualizedContainerService.HintSize="314,93" sap2010:WorkflowViewState.IdRef="LogMessage_1" Level="Error" Message="[String.Format(&quot;Specified file path {0} is not consistent: {1}&quot;, str_Filepath, exception.Message)]" />
                 </ActivityAction>
               </Catch>
             </TryCatch.Catches>
           </TryCatch>
-          <If Condition="[bool_FilePathIsConsistent]" DisplayName="If file path is consistent" sap:VirtualizedContainerService.HintSize="1424,3850" sap2010:WorkflowViewState.IdRef="If_5">
+          <If sap2010:Annotation.AnnotationText="Start prediction process if template file is consistent.&#xD;&#xA;&#xD;&#xA;1. Parse configuration file (JSON) saved with HandyML_Predictor storing parameters selected by end-user (training data, features, target, algorithm).&#xD;&#xA;&#xD;&#xA;2. Call Python script for predictions by specifying locations of model and artifacts.&#xD;&#xA;&#xD;&#xA;3. Parse the results and report in the template file." Condition="[bool_FilePathIsConsistent]" DisplayName="If file path is consistent" sap:VirtualizedContainerService.HintSize="464,366" sap2010:WorkflowViewState.IdRef="If_5">
+            <sap:WorkflowViewStateService.ViewState>
+              <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                <x:Boolean x:Key="IsAnnotationDocked">True</x:Boolean>
+              </scg:Dictionary>
+            </sap:WorkflowViewStateService.ViewState>
             <If.Then>
-              <Sequence sap:VirtualizedContainerService.HintSize="921,3702" sap2010:WorkflowViewState.IdRef="Sequence_4">
+              <Sequence sap:VirtualizedContainerService.HintSize="200,52" sap2010:WorkflowViewState.IdRef="Sequence_4">
                 <Sequence.Variables>
                   <Variable x:TypeArguments="x:String" Name="str_Configuration" />
                   <Variable x:TypeArguments="njl:JObject" Name="jobject_Configuration" />
@@ -453,7 +467,8 @@
                 </Sequence.Variables>
                 <sap:WorkflowViewStateService.ViewState>
                   <scg:Dictionary x:TypeArguments="x:String, x:Object">
-                    <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                    <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+                    <x:Boolean x:Key="IsPinned">False</x:Boolean>
                   </scg:Dictionary>
                 </sap:WorkflowViewStateService.ViewState>
                 <Assign sap:VirtualizedContainerService.HintSize="899,60" sap2010:WorkflowViewState.IdRef="Assign_6">
@@ -472,7 +487,7 @@
                     <InArgument x:TypeArguments="x:String">[str_FolderPath + String.Format("\converted_{0}.csv", DateTime.Now.ToString("ddMMyyyyHHmmss"))]</InArgument>
                   </Assign.Value>
                 </Assign>
-                <ui:WriteCsvFile Encoding="{x:Null}" AddHeaders="True" DataTable="[dt_Data]" Delimitator="Comma" DisplayName="Write CSV" FilePath="[str_CSVFilePath]" sap:VirtualizedContainerService.HintSize="899,87" sap2010:WorkflowViewState.IdRef="WriteCsvFile_1" />
+                <ui:WriteCsvFile Encoding="{x:Null}" AddHeaders="True" DataTable="[dt_Data]" Delimitator="Comma" DisplayName="Convert data from Excel to CSV file (suitable for ML)" FilePath="[str_CSVFilePath]" sap:VirtualizedContainerService.HintSize="899,87" sap2010:WorkflowViewState.IdRef="WriteCsvFile_1" />
                 <ui:ReadTextFile Content="[str_Configuration]" DisplayName="Read Text File" FileName="[str_ConfigurationFilePath]" sap:VirtualizedContainerService.HintSize="899,59" sap2010:WorkflowViewState.IdRef="ReadTextFile_1" />
                 <ui:DeserializeJson x:TypeArguments="njl:JObject" DisplayName="Deserialize JSON" sap:VirtualizedContainerService.HintSize="899,60" sap2010:WorkflowViewState.IdRef="DeserializeJson`1_1" JsonObject="[jobject_Configuration]" JsonString="[str_Configuration]" />
                 <ui:ReadTextFile Content="[str_AlgorithmDefinitions]" DisplayName="Read Text File" FileName="config\algorithm_definitions.json" sap:VirtualizedContainerService.HintSize="899,59" sap2010:WorkflowViewState.IdRef="ReadTextFile_2" />
@@ -499,11 +514,11 @@
                     <InArgument x:TypeArguments="njl:JToken">[jarray_AlgorithmDefinitions.Where(Function(def) def.Item("name").ToString.Equals(str_Algorithm)).FirstOrDefault()]</InArgument>
                   </Assign.Value>
                 </Assign>
-                <ui:LogMessage DisplayName="Log Message" sap:VirtualizedContainerService.HintSize="899,91" sap2010:WorkflowViewState.IdRef="LogMessage_2" Level="Trace" Message="[String.Format(&quot;Using model {0}&quot;, str_ModelPath)]" />
-                <ui:LogMessage DisplayName="Log Message" sap:VirtualizedContainerService.HintSize="899,91" sap2010:WorkflowViewState.IdRef="LogMessage_6" Level="Trace" Message="[String.Format(&quot;Using one hot encoder {0}&quot;, str_OneHotEncoderPath)]" />
-                <ui:LogMessage DisplayName="Log Message" sap:VirtualizedContainerService.HintSize="899,91" sap2010:WorkflowViewState.IdRef="LogMessage_3" Level="Trace" Message="[String.Format(&quot;Using scaler X {0}&quot;, str_ScalerXPath)]" />
-                <ui:LogMessage DisplayName="Log Message" sap:VirtualizedContainerService.HintSize="899,91" sap2010:WorkflowViewState.IdRef="LogMessage_4" Level="Trace" Message="[String.Format(&quot;Using scaler y {0}&quot;, str_ScalerYPath)]" />
-                <ui:LogMessage DisplayName="Log Message" sap:VirtualizedContainerService.HintSize="899,91" sap2010:WorkflowViewState.IdRef="LogMessage_5" Level="Trace" Message="[String.Format(&quot;Using labelencoder {0}&quot;, str_LabelencoderPath)]" />
+                <ui:LogMessage DisplayName="Log Message" sap:VirtualizedContainerService.HintSize="899,93" sap2010:WorkflowViewState.IdRef="LogMessage_2" Level="Trace" Message="[String.Format(&quot;Using model {0}&quot;, str_ModelPath)]" />
+                <ui:LogMessage DisplayName="Log Message" sap:VirtualizedContainerService.HintSize="899,93" sap2010:WorkflowViewState.IdRef="LogMessage_6" Level="Trace" Message="[String.Format(&quot;Using one hot encoder {0}&quot;, str_OneHotEncoderPath)]" />
+                <ui:LogMessage DisplayName="Log Message" sap:VirtualizedContainerService.HintSize="899,93" sap2010:WorkflowViewState.IdRef="LogMessage_3" Level="Trace" Message="[String.Format(&quot;Using scaler X {0}&quot;, str_ScalerXPath)]" />
+                <ui:LogMessage DisplayName="Log Message" sap:VirtualizedContainerService.HintSize="899,93" sap2010:WorkflowViewState.IdRef="LogMessage_4" Level="Trace" Message="[String.Format(&quot;Using scaler y {0}&quot;, str_ScalerYPath)]" />
+                <ui:LogMessage DisplayName="Log Message" sap:VirtualizedContainerService.HintSize="899,93" sap2010:WorkflowViewState.IdRef="LogMessage_5" Level="Trace" Message="[String.Format(&quot;Using labelencoder {0}&quot;, str_LabelencoderPath)]" />
                 <ui:InvokeWorkflowFile ContinueOnError="{x:Null}" DisplayName="1.2 Predict From Model" sap:VirtualizedContainerService.HintSize="899,87" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_2" UnSafe="False" WorkflowFileName="1_2_Predict_From_Model.xaml">
                   <ui:InvokeWorkflowFile.Arguments>
                     <InArgument x:TypeArguments="x:String" x:Key="argIn_str_DataFilePath">[str_CSVFilePath]</InArgument>
@@ -534,9 +549,9 @@
                     <InArgument x:TypeArguments="s:String[]">[jobject_Result.Item("errors").ToObject(Of String())]</InArgument>
                   </Assign.Value>
                 </Assign>
-                <If Condition="[arr_Errors.Count &gt; 0]" sap:VirtualizedContainerService.HintSize="899,1682" sap2010:WorkflowViewState.IdRef="If_14">
+                <If Condition="[arr_Errors.Count &gt; 0]" sap:VirtualizedContainerService.HintSize="899,1691" sap2010:WorkflowViewState.IdRef="If_14">
                   <If.Then>
-                    <Sequence sap:VirtualizedContainerService.HintSize="336,394" sap2010:WorkflowViewState.IdRef="Sequence_23">
+                    <Sequence DisplayName="Report errors" sap:VirtualizedContainerService.HintSize="336,394" sap2010:WorkflowViewState.IdRef="Sequence_23">
                       <sap:WorkflowViewStateService.ViewState>
                         <scg:Dictionary x:TypeArguments="x:String, x:Object">
                           <x:Boolean x:Key="IsExpanded">True</x:Boolean>
@@ -547,7 +562,7 @@
                     </Sequence>
                   </If.Then>
                   <If.Else>
-                    <Sequence sap:VirtualizedContainerService.HintSize="538,1534" sap2010:WorkflowViewState.IdRef="Sequence_24">
+                    <Sequence DisplayName="Write predictions and probabilities in case of classification problem" sap:VirtualizedContainerService.HintSize="538,1541" sap2010:WorkflowViewState.IdRef="Sequence_24">
                       <sap:WorkflowViewStateService.ViewState>
                         <scg:Dictionary x:TypeArguments="x:String, x:Object">
                           <x:Boolean x:Key="IsExpanded">True</x:Boolean>
@@ -569,9 +584,9 @@
                           <InArgument x:TypeArguments="scg:List(x:Double)">[If(jtoken_SelectedAlgorithm.Item("type").ToString.Equals("classification"), CType(jobject_Result.Item("y_proba"), JArray).ToObject(Of List(Of Double)), Nothing)]</InArgument>
                         </Assign.Value>
                       </Assign>
-                      <If Condition="[Not list_Probabilities Is Nothing]" sap:VirtualizedContainerService.HintSize="516,280" sap2010:WorkflowViewState.IdRef="If_12">
+                      <If Condition="[Not list_Probabilities Is Nothing]" sap:VirtualizedContainerService.HintSize="516,284" sap2010:WorkflowViewState.IdRef="If_12">
                         <If.Then>
-                          <InvokeMethod DisplayName="Invoke Method" sap:VirtualizedContainerService.HintSize="218,132" sap2010:WorkflowViewState.IdRef="InvokeMethod_1" MethodName="Add">
+                          <InvokeMethod DisplayName="Invoke Method" sap:VirtualizedContainerService.HintSize="218,134" sap2010:WorkflowViewState.IdRef="InvokeMethod_1" MethodName="Add">
                             <InvokeMethod.TargetObject>
                               <InArgument x:TypeArguments="sd:DataColumnCollection">[dt_Data.Columns]</InArgument>
                             </InvokeMethod.TargetObject>
@@ -579,13 +594,13 @@
                           </InvokeMethod>
                         </If.Then>
                       </If>
-                      <ui:ForEachRow CurrentIndex="[int_Index]" DataTable="[dt_Data]" DisplayName="For Each Row" sap:VirtualizedContainerService.HintSize="516,580" sap2010:WorkflowViewState.IdRef="ForEachRow_1">
+                      <ui:ForEachRow CurrentIndex="[int_Index]" DataTable="[dt_Data]" DisplayName="For Each Row" sap:VirtualizedContainerService.HintSize="516,583" sap2010:WorkflowViewState.IdRef="ForEachRow_1">
                         <ui:ForEachRow.Body>
                           <ActivityAction x:TypeArguments="sd:DataRow">
                             <ActivityAction.Argument>
                               <DelegateInArgument x:TypeArguments="sd:DataRow" Name="row" />
                             </ActivityAction.Argument>
-                            <Sequence DisplayName="Body" sap:VirtualizedContainerService.HintSize="486,432" sap2010:WorkflowViewState.IdRef="Sequence_22">
+                            <Sequence DisplayName="Body" sap:VirtualizedContainerService.HintSize="486,434" sap2010:WorkflowViewState.IdRef="Sequence_22">
                               <sap:WorkflowViewStateService.ViewState>
                                 <scg:Dictionary x:TypeArguments="x:String, x:Object">
                                   <x:Boolean x:Key="IsExpanded">True</x:Boolean>
@@ -599,7 +614,7 @@
                                   <InArgument x:TypeArguments="x:Object">[list_Predictions.Item(int_Index)]</InArgument>
                                 </Assign.Value>
                               </Assign>
-                              <If Condition="[Not list_Probabilities Is Nothing]" sap:VirtualizedContainerService.HintSize="464,208" sap2010:WorkflowViewState.IdRef="If_13">
+                              <If Condition="[Not list_Probabilities Is Nothing]" sap:VirtualizedContainerService.HintSize="464,210" sap2010:WorkflowViewState.IdRef="If_13">
                                 <If.Then>
                                   <Assign sap:VirtualizedContainerService.HintSize="242,60" sap2010:WorkflowViewState.IdRef="Assign_12">
                                     <Assign.To>
