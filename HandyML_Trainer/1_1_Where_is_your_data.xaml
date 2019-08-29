@@ -10,7 +10,7 @@
   <mva:VisualBasic.Settings>
     <x:Null />
   </mva:VisualBasic.Settings>
-  <sap:VirtualizedContainerService.HintSize>1303,4818</sap:VirtualizedContainerService.HintSize>
+  <sap:VirtualizedContainerService.HintSize>1303,4965</sap:VirtualizedContainerService.HintSize>
   <sap2010:WorkflowViewState.IdRef>ActivityBuilder_1</sap2010:WorkflowViewState.IdRef>
   <TextExpression.NamespacesForImplementation>
     <sco:Collection x:TypeArguments="x:String">
@@ -67,10 +67,9 @@
       <AssemblyReference>UiPath.Word</AssemblyReference>
       <AssemblyReference>System.ComponentModel.Composition</AssemblyReference>
       <AssemblyReference>Newtonsoft.Json</AssemblyReference>
-      <AssemblyReference>System.Runtime.WindowsRuntime</AssemblyReference>
     </sco:Collection>
   </TextExpression.ReferencesForImplementation>
-  <Sequence DisplayName="1_1_Where_is_your_data" sap:VirtualizedContainerService.HintSize="1263,4738" sap2010:WorkflowViewState.IdRef="Sequence_1">
+  <Sequence sap2010:Annotation.AnnotationText="Shows first page of the form asking the user to specify information about the Excel file holding training data.&#xA;&#xA;Outputs:&#xA;- Path of the Excel file holding training data&#xA;- Name of the sheet holding formatted training data&#xA;- Is data should be considered as headers?&#xA;- Go to next step?&#xA;- List of headers&#xA;- Training data in DataTable format" DisplayName="1_1_Where_is_your_data" sap:VirtualizedContainerService.HintSize="1263,4885" sap2010:WorkflowViewState.IdRef="Sequence_1">
     <Sequence.Variables>
       <Variable x:TypeArguments="x:String" Name="str_Result" />
       <Variable x:TypeArguments="njl:JObject" Name="jobject_Result" />
@@ -78,6 +77,7 @@
     <sap:WorkflowViewStateService.ViewState>
       <scg:Dictionary x:TypeArguments="x:String, x:Object">
         <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+        <x:Boolean x:Key="IsAnnotationDocked">True</x:Boolean>
       </scg:Dictionary>
     </sap:WorkflowViewStateService.ViewState>
     <ui:LogMessage DisplayName="Log message" sap:VirtualizedContainerService.HintSize="1241,91" sap2010:WorkflowViewState.IdRef="LogMessage_1" Level="Trace" Message="=== Opening Where is your data form">
@@ -96,13 +96,14 @@
         </scg:Dictionary>
       </sap:WorkflowViewStateService.ViewState>
       <TryCatch.Try>
-        <Sequence sap:VirtualizedContainerService.HintSize="1223,4125" sap2010:WorkflowViewState.IdRef="Sequence_3">
+        <Sequence DisplayName="Main Try sequence" sap:VirtualizedContainerService.HintSize="1223,4125" sap2010:WorkflowViewState.IdRef="Sequence_3">
           <sap:WorkflowViewStateService.ViewState>
             <scg:Dictionary x:TypeArguments="x:String, x:Object">
               <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+              <x:Boolean x:Key="IsPinned">False</x:Boolean>
             </scg:Dictionary>
           </sap:WorkflowViewStateService.ViewState>
-          <Assign sap:VirtualizedContainerService.HintSize="1201,60" sap2010:WorkflowViewState.IdRef="Assign_4">
+          <Assign DisplayName="By default the form is not filled, so set FormFilled output arg to False" sap:VirtualizedContainerService.HintSize="1201,60" sap2010:WorkflowViewState.IdRef="Assign_4">
             <Assign.To>
               <OutArgument x:TypeArguments="x:Boolean">[argOut_bool_FormFilled]</OutArgument>
             </Assign.To>
@@ -110,7 +111,7 @@
               <InArgument x:TypeArguments="x:Boolean">False</InArgument>
             </Assign.Value>
           </Assign>
-          <ui:CustomInput DisplayName="Custom Input" sap:VirtualizedContainerService.HintSize="1201,82" sap2010:WorkflowViewState.IdRef="CustomInput_1" Result="[str_Result]" URI="html\dist\1_1_where_is_your_data.html" />
+          <ui:CustomInput DisplayName="Show the form" sap:VirtualizedContainerService.HintSize="1201,82" sap2010:WorkflowViewState.IdRef="CustomInput_1" Result="[str_Result]" URI="html\dist\1_1_where_is_your_data.html" />
           <If Condition="[Not str_Result.Trim.Equals(&quot;&quot;)]" DisplayName="If user filled the form" sap:VirtualizedContainerService.HintSize="1201,3779" sap2010:WorkflowViewState.IdRef="If_1">
             <sap:WorkflowViewStateService.ViewState>
               <scg:Dictionary x:TypeArguments="x:String, x:Object">
@@ -119,7 +120,7 @@
               </scg:Dictionary>
             </sap:WorkflowViewStateService.ViewState>
             <If.Then>
-              <Sequence sap:VirtualizedContainerService.HintSize="1076,3631" sap2010:WorkflowViewState.IdRef="Sequence_2">
+              <Sequence DisplayName="User filled the form" sap:VirtualizedContainerService.HintSize="1076,3631" sap2010:WorkflowViewState.IdRef="Sequence_2">
                 <Sequence.Variables>
                   <Variable x:TypeArguments="x:String" Name="str_Filepath" />
                   <Variable x:TypeArguments="x:Boolean" Name="bool_FileExists" />
@@ -136,8 +137,8 @@
                   </scg:Dictionary>
                 </sap:WorkflowViewStateService.ViewState>
                 <ui:LogMessage DisplayName="Log Message" sap:VirtualizedContainerService.HintSize="1054,91" sap2010:WorkflowViewState.IdRef="LogMessage_2" Level="Trace" Message="[String.Format(&quot;Form filled with following data {0}&quot;, str_Result)]" />
-                <ui:DeserializeJson x:TypeArguments="njl:JObject" DisplayName="Deserialize JSON" sap:VirtualizedContainerService.HintSize="1054,60" sap2010:WorkflowViewState.IdRef="DeserializeJson`1_1" JsonObject="[jobject_Result]" JsonString="[str_Result]" />
-                <Assign sap:VirtualizedContainerService.HintSize="1054,60" sap2010:WorkflowViewState.IdRef="Assign_19">
+                <ui:DeserializeJson x:TypeArguments="njl:JObject" DisplayName="Convert form result from String to JObject" sap:VirtualizedContainerService.HintSize="1054,60" sap2010:WorkflowViewState.IdRef="DeserializeJson`1_1" JsonObject="[jobject_Result]" JsonString="[str_Result]" />
+                <Assign DisplayName="Get filepath property" sap:VirtualizedContainerService.HintSize="1054,60" sap2010:WorkflowViewState.IdRef="Assign_19">
                   <Assign.To>
                     <OutArgument x:TypeArguments="x:String">[str_Filepath]</OutArgument>
                   </Assign.To>
@@ -145,7 +146,7 @@
                     <InArgument x:TypeArguments="x:String">[jobject_Result.Item("filepath").ToString.Trim]</InArgument>
                   </Assign.Value>
                 </Assign>
-                <Assign sap:VirtualizedContainerService.HintSize="1054,60" sap2010:WorkflowViewState.IdRef="Assign_20">
+                <Assign DisplayName="Get filecontent property" sap:VirtualizedContainerService.HintSize="1054,60" sap2010:WorkflowViewState.IdRef="Assign_20">
                   <Assign.To>
                     <OutArgument x:TypeArguments="x:String">[str_FileContent]</OutArgument>
                   </Assign.To>
@@ -153,11 +154,11 @@
                     <InArgument x:TypeArguments="x:String">[jobject_Result.Item("filecontent").ToString]</InArgument>
                   </Assign.Value>
                 </Assign>
-                <If Condition="[Not str_FileContent Is Nothing]" sap:VirtualizedContainerService.HintSize="1054,1078" sap2010:WorkflowViewState.IdRef="If_9">
+                <If Condition="[Not str_FileContent Is Nothing]" DisplayName="If there is a filecontent property" sap:VirtualizedContainerService.HintSize="1054,1078" sap2010:WorkflowViewState.IdRef="If_9">
                   <If.Then>
-                    <If Condition="[Not str_FileContent.Equals(&quot;&quot;)]" sap:VirtualizedContainerService.HintSize="929,930" sap2010:WorkflowViewState.IdRef="If_8">
+                    <If Condition="[Not str_FileContent.Equals(&quot;&quot;)]" DisplayName="If the file content is not empty (means that user selected its file using Browse functionality)" sap:VirtualizedContainerService.HintSize="929,930" sap2010:WorkflowViewState.IdRef="If_8">
                       <If.Then>
-                        <TryCatch DisplayName="Try Catch" sap:VirtualizedContainerService.HintSize="418,782" sap2010:WorkflowViewState.IdRef="TryCatch_2">
+                        <TryCatch DisplayName="Try to convert encoded Base64 to file" sap:VirtualizedContainerService.HintSize="418,782" sap2010:WorkflowViewState.IdRef="TryCatch_2">
                           <TryCatch.Try>
                             <Sequence sap:VirtualizedContainerService.HintSize="336,555" sap2010:WorkflowViewState.IdRef="Sequence_8">
                               <Sequence.Variables>
@@ -169,7 +170,7 @@
                                   <x:Boolean x:Key="IsExpanded">True</x:Boolean>
                                 </scg:Dictionary>
                               </sap:WorkflowViewStateService.ViewState>
-                              <Assign sap:VirtualizedContainerService.HintSize="314,60" sap2010:WorkflowViewState.IdRef="Assign_21">
+                              <Assign DisplayName="Convert encoded Base64 String to Byte Array" sap:VirtualizedContainerService.HintSize="314,60" sap2010:WorkflowViewState.IdRef="Assign_21">
                                 <Assign.To>
                                   <OutArgument x:TypeArguments="s:Byte[]">[arr_Filecontent]</OutArgument>
                                 </Assign.To>
@@ -177,8 +178,8 @@
                                   <InArgument x:TypeArguments="s:Byte[]">[Convert.FromBase64String(str_FileContent.Substring(str_FileContent.IndexOf("base64,") + 7))]</InArgument>
                                 </Assign.Value>
                               </Assign>
-                              <ui:GetEnvironmentVariable DisplayName="Get Environment Variable" sap:VirtualizedContainerService.HintSize="314,59" sap2010:WorkflowViewState.IdRef="GetEnvironmentVariable_1" Variable="TEMP" VariableValue="[str_TempDir]" />
-                              <Assign sap:VirtualizedContainerService.HintSize="314,60" sap2010:WorkflowViewState.IdRef="Assign_22">
+                              <ui:GetEnvironmentVariable DisplayName="Get Temp folder Environment Variable" sap:VirtualizedContainerService.HintSize="314,59" sap2010:WorkflowViewState.IdRef="GetEnvironmentVariable_1" Variable="TEMP" VariableValue="[str_TempDir]" />
+                              <Assign DisplayName="Assign temporary file path" sap:VirtualizedContainerService.HintSize="314,60" sap2010:WorkflowViewState.IdRef="Assign_22">
                                 <Assign.To>
                                   <OutArgument x:TypeArguments="x:String">[str_Filepath]</OutArgument>
                                 </Assign.To>
@@ -186,7 +187,7 @@
                                   <InArgument x:TypeArguments="x:String">[str_TempDir + "\" + str_Filepath]</InArgument>
                                 </Assign.Value>
                               </Assign>
-                              <InvokeMethod DisplayName="Invoke Method" sap:VirtualizedContainerService.HintSize="314,132" sap2010:WorkflowViewState.IdRef="InvokeMethod_3" MethodName="WriteAllBytes" TargetType="si:File">
+                              <InvokeMethod DisplayName="Write the file" sap:VirtualizedContainerService.HintSize="314,132" sap2010:WorkflowViewState.IdRef="InvokeMethod_3" MethodName="WriteAllBytes" TargetType="si:File">
                                 <InArgument x:TypeArguments="x:String">[str_Filepath]</InArgument>
                                 <InArgument x:TypeArguments="s:Byte[]">[arr_Filecontent]</InArgument>
                               </InvokeMethod>
@@ -211,7 +212,7 @@
                         </TryCatch>
                       </If.Then>
                       <If.Else>
-                        <Sequence sap:VirtualizedContainerService.HintSize="486,461" sap2010:WorkflowViewState.IdRef="Sequence_9">
+                        <Sequence DisplayName="User selected its file by typing the absolute path" sap:VirtualizedContainerService.HintSize="486,461" sap2010:WorkflowViewState.IdRef="Sequence_9">
                           <sap:WorkflowViewStateService.ViewState>
                             <scg:Dictionary x:TypeArguments="x:String, x:Object">
                               <x:Boolean x:Key="IsExpanded">True</x:Boolean>
@@ -241,7 +242,7 @@
                     </If>
                   </If.Then>
                 </If>
-                <Assign sap:VirtualizedContainerService.HintSize="1054,60" sap2010:WorkflowViewState.IdRef="Assign_15">
+                <Assign DisplayName="Set Filepath output arg" sap:VirtualizedContainerService.HintSize="1054,60" sap2010:WorkflowViewState.IdRef="Assign_15">
                   <Assign.To>
                     <OutArgument x:TypeArguments="x:String">[argOut_str_Filepath]</OutArgument>
                   </Assign.To>
@@ -249,7 +250,7 @@
                     <InArgument x:TypeArguments="x:String">[str_Filepath]</InArgument>
                   </Assign.Value>
                 </Assign>
-                <Assign sap:VirtualizedContainerService.HintSize="1054,60" sap2010:WorkflowViewState.IdRef="Assign_11">
+                <Assign DisplayName="Get sheet property (from result)" sap:VirtualizedContainerService.HintSize="1054,60" sap2010:WorkflowViewState.IdRef="Assign_11">
                   <Assign.To>
                     <OutArgument x:TypeArguments="x:String">[str_SheetName]</OutArgument>
                   </Assign.To>
@@ -257,7 +258,7 @@
                     <InArgument x:TypeArguments="x:String">[jobject_Result.Item("sheet").ToString.Trim]</InArgument>
                   </Assign.Value>
                 </Assign>
-                <Assign sap:VirtualizedContainerService.HintSize="1054,60" sap2010:WorkflowViewState.IdRef="Assign_16">
+                <Assign DisplayName="Set SheetName output arg" sap:VirtualizedContainerService.HintSize="1054,60" sap2010:WorkflowViewState.IdRef="Assign_16">
                   <Assign.To>
                     <OutArgument x:TypeArguments="x:String">[argOut_str_SheetName]</OutArgument>
                   </Assign.To>
@@ -265,8 +266,8 @@
                     <InArgument x:TypeArguments="x:String">[str_SheetName]</InArgument>
                   </Assign.Value>
                 </Assign>
-                <ui:LogMessage DisplayName="Log message" sap:VirtualizedContainerService.HintSize="653,91" sap2010:WorkflowViewState.IdRef="LogMessage_10" Level="Trace" Message="[String.Format(&quot;Sheet name: {0}&quot;, str_SheetName)]" />
-                <Assign sap:VirtualizedContainerService.HintSize="653,60" sap2010:WorkflowViewState.IdRef="Assign_12">
+                <ui:LogMessage DisplayName="Log message" sap:VirtualizedContainerService.HintSize="1054,91" sap2010:WorkflowViewState.IdRef="LogMessage_10" Level="Trace" Message="[String.Format(&quot;Sheet name: {0}&quot;, str_SheetName)]" />
+                <Assign DisplayName="Get headers property (from result) and convert to Boolean" sap:VirtualizedContainerService.HintSize="1054,60" sap2010:WorkflowViewState.IdRef="Assign_12">
                   <Assign.To>
                     <OutArgument x:TypeArguments="x:Boolean">[bool_HasHeaders]</OutArgument>
                   </Assign.To>
@@ -274,7 +275,7 @@
                     <InArgument x:TypeArguments="x:Boolean">[Boolean.Parse(jobject_Result.Item("headers").ToString.Trim)]</InArgument>
                   </Assign.Value>
                 </Assign>
-                <Assign sap:VirtualizedContainerService.HintSize="653,60" sap2010:WorkflowViewState.IdRef="Assign_18">
+                <Assign DisplayName="Set HasHeaders output arg" sap:VirtualizedContainerService.HintSize="1054,60" sap2010:WorkflowViewState.IdRef="Assign_18">
                   <Assign.To>
                     <OutArgument x:TypeArguments="x:Boolean">[argOut_bool_HasHeaders]</OutArgument>
                   </Assign.To>
@@ -282,7 +283,7 @@
                     <InArgument x:TypeArguments="x:Boolean">[bool_HasHeaders]</InArgument>
                   </Assign.Value>
                 </Assign>
-                <ui:LogMessage DisplayName="Log message" sap:VirtualizedContainerService.HintSize="653,91" sap2010:WorkflowViewState.IdRef="LogMessage_11" Level="Trace" Message="[String.Format(&quot;Has headers: {0}&quot;, bool_HasHeaders.ToString)]">
+                <ui:LogMessage DisplayName="Log message" sap:VirtualizedContainerService.HintSize="1054,91" sap2010:WorkflowViewState.IdRef="LogMessage_11" Level="Trace" Message="[String.Format(&quot;Has headers: {0}&quot;, bool_HasHeaders.ToString)]">
                   <sap:WorkflowViewStateService.ViewState>
                     <scg:Dictionary x:TypeArguments="x:String, x:Object">
                       <x:Boolean x:Key="IsExpanded">True</x:Boolean>
@@ -290,7 +291,7 @@
                     </scg:Dictionary>
                   </sap:WorkflowViewStateService.ViewState>
                 </ui:LogMessage>
-                <If Condition="[bool_HasHeaders]" DisplayName="If has headers skip the first line" sap:VirtualizedContainerService.HintSize="653,235" sap2010:WorkflowViewState.IdRef="If_7">
+                <If Condition="[bool_HasHeaders]" DisplayName="If has headers skip the first line" sap:VirtualizedContainerService.HintSize="1054,235" sap2010:WorkflowViewState.IdRef="If_7">
                   <sap:WorkflowViewStateService.ViewState>
                     <scg:Dictionary x:TypeArguments="x:String, x:Object">
                       <x:Boolean x:Key="IsExpanded">True</x:Boolean>
@@ -298,7 +299,7 @@
                     </scg:Dictionary>
                   </sap:WorkflowViewStateService.ViewState>
                   <If.Then>
-                    <ui:ReadRange AddHeaders="True" DataTable="[dt_Data]" DisplayName="Read excel file" sap:VirtualizedContainerService.HintSize="314,87" sap2010:WorkflowViewState.IdRef="ReadRange_3" SheetName="[str_SheetName]" WorkbookPath="[str_Filepath]">
+                    <ui:ReadRange AddHeaders="True" DataTable="[dt_Data]" DisplayName="Read excel file with AddHeaders option" sap:VirtualizedContainerService.HintSize="314,87" sap2010:WorkflowViewState.IdRef="ReadRange_3" SheetName="[str_SheetName]" WorkbookPath="[str_Filepath]">
                       <ui:ReadRange.Range>
                         <InArgument x:TypeArguments="x:String">
                           <Literal x:TypeArguments="x:String" Value="" />
@@ -313,7 +314,7 @@
                     </ui:ReadRange>
                   </If.Then>
                   <If.Else>
-                    <ui:ReadRange AddHeaders="False" DataTable="[dt_Data]" DisplayName="Read excel file" sap:VirtualizedContainerService.HintSize="314,87" sap2010:WorkflowViewState.IdRef="ReadRange_4" SheetName="[str_SheetName]" WorkbookPath="[str_Filepath]">
+                    <ui:ReadRange AddHeaders="False" DataTable="[dt_Data]" DisplayName="Read excel file without AddHeaders option" sap:VirtualizedContainerService.HintSize="314,87" sap2010:WorkflowViewState.IdRef="ReadRange_4" SheetName="[str_SheetName]" WorkbookPath="[str_Filepath]">
                       <ui:ReadRange.Range>
                         <InArgument x:TypeArguments="x:String">
                           <Literal x:TypeArguments="x:String" Value="" />
@@ -328,7 +329,7 @@
                     </ui:ReadRange>
                   </If.Else>
                 </If>
-                <Assign sap:VirtualizedContainerService.HintSize="653,60" sap2010:WorkflowViewState.IdRef="Assign_17">
+                <Assign DisplayName="Set Data output arg" sap:VirtualizedContainerService.HintSize="1054,60" sap2010:WorkflowViewState.IdRef="Assign_17">
                   <Assign.To>
                     <OutArgument x:TypeArguments="sd:DataTable">[argOut_dt_Data]</OutArgument>
                   </Assign.To>
@@ -336,7 +337,7 @@
                     <InArgument x:TypeArguments="sd:DataTable">[dt_Data]</InArgument>
                   </Assign.Value>
                 </Assign>
-                <ui:ForEach x:TypeArguments="sd:DataColumn" CurrentIndex="{x:Null}" DisplayName="Spluck column names" sap:VirtualizedContainerService.HintSize="653,490" sap2010:WorkflowViewState.IdRef="ForEach`1_2" Values="[dt_Data.Columns]">
+                <ui:ForEach x:TypeArguments="sd:DataColumn" CurrentIndex="{x:Null}" DisplayName="Pluck column names" sap:VirtualizedContainerService.HintSize="1054,490" sap2010:WorkflowViewState.IdRef="ForEach`1_2" Values="[dt_Data.Columns]">
                   <ui:ForEach.Body>
                     <ActivityAction x:TypeArguments="sd:DataColumn">
                       <ActivityAction.Argument>
@@ -375,8 +376,8 @@
                     </scg:Dictionary>
                   </sap:WorkflowViewStateService.ViewState>
                 </ui:ForEach>
-                <ui:LogMessage DisplayName="Log message" sap:VirtualizedContainerService.HintSize="653,91" sap2010:WorkflowViewState.IdRef="LogMessage_12" Level="Trace" Message="[String.Format(&quot;List of all columns names: {0}&quot;, String.Join(&quot; | &quot;, list_ColumnNames))]" />
-                <Assign sap:VirtualizedContainerService.HintSize="653,60" sap2010:WorkflowViewState.IdRef="Assign_14">
+                <ui:LogMessage DisplayName="Log message" sap:VirtualizedContainerService.HintSize="1054,91" sap2010:WorkflowViewState.IdRef="LogMessage_12" Level="Trace" Message="[String.Format(&quot;List of all columns names: {0}&quot;, String.Join(&quot; | &quot;, list_ColumnNames))]" />
+                <Assign DisplayName="Set Headers output arg" sap:VirtualizedContainerService.HintSize="1054,60" sap2010:WorkflowViewState.IdRef="Assign_14">
                   <Assign.To>
                     <OutArgument x:TypeArguments="scg:List(x:String)">[argOut_list_Headers]</OutArgument>
                   </Assign.To>
@@ -384,7 +385,7 @@
                     <InArgument x:TypeArguments="scg:List(x:String)">[list_ColumnNames]</InArgument>
                   </Assign.Value>
                 </Assign>
-                <Assign sap:VirtualizedContainerService.HintSize="653,60" sap2010:WorkflowViewState.IdRef="Assign_5">
+                <Assign DisplayName="Set FormFilled output arg" sap:VirtualizedContainerService.HintSize="1054,60" sap2010:WorkflowViewState.IdRef="Assign_5">
                   <Assign.To>
                     <OutArgument x:TypeArguments="x:Boolean">[argOut_bool_FormFilled]</OutArgument>
                   </Assign.To>

@@ -17,7 +17,7 @@
   <mva:VisualBasic.Settings>
     <x:Null />
   </mva:VisualBasic.Settings>
-  <sap:VirtualizedContainerService.HintSize>1012,1142</sap:VirtualizedContainerService.HintSize>
+  <sap:VirtualizedContainerService.HintSize>304,797</sap:VirtualizedContainerService.HintSize>
   <sap2010:WorkflowViewState.IdRef>ActivityBuilder_1</sap2010:WorkflowViewState.IdRef>
   <TextExpression.NamespacesForImplementation>
     <sco:Collection x:TypeArguments="x:String">
@@ -75,7 +75,7 @@
       <AssemblyReference>Newtonsoft.Json</AssemblyReference>
     </sco:Collection>
   </TextExpression.ReferencesForImplementation>
-  <Sequence DisplayName="2_2_Train_Model" sap:VirtualizedContainerService.HintSize="972,1062" sap2010:WorkflowViewState.IdRef="Sequence_3">
+  <Sequence sap2010:Annotation.AnnotationText="This workflow launches the python script to start the training&#xD;&#xA;&#xD;&#xA;Inputs:&#xA;- Path of the CSV file holding training data&#xA;- List of columns selected as features&#xA;- List of columns selected as targets (only one)&#xD;&#xA;- List of features flagged as categorical ones&#xD;&#xA;- Problem type&#xD;&#xA;- Column names&#xD;&#xA;- Working folder path&#xA;- Selected algorithm&#xD;&#xA;- Selected algorithm parameters&#xD;&#xA;- Python script path&#xD;&#xA;- Python target&#xD;&#xA;- Python exe path&#xD;&#xA;&#xD;&#xA;Output:&#xD;&#xA;- Training result" DisplayName="2_2_Train_Model" sap:VirtualizedContainerService.HintSize="264,717" sap2010:WorkflowViewState.IdRef="Sequence_3">
     <Sequence.Variables>
       <Variable x:TypeArguments="x:String" Name="str_Result" />
       <Variable x:TypeArguments="p:PythonObject" Name="python_ScriptResult" />
@@ -85,9 +85,10 @@
     <sap:WorkflowViewStateService.ViewState>
       <scg:Dictionary x:TypeArguments="x:String, x:Object">
         <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+        <x:Boolean x:Key="IsAnnotationDocked">True</x:Boolean>
       </scg:Dictionary>
     </sap:WorkflowViewStateService.ViewState>
-    <Assign sap:VirtualizedContainerService.HintSize="950,60" sap2010:WorkflowViewState.IdRef="Assign_2">
+    <Assign DisplayName="Replace slashes by backslashes in CSV file path" sap:VirtualizedContainerService.HintSize="242,60" sap2010:WorkflowViewState.IdRef="Assign_2">
       <Assign.To>
         <OutArgument x:TypeArguments="x:String">[argIn_str_DataFilePath]</OutArgument>
       </Assign.To>
@@ -95,7 +96,7 @@
         <InArgument x:TypeArguments="x:String">[argIn_str_DataFilePath.Replace("\", "/")]</InArgument>
       </Assign.Value>
     </Assign>
-    <Assign sap:VirtualizedContainerService.HintSize="950,60" sap2010:WorkflowViewState.IdRef="Assign_3">
+    <Assign DisplayName="Create python method parameters Array" sap:VirtualizedContainerService.HintSize="242,60" sap2010:WorkflowViewState.IdRef="Assign_3">
       <Assign.To>
         <OutArgument x:TypeArguments="s:Object[]">[arr_InputParameters]</OutArgument>
       </Assign.To>
@@ -103,9 +104,15 @@
         <InArgument x:TypeArguments="s:String[]">[{ argIn_str_DataFilePath.Replace("\", "/"), argIn_str_Features, argIn_str_Targets, argIn_str_CategoricalFeatures, argIn_str_ProblemType, argIn_str_Algorithm, argIn_str_AlgorithmParameters, argIn_str_FolderPath + "/", argIn_str_ColumnNames }]</InArgument>
       </Assign.Value>
     </Assign>
-    <If Condition="[argIn_str_PythonTarget.Equals(&quot;x64&quot;)]" sap:VirtualizedContainerService.HintSize="950,738" sap2010:WorkflowViewState.IdRef="If_2">
+    <If Condition="[argIn_str_PythonTarget.Equals(&quot;x64&quot;)]" DisplayName="If python target is x64" sap:VirtualizedContainerService.HintSize="242,51" sap2010:WorkflowViewState.IdRef="If_2">
+      <sap:WorkflowViewStateService.ViewState>
+        <scg:Dictionary x:TypeArguments="x:String, x:Object">
+          <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+          <x:Boolean x:Key="IsPinned">False</x:Boolean>
+        </scg:Dictionary>
+      </sap:WorkflowViewStateService.ViewState>
       <If.Then>
-        <p:PythonScope DisplayName="Python Scope" sap:VirtualizedContainerService.HintSize="350,442" sap2010:WorkflowViewState.IdRef="PythonScope_1" Path="[argIn_str_PythonExecutablePath]" TargetPlatform="x64" Version="Python_36">
+        <p:PythonScope DisplayName="Python Scope (x64)" sap:VirtualizedContainerService.HintSize="350,442" sap2010:WorkflowViewState.IdRef="PythonScope_1" Path="[argIn_str_PythonExecutablePath]" TargetPlatform="x64" Version="Python_36">
           <p:PythonScope.Body>
             <ActivityAction x:TypeArguments="x:Object">
               <ActivityAction.Argument>
@@ -133,9 +140,9 @@
         </p:PythonScope>
       </If.Then>
       <If.Else>
-        <If Condition="[argIn_str_PythonTarget.Equals(&quot;x86&quot;)]" sap:VirtualizedContainerService.HintSize="575,590" sap2010:WorkflowViewState.IdRef="If_1">
+        <If Condition="[argIn_str_PythonTarget.Equals(&quot;x86&quot;)]" DisplayName="If python target is x86" sap:VirtualizedContainerService.HintSize="575,590" sap2010:WorkflowViewState.IdRef="If_1">
           <If.Then>
-            <p:PythonScope DisplayName="Python Scope" sap:VirtualizedContainerService.HintSize="350,442" sap2010:WorkflowViewState.IdRef="PythonScope_2" Path="[argIn_str_PythonExecutablePath]" Version="Python_36">
+            <p:PythonScope DisplayName="Python Scope (x86)" sap:VirtualizedContainerService.HintSize="350,442" sap2010:WorkflowViewState.IdRef="PythonScope_2" Path="[argIn_str_PythonExecutablePath]" Version="Python_36">
               <p:PythonScope.Body>
                 <ActivityAction x:TypeArguments="x:Object">
                   <ActivityAction.Argument>

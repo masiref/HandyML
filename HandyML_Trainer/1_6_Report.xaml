@@ -29,7 +29,7 @@
   <mva:VisualBasic.Settings>
     <x:Null />
   </mva:VisualBasic.Settings>
-  <sap:VirtualizedContainerService.HintSize>691,8068</sap:VirtualizedContainerService.HintSize>
+  <sap:VirtualizedContainerService.HintSize>691,8305</sap:VirtualizedContainerService.HintSize>
   <sap2010:WorkflowViewState.IdRef>ActivityBuilder_1</sap2010:WorkflowViewState.IdRef>
   <TextExpression.NamespacesForImplementation>
     <sco:Collection x:TypeArguments="x:String">
@@ -90,10 +90,11 @@
       <AssemblyReference>Newtonsoft.Json</AssemblyReference>
     </sco:Collection>
   </TextExpression.ReferencesForImplementation>
-  <Sequence DisplayName="1_6_Report" sap:VirtualizedContainerService.HintSize="651,7988" sap2010:WorkflowViewState.IdRef="Sequence_2">
+  <Sequence sap2010:Annotation.AnnotationText="Shows report page after machine learning model training. It allows the end-user to get access to some metrics (score, number of observations, duration, plots) and the result of the training.&#xA;&#xA;Inputs:&#xA;- Score of the training&#xA;- Number of observations&#xA;- Duration of the training&#xA;- List of headers&#xA;- Path of the configuration file saved earlier (JSON file)&#xA;- Path of the result file (JSON file)&#xA;- Path of the machine learning model (.model file)&#xA;- Paths of different plots (.png files)&#xA;- Paths of different artifacts (.pickle files)&#xA;- Path of the template generated for use with HandyML_Predictor&#xA;- Errors raised during training if so" DisplayName="1_6_Report" sap:VirtualizedContainerService.HintSize="651,8225" sap2010:WorkflowViewState.IdRef="Sequence_2">
     <sap:WorkflowViewStateService.ViewState>
       <scg:Dictionary x:TypeArguments="x:String, x:Object">
         <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+        <x:Boolean x:Key="IsAnnotationDocked">True</x:Boolean>
       </scg:Dictionary>
     </sap:WorkflowViewStateService.ViewState>
     <ui:LogMessage DisplayName="Log message" sap:VirtualizedContainerService.HintSize="629,91" sap2010:WorkflowViewState.IdRef="LogMessage_1" Level="Trace" Message="=== Opening Report">
@@ -106,7 +107,7 @@
     </ui:LogMessage>
     <TryCatch DisplayName="Try Catch" sap:VirtualizedContainerService.HintSize="629,7602" sap2010:WorkflowViewState.IdRef="TryCatch_1">
       <TryCatch.Try>
-        <Sequence sap:VirtualizedContainerService.HintSize="611,7375" sap2010:WorkflowViewState.IdRef="Sequence_1">
+        <Sequence DisplayName="Main Try sequence" sap:VirtualizedContainerService.HintSize="611,7375" sap2010:WorkflowViewState.IdRef="Sequence_1">
           <Sequence.Variables>
             <Variable x:TypeArguments="x:String" Name="str_HTMLPageContent" />
             <Variable x:TypeArguments="x:String" Default="html\dist\temp.1_6_report.html" Name="str_HTMLPageURI" />
@@ -117,7 +118,7 @@
               <x:Boolean x:Key="IsExpanded">True</x:Boolean>
             </scg:Dictionary>
           </sap:WorkflowViewStateService.ViewState>
-          <ui:ReadTextFile Content="[str_HTMLPageContent]" DisplayName="Read Text File" FileName="html\dist\1_6_report.html" sap:VirtualizedContainerService.HintSize="589,59" sap2010:WorkflowViewState.IdRef="ReadTextFile_1">
+          <ui:ReadTextFile Content="[str_HTMLPageContent]" DisplayName="Load the form in a String" FileName="html\dist\1_6_report.html" sap:VirtualizedContainerService.HintSize="589,59" sap2010:WorkflowViewState.IdRef="ReadTextFile_1">
             <sap:WorkflowViewStateService.ViewState>
               <scg:Dictionary x:TypeArguments="x:String, x:Object">
                 <x:Boolean x:Key="IsExpanded">True</x:Boolean>
@@ -125,7 +126,7 @@
               </scg:Dictionary>
             </sap:WorkflowViewStateService.ViewState>
           </ui:ReadTextFile>
-          <Assign sap:VirtualizedContainerService.HintSize="589,60" sap2010:WorkflowViewState.IdRef="Assign_19">
+          <Assign DisplayName="Replacement in the form (errors)" sap:VirtualizedContainerService.HintSize="589,60" sap2010:WorkflowViewState.IdRef="Assign_19">
             <Assign.To>
               <OutArgument x:TypeArguments="x:String">[str_HTMLPageContent]</OutArgument>
             </Assign.To>
@@ -133,7 +134,7 @@
               <InArgument x:TypeArguments="x:String" xml:space="preserve">[str_HTMLPageContent.Replace("{errors}", System.Web.HttpUtility.HtmlEncode(argIn_str_Errors).Replace(vbCrLf, "").Replace("    ", "").Replace(vbTab, ""))]</InArgument>
             </Assign.Value>
           </Assign>
-          <Assign sap:VirtualizedContainerService.HintSize="589,60" sap2010:WorkflowViewState.IdRef="Assign_1">
+          <Assign DisplayName="Replacement in the form (model path)" sap:VirtualizedContainerService.HintSize="589,60" sap2010:WorkflowViewState.IdRef="Assign_1">
             <Assign.To>
               <OutArgument x:TypeArguments="x:String">[str_HTMLPageContent]</OutArgument>
             </Assign.To>
@@ -141,7 +142,7 @@
               <InArgument x:TypeArguments="x:String" xml:space="preserve">[str_HTMLPageContent.Replace("{model-path}", System.Web.HttpUtility.HtmlEncode(argIn_str_ModelPath).Replace(vbCrLf, "").Replace("    ", "").Replace(vbTab, ""))]</InArgument>
             </Assign.Value>
           </Assign>
-          <Assign sap:VirtualizedContainerService.HintSize="589,60" sap2010:WorkflowViewState.IdRef="Assign_5">
+          <Assign DisplayName="Replacement in the form (results path)" sap:VirtualizedContainerService.HintSize="589,60" sap2010:WorkflowViewState.IdRef="Assign_5">
             <Assign.To>
               <OutArgument x:TypeArguments="x:String">[str_HTMLPageContent]</OutArgument>
             </Assign.To>
@@ -149,7 +150,7 @@
               <InArgument x:TypeArguments="x:String" xml:space="preserve">[str_HTMLPageContent.Replace("{results-path}", System.Web.HttpUtility.HtmlEncode(argIn_str_ResultsPath).Replace(vbCrLf, "").Replace("    ", "").Replace(vbTab, ""))]</InArgument>
             </Assign.Value>
           </Assign>
-          <Assign sap:VirtualizedContainerService.HintSize="589,60" sap2010:WorkflowViewState.IdRef="Assign_7">
+          <Assign DisplayName="Replacement in the form (template path)" sap:VirtualizedContainerService.HintSize="589,60" sap2010:WorkflowViewState.IdRef="Assign_7">
             <Assign.To>
               <OutArgument x:TypeArguments="x:String">[str_HTMLPageContent]</OutArgument>
             </Assign.To>
@@ -157,7 +158,7 @@
               <InArgument x:TypeArguments="x:String" xml:space="preserve">[str_HTMLPageContent.Replace("{template-path}", System.Web.HttpUtility.HtmlEncode(argIn_str_PredictorTemplatePath).Replace(vbCrLf, "").Replace("    ", "").Replace(vbTab, ""))]</InArgument>
             </Assign.Value>
           </Assign>
-          <Assign sap:VirtualizedContainerService.HintSize="589,60" sap2010:WorkflowViewState.IdRef="Assign_2">
+          <Assign DisplayName="Replacement in the form (score)" sap:VirtualizedContainerService.HintSize="589,60" sap2010:WorkflowViewState.IdRef="Assign_2">
             <Assign.To>
               <OutArgument x:TypeArguments="x:String">[str_HTMLPageContent]</OutArgument>
             </Assign.To>
@@ -165,7 +166,7 @@
               <InArgument x:TypeArguments="x:String" xml:space="preserve">[str_HTMLPageContent.Replace("{score}", System.Web.HttpUtility.HtmlEncode(Math.Round(argIn_dbl_Score, 2)).Replace(vbCrLf, "").Replace("    ", "").Replace(vbTab, ""))]</InArgument>
             </Assign.Value>
           </Assign>
-          <Assign sap:VirtualizedContainerService.HintSize="589,60" sap2010:WorkflowViewState.IdRef="Assign_3">
+          <Assign DisplayName="Replacement in the form (duration)" sap:VirtualizedContainerService.HintSize="589,60" sap2010:WorkflowViewState.IdRef="Assign_3">
             <Assign.To>
               <OutArgument x:TypeArguments="x:String">[str_HTMLPageContent]</OutArgument>
             </Assign.To>
@@ -173,7 +174,7 @@
               <InArgument x:TypeArguments="x:String" xml:space="preserve">[str_HTMLPageContent.Replace("{duration}", System.Web.HttpUtility.HtmlEncode(String.Format("{0:00}:{1:00}:{2:00}", argIn_timespan_Duration.Hours, argIn_timespan_Duration.Minutes, argIn_timespan_Duration.Seconds)).Replace(vbCrLf, "").Replace("    ", "").Replace(vbTab, ""))]</InArgument>
             </Assign.Value>
           </Assign>
-          <Assign sap:VirtualizedContainerService.HintSize="589,60" sap2010:WorkflowViewState.IdRef="Assign_4">
+          <Assign DisplayName="Replacement in the form (observations)" sap:VirtualizedContainerService.HintSize="589,60" sap2010:WorkflowViewState.IdRef="Assign_4">
             <Assign.To>
               <OutArgument x:TypeArguments="x:String">[str_HTMLPageContent]</OutArgument>
             </Assign.To>
@@ -181,7 +182,7 @@
               <InArgument x:TypeArguments="x:String" xml:space="preserve">[str_HTMLPageContent.Replace("{observations}", System.Web.HttpUtility.HtmlEncode(argIn_int_NbObservations).Replace(vbCrLf, "").Replace("    ", "").Replace(vbTab, ""))]</InArgument>
             </Assign.Value>
           </Assign>
-          <If Condition="[Not argIn_str_PlotTrainingResults Is Nothing]" sap:VirtualizedContainerService.HintSize="589,356" sap2010:WorkflowViewState.IdRef="If_3">
+          <If Condition="[Not argIn_str_PlotTrainingResults Is Nothing]" DisplayName="If there is a training results plot" sap:VirtualizedContainerService.HintSize="589,356" sap2010:WorkflowViewState.IdRef="If_3">
             <sap:WorkflowViewStateService.ViewState>
               <scg:Dictionary x:TypeArguments="x:String, x:Object">
                 <x:Boolean x:Key="IsExpanded">True</x:Boolean>
@@ -189,9 +190,9 @@
               </scg:Dictionary>
             </sap:WorkflowViewStateService.ViewState>
             <If.Then>
-              <If Condition="[Not argIn_str_PlotTrainingResults.Equals(&quot;&quot;)]" sap:VirtualizedContainerService.HintSize="464,208" sap2010:WorkflowViewState.IdRef="If_5">
+              <If Condition="[Not argIn_str_PlotTrainingResults.Equals(&quot;&quot;)]" DisplayName="If path is not empty" sap:VirtualizedContainerService.HintSize="464,208" sap2010:WorkflowViewState.IdRef="If_5">
                 <If.Then>
-                  <Assign sap:VirtualizedContainerService.HintSize="242,60" sap2010:WorkflowViewState.IdRef="Assign_9">
+                  <Assign DisplayName="Replacement in the form (plot)" sap:VirtualizedContainerService.HintSize="242,60" sap2010:WorkflowViewState.IdRef="Assign_9">
                     <Assign.To>
                       <OutArgument x:TypeArguments="x:String">[str_HTMLPageContent]</OutArgument>
                     </Assign.To>
@@ -203,7 +204,7 @@
               </If>
             </If.Then>
           </If>
-          <If Condition="[Not argIn_str_PlotTestResults Is Nothing]" sap:VirtualizedContainerService.HintSize="589,356" sap2010:WorkflowViewState.IdRef="If_4">
+          <If Condition="[Not argIn_str_PlotTestResults Is Nothing]" DisplayName="If there is a test results plot" sap:VirtualizedContainerService.HintSize="589,356" sap2010:WorkflowViewState.IdRef="If_4">
             <sap:WorkflowViewStateService.ViewState>
               <scg:Dictionary x:TypeArguments="x:String, x:Object">
                 <x:Boolean x:Key="IsExpanded">True</x:Boolean>
@@ -211,9 +212,9 @@
               </scg:Dictionary>
             </sap:WorkflowViewStateService.ViewState>
             <If.Then>
-              <If Condition="[Not argIn_str_PlotTestResults.Equals(&quot;&quot;)]" sap:VirtualizedContainerService.HintSize="464,208" sap2010:WorkflowViewState.IdRef="If_6">
+              <If Condition="[Not argIn_str_PlotTestResults.Equals(&quot;&quot;)]" DisplayName="If path is not empty" sap:VirtualizedContainerService.HintSize="464,208" sap2010:WorkflowViewState.IdRef="If_6">
                 <If.Then>
-                  <Assign sap:VirtualizedContainerService.HintSize="242,60" sap2010:WorkflowViewState.IdRef="Assign_10">
+                  <Assign DisplayName="Replacement in the form (plot)" sap:VirtualizedContainerService.HintSize="242,60" sap2010:WorkflowViewState.IdRef="Assign_10">
                     <Assign.To>
                       <OutArgument x:TypeArguments="x:String">[str_HTMLPageContent]</OutArgument>
                     </Assign.To>
@@ -225,7 +226,7 @@
               </If>
             </If.Then>
           </If>
-          <If Condition="[Not argIn_str_PlotConfusionMatrix Is Nothing]" sap:VirtualizedContainerService.HintSize="589,356" sap2010:WorkflowViewState.IdRef="If_9">
+          <If Condition="[Not argIn_str_PlotConfusionMatrix Is Nothing]" DisplayName="If there is a confusion matrix plot" sap:VirtualizedContainerService.HintSize="589,356" sap2010:WorkflowViewState.IdRef="If_9">
             <sap:WorkflowViewStateService.ViewState>
               <scg:Dictionary x:TypeArguments="x:String, x:Object">
                 <x:Boolean x:Key="IsExpanded">True</x:Boolean>
@@ -233,9 +234,9 @@
               </scg:Dictionary>
             </sap:WorkflowViewStateService.ViewState>
             <If.Then>
-              <If Condition="[Not argIn_str_PlotConfusionMatrix.Equals(&quot;&quot;)]" sap:VirtualizedContainerService.HintSize="464,208" sap2010:WorkflowViewState.IdRef="If_8">
+              <If Condition="[Not argIn_str_PlotConfusionMatrix.Equals(&quot;&quot;)]" DisplayName="If path is not empty" sap:VirtualizedContainerService.HintSize="464,208" sap2010:WorkflowViewState.IdRef="If_8">
                 <If.Then>
-                  <Assign sap:VirtualizedContainerService.HintSize="242,60" sap2010:WorkflowViewState.IdRef="Assign_11">
+                  <Assign DisplayName="Replacement in the form (plot)" sap:VirtualizedContainerService.HintSize="242,60" sap2010:WorkflowViewState.IdRef="Assign_11">
                     <Assign.To>
                       <OutArgument x:TypeArguments="x:String">[str_HTMLPageContent]</OutArgument>
                     </Assign.To>
@@ -247,7 +248,7 @@
               </If>
             </If.Then>
           </If>
-          <If Condition="[Not argIn_str_PlotCumulativeGain Is Nothing]" sap:VirtualizedContainerService.HintSize="589,356" sap2010:WorkflowViewState.IdRef="If_11">
+          <If Condition="[Not argIn_str_PlotCumulativeGain Is Nothing]" DisplayName="If there is a cumulative gain plot" sap:VirtualizedContainerService.HintSize="589,356" sap2010:WorkflowViewState.IdRef="If_11">
             <sap:WorkflowViewStateService.ViewState>
               <scg:Dictionary x:TypeArguments="x:String, x:Object">
                 <x:Boolean x:Key="IsExpanded">True</x:Boolean>
@@ -255,9 +256,9 @@
               </scg:Dictionary>
             </sap:WorkflowViewStateService.ViewState>
             <If.Then>
-              <If Condition="[Not argIn_str_PlotCumulativeGain.Equals(&quot;&quot;)]" sap:VirtualizedContainerService.HintSize="464,208" sap2010:WorkflowViewState.IdRef="If_10">
+              <If Condition="[Not argIn_str_PlotCumulativeGain.Equals(&quot;&quot;)]" DisplayName="If path is not empty" sap:VirtualizedContainerService.HintSize="464,208" sap2010:WorkflowViewState.IdRef="If_10">
                 <If.Then>
-                  <Assign sap:VirtualizedContainerService.HintSize="242,60" sap2010:WorkflowViewState.IdRef="Assign_12">
+                  <Assign DisplayName="Replacement in the form (plot)" sap:VirtualizedContainerService.HintSize="242,60" sap2010:WorkflowViewState.IdRef="Assign_12">
                     <Assign.To>
                       <OutArgument x:TypeArguments="x:String">[str_HTMLPageContent]</OutArgument>
                     </Assign.To>
@@ -269,7 +270,7 @@
               </If>
             </If.Then>
           </If>
-          <If Condition="[Not argIn_str_PlotFeatureImportances Is Nothing]" sap:VirtualizedContainerService.HintSize="589,356" sap2010:WorkflowViewState.IdRef="If_13">
+          <If Condition="[Not argIn_str_PlotFeatureImportances Is Nothing]" DisplayName="If there is a feature importances plot" sap:VirtualizedContainerService.HintSize="589,356" sap2010:WorkflowViewState.IdRef="If_13">
             <sap:WorkflowViewStateService.ViewState>
               <scg:Dictionary x:TypeArguments="x:String, x:Object">
                 <x:Boolean x:Key="IsExpanded">True</x:Boolean>
@@ -277,9 +278,9 @@
               </scg:Dictionary>
             </sap:WorkflowViewStateService.ViewState>
             <If.Then>
-              <If Condition="[Not argIn_str_PlotFeatureImportances.Equals(&quot;&quot;)]" sap:VirtualizedContainerService.HintSize="464,208" sap2010:WorkflowViewState.IdRef="If_12">
+              <If Condition="[Not argIn_str_PlotFeatureImportances.Equals(&quot;&quot;)]" DisplayName="If path is not empty" sap:VirtualizedContainerService.HintSize="464,208" sap2010:WorkflowViewState.IdRef="If_12">
                 <If.Then>
-                  <Assign sap:VirtualizedContainerService.HintSize="242,60" sap2010:WorkflowViewState.IdRef="Assign_13">
+                  <Assign DisplayName="Replacement in the form (plot)" sap:VirtualizedContainerService.HintSize="242,60" sap2010:WorkflowViewState.IdRef="Assign_13">
                     <Assign.To>
                       <OutArgument x:TypeArguments="x:String">[str_HTMLPageContent]</OutArgument>
                     </Assign.To>
@@ -291,7 +292,7 @@
               </If>
             </If.Then>
           </If>
-          <If Condition="[Not argIn_str_PlotKSStatistic Is Nothing]" sap:VirtualizedContainerService.HintSize="589,356" sap2010:WorkflowViewState.IdRef="If_15">
+          <If Condition="[Not argIn_str_PlotKSStatistic Is Nothing]" DisplayName="If there is a KSS plot" sap:VirtualizedContainerService.HintSize="589,356" sap2010:WorkflowViewState.IdRef="If_15">
             <sap:WorkflowViewStateService.ViewState>
               <scg:Dictionary x:TypeArguments="x:String, x:Object">
                 <x:Boolean x:Key="IsExpanded">True</x:Boolean>
@@ -299,9 +300,9 @@
               </scg:Dictionary>
             </sap:WorkflowViewStateService.ViewState>
             <If.Then>
-              <If Condition="[Not argIn_str_PlotKSStatistic.Equals(&quot;&quot;)]" sap:VirtualizedContainerService.HintSize="464,208" sap2010:WorkflowViewState.IdRef="If_14">
+              <If Condition="[Not argIn_str_PlotKSStatistic.Equals(&quot;&quot;)]" DisplayName="If path is not empty" sap:VirtualizedContainerService.HintSize="464,208" sap2010:WorkflowViewState.IdRef="If_14">
                 <If.Then>
-                  <Assign sap:VirtualizedContainerService.HintSize="242,60" sap2010:WorkflowViewState.IdRef="Assign_14">
+                  <Assign DisplayName="Replacement in the form (plot)" sap:VirtualizedContainerService.HintSize="242,60" sap2010:WorkflowViewState.IdRef="Assign_14">
                     <Assign.To>
                       <OutArgument x:TypeArguments="x:String">[str_HTMLPageContent]</OutArgument>
                     </Assign.To>
@@ -313,7 +314,7 @@
               </If>
             </If.Then>
           </If>
-          <If Condition="[Not argIn_str_PlotLearningCurve Is Nothing]" sap:VirtualizedContainerService.HintSize="589,356" sap2010:WorkflowViewState.IdRef="If_17">
+          <If Condition="[Not argIn_str_PlotLearningCurve Is Nothing]" DisplayName="If there is a learning curve plot" sap:VirtualizedContainerService.HintSize="589,356" sap2010:WorkflowViewState.IdRef="If_17">
             <sap:WorkflowViewStateService.ViewState>
               <scg:Dictionary x:TypeArguments="x:String, x:Object">
                 <x:Boolean x:Key="IsExpanded">True</x:Boolean>
@@ -321,9 +322,9 @@
               </scg:Dictionary>
             </sap:WorkflowViewStateService.ViewState>
             <If.Then>
-              <If Condition="[Not argIn_str_PlotLearningCurve.Equals(&quot;&quot;)]" sap:VirtualizedContainerService.HintSize="464,208" sap2010:WorkflowViewState.IdRef="If_16">
+              <If Condition="[Not argIn_str_PlotLearningCurve.Equals(&quot;&quot;)]" DisplayName="If path is not empty" sap:VirtualizedContainerService.HintSize="464,208" sap2010:WorkflowViewState.IdRef="If_16">
                 <If.Then>
-                  <Assign sap:VirtualizedContainerService.HintSize="242,60" sap2010:WorkflowViewState.IdRef="Assign_15">
+                  <Assign DisplayName="Replacement in the form (plot)" sap:VirtualizedContainerService.HintSize="242,60" sap2010:WorkflowViewState.IdRef="Assign_15">
                     <Assign.To>
                       <OutArgument x:TypeArguments="x:String">[str_HTMLPageContent]</OutArgument>
                     </Assign.To>
@@ -335,7 +336,7 @@
               </If>
             </If.Then>
           </If>
-          <If Condition="[Not argIn_str_PlotLiftCurve Is Nothing]" sap:VirtualizedContainerService.HintSize="589,356" sap2010:WorkflowViewState.IdRef="If_19">
+          <If Condition="[Not argIn_str_PlotLiftCurve Is Nothing]" DisplayName="If there is a lift curve plot" sap:VirtualizedContainerService.HintSize="589,356" sap2010:WorkflowViewState.IdRef="If_19">
             <sap:WorkflowViewStateService.ViewState>
               <scg:Dictionary x:TypeArguments="x:String, x:Object">
                 <x:Boolean x:Key="IsExpanded">True</x:Boolean>
@@ -343,9 +344,9 @@
               </scg:Dictionary>
             </sap:WorkflowViewStateService.ViewState>
             <If.Then>
-              <If Condition="[Not argIn_str_PlotLiftCurve.Equals(&quot;&quot;)]" sap:VirtualizedContainerService.HintSize="464,208" sap2010:WorkflowViewState.IdRef="If_18">
+              <If Condition="[Not argIn_str_PlotLiftCurve.Equals(&quot;&quot;)]" DisplayName="If path is not empty" sap:VirtualizedContainerService.HintSize="464,208" sap2010:WorkflowViewState.IdRef="If_18">
                 <If.Then>
-                  <Assign sap:VirtualizedContainerService.HintSize="242,60" sap2010:WorkflowViewState.IdRef="Assign_16">
+                  <Assign DisplayName="Replacement in the form (plot)" sap:VirtualizedContainerService.HintSize="242,60" sap2010:WorkflowViewState.IdRef="Assign_16">
                     <Assign.To>
                       <OutArgument x:TypeArguments="x:String">[str_HTMLPageContent]</OutArgument>
                     </Assign.To>
@@ -357,7 +358,7 @@
               </If>
             </If.Then>
           </If>
-          <If Condition="[Not argIn_str_PlotPrecisionRecall Is Nothing]" sap:VirtualizedContainerService.HintSize="589,356" sap2010:WorkflowViewState.IdRef="If_21">
+          <If Condition="[Not argIn_str_PlotPrecisionRecall Is Nothing]" DisplayName="If there is a precision recall plot" sap:VirtualizedContainerService.HintSize="589,356" sap2010:WorkflowViewState.IdRef="If_21">
             <sap:WorkflowViewStateService.ViewState>
               <scg:Dictionary x:TypeArguments="x:String, x:Object">
                 <x:Boolean x:Key="IsExpanded">True</x:Boolean>
@@ -365,9 +366,9 @@
               </scg:Dictionary>
             </sap:WorkflowViewStateService.ViewState>
             <If.Then>
-              <If Condition="[Not argIn_str_PlotPrecisionRecall.Equals(&quot;&quot;)]" sap:VirtualizedContainerService.HintSize="464,208" sap2010:WorkflowViewState.IdRef="If_20">
+              <If Condition="[Not argIn_str_PlotPrecisionRecall.Equals(&quot;&quot;)]" DisplayName="If path is not empty" sap:VirtualizedContainerService.HintSize="464,208" sap2010:WorkflowViewState.IdRef="If_20">
                 <If.Then>
-                  <Assign sap:VirtualizedContainerService.HintSize="242,60" sap2010:WorkflowViewState.IdRef="Assign_17">
+                  <Assign DisplayName="Replacement in the form (plot)" sap:VirtualizedContainerService.HintSize="242,60" sap2010:WorkflowViewState.IdRef="Assign_17">
                     <Assign.To>
                       <OutArgument x:TypeArguments="x:String">[str_HTMLPageContent]</OutArgument>
                     </Assign.To>
@@ -379,7 +380,7 @@
               </If>
             </If.Then>
           </If>
-          <If Condition="[Not argIn_str_PlotROC Is Nothing]" sap:VirtualizedContainerService.HintSize="589,356" sap2010:WorkflowViewState.IdRef="If_23">
+          <If Condition="[Not argIn_str_PlotROC Is Nothing]" DisplayName="If there is a ROC plot" sap:VirtualizedContainerService.HintSize="589,356" sap2010:WorkflowViewState.IdRef="If_23">
             <sap:WorkflowViewStateService.ViewState>
               <scg:Dictionary x:TypeArguments="x:String, x:Object">
                 <x:Boolean x:Key="IsExpanded">True</x:Boolean>
@@ -387,9 +388,9 @@
               </scg:Dictionary>
             </sap:WorkflowViewStateService.ViewState>
             <If.Then>
-              <If Condition="[Not argIn_str_PlotROC.Equals(&quot;&quot;)]" sap:VirtualizedContainerService.HintSize="464,208" sap2010:WorkflowViewState.IdRef="If_22">
+              <If Condition="[Not argIn_str_PlotROC.Equals(&quot;&quot;)]" DisplayName="If path is not empty" sap:VirtualizedContainerService.HintSize="464,208" sap2010:WorkflowViewState.IdRef="If_22">
                 <If.Then>
-                  <Assign sap:VirtualizedContainerService.HintSize="242,60" sap2010:WorkflowViewState.IdRef="Assign_18">
+                  <Assign DisplayName="Replacement in the form (plot)" sap:VirtualizedContainerService.HintSize="242,60" sap2010:WorkflowViewState.IdRef="Assign_18">
                     <Assign.To>
                       <OutArgument x:TypeArguments="x:String">[str_HTMLPageContent]</OutArgument>
                     </Assign.To>
@@ -401,7 +402,7 @@
               </If>
             </If.Then>
           </If>
-          <ui:WriteTextFile DisplayName="Write Text File" FileName="[str_HTMLPageURI]" sap:VirtualizedContainerService.HintSize="589,87" sap2010:WorkflowViewState.IdRef="WriteTextFile_1" Text="[str_HTMLPageContent]">
+          <ui:WriteTextFile DisplayName="Write the form in a temporary file" FileName="[str_HTMLPageURI]" sap:VirtualizedContainerService.HintSize="589,87" sap2010:WorkflowViewState.IdRef="WriteTextFile_1" Text="[str_HTMLPageContent]">
             <sap:WorkflowViewStateService.ViewState>
               <scg:Dictionary x:TypeArguments="x:String, x:Object">
                 <x:Boolean x:Key="IsExpanded">True</x:Boolean>
@@ -409,7 +410,7 @@
               </scg:Dictionary>
             </sap:WorkflowViewStateService.ViewState>
           </ui:WriteTextFile>
-          <ui:CustomInput DisplayName="Custom Input" sap:VirtualizedContainerService.HintSize="589,82" sap2010:WorkflowViewState.IdRef="CustomInput_1" Result="[str_Result]" URI="[str_HTMLPageURI]">
+          <ui:CustomInput DisplayName="Show the form" sap:VirtualizedContainerService.HintSize="589,82" sap2010:WorkflowViewState.IdRef="CustomInput_1" Result="[str_Result]" URI="[str_HTMLPageURI]">
             <sap:WorkflowViewStateService.ViewState>
               <scg:Dictionary x:TypeArguments="x:String, x:Object">
                 <x:Boolean x:Key="IsExpanded">True</x:Boolean>
@@ -464,7 +465,7 @@
               </Sequence>
             </If.Then>
           </If>
-          <ui:Delete ContinueOnError="{x:Null}" sap:VirtualizedContainerService.HintSize="589,22" sap2010:WorkflowViewState.IdRef="Delete_1" Path="[str_HTMLPageURI]" />
+          <ui:Delete ContinueOnError="{x:Null}" DisplayName="Delete temporary form file" sap:VirtualizedContainerService.HintSize="589,22" sap2010:WorkflowViewState.IdRef="Delete_1" Path="[str_HTMLPageURI]" />
         </Sequence>
       </TryCatch.Try>
       <TryCatch.Catches>

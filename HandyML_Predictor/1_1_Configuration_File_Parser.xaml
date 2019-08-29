@@ -12,7 +12,7 @@
   <mva:VisualBasic.Settings>
     <x:Null />
   </mva:VisualBasic.Settings>
-  <sap:VirtualizedContainerService.HintSize>649,4731</sap:VirtualizedContainerService.HintSize>
+  <sap:VirtualizedContainerService.HintSize>376,874</sap:VirtualizedContainerService.HintSize>
   <sap2010:WorkflowViewState.IdRef>Main_1</sap2010:WorkflowViewState.IdRef>
   <TextExpression.NamespacesForImplementation>
     <sco:Collection x:TypeArguments="x:String">
@@ -68,10 +68,9 @@
       <AssemblyReference>UiPath.Excel</AssemblyReference>
       <AssemblyReference>UiPath.Mail</AssemblyReference>
       <AssemblyReference>UiPath.Word</AssemblyReference>
-      <AssemblyReference>System.Runtime.WindowsRuntime</AssemblyReference>
     </sco:Collection>
   </TextExpression.ReferencesForImplementation>
-  <Sequence DisplayName="2_1_Configuration_File_Parser" sap:VirtualizedContainerService.HintSize="609,4651" sap2010:WorkflowViewState.IdRef="Sequence_1">
+  <Sequence sap2010:Annotation.AnnotationText="Configuration file parser helps to:&#xA;- Generate a CSV file from an Excel file (.xlsx)&#xA;- Produce lists of features, categorical features, targets and categorical targets indices needed to train a regression or classification machine learning model (artifacts)&#xA;- Give information about the ML algorithm to use and its possible parameters&#xA;&#xA;Inputs:&#xA;- Path of the configuration file containing all information for artifacts extractions&#xA;- Path of output file needed for machine learning preprocessing phase, usually a .csv file&#xA;&#xA;Outputs:&#xA;- Column indices of features&#xA;- Column indices of categorical features (in order to do label encoding)&#xA;- Column indices of targets&#xA;- Column indices of categorical targets (in order to do label encoding)&#xA;- ML Algorithm to use with its parameters if necessary" DisplayName="2_1_Configuration_File_Parser" sap:VirtualizedContainerService.HintSize="336,794" sap2010:WorkflowViewState.IdRef="Sequence_1">
     <Sequence.Variables>
       <Variable x:TypeArguments="x:String" Name="str_ConfigurationJSON" />
       <Variable x:TypeArguments="njl:JObject" Name="jobject_Configuration" />
@@ -79,21 +78,10 @@
     <sap:WorkflowViewStateService.ViewState>
       <scg:Dictionary x:TypeArguments="x:String, x:Object">
         <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+        <x:Boolean x:Key="IsAnnotationDocked">True</x:Boolean>
       </scg:Dictionary>
     </sap:WorkflowViewStateService.ViewState>
-    <ui:Comment sap:VirtualizedContainerService.HintSize="587,55" sap2010:WorkflowViewState.IdRef="Comment_1" Text="//////////// Configuration file parser helps to:" />
-    <ui:Comment sap:VirtualizedContainerService.HintSize="587,74" sap2010:WorkflowViewState.IdRef="Comment_2" Text="// 1 - Generate a CSV file from an Excel file (.xlsx)" />
-    <ui:Comment sap:VirtualizedContainerService.HintSize="587,131" sap2010:WorkflowViewState.IdRef="Comment_3" Text="// 2 - Produce lists of features, categorical features, targets and categorical targets indices needed to train a regression or classification machine learning model (artifacts)" />
-    <ui:Comment sap:VirtualizedContainerService.HintSize="587,75" sap2010:WorkflowViewState.IdRef="Comment_11" Text="// 3 - Give information about the ML algorithm to use and its possible parameters" />
-    <ui:Comment sap:VirtualizedContainerService.HintSize="587,55" sap2010:WorkflowViewState.IdRef="Comment_4" Text="//////////// Arguments" />
-    <ui:Comment sap:VirtualizedContainerService.HintSize="587,93" sap2010:WorkflowViewState.IdRef="Comment_5" Text="// In =&gt; ConfigurationFilePath: Path of the configuration file containing all information for artifacts extractions" />
-    <ui:Comment sap:VirtualizedContainerService.HintSize="587,93" sap2010:WorkflowViewState.IdRef="Comment_6" Text="// In =&gt; OutputFilePath: Path of output file needed for machine learning preprocessing phase, usually a .csv file" />
-    <ui:Comment sap:VirtualizedContainerService.HintSize="587,74" sap2010:WorkflowViewState.IdRef="Comment_7" Text="// Out =&gt; Features: Column indices of features" />
-    <ui:Comment sap:VirtualizedContainerService.HintSize="587,93" sap2010:WorkflowViewState.IdRef="Comment_8" Text="// Out =&gt; CategoricalFeatures: Column indices of categorical features (in order to do label encoding)" />
-    <ui:Comment sap:VirtualizedContainerService.HintSize="587,56" sap2010:WorkflowViewState.IdRef="Comment_9" Text="// Out =&gt; Targets: Column indices of targets" />
-    <ui:Comment sap:VirtualizedContainerService.HintSize="587,95" sap2010:WorkflowViewState.IdRef="Comment_10" Text="// Out =&gt; CategoricalTargets: Column indices of categorical targets (in order to do label encoding)" />
-    <ui:Comment sap:VirtualizedContainerService.HintSize="587,75" sap2010:WorkflowViewState.IdRef="Comment_12" Text="// Out =&gt; Algorithm: ML Algorithm to use with its parameters if necessary" />
-    <ui:LogMessage DisplayName="Log message" sap:VirtualizedContainerService.HintSize="587,93" sap2010:WorkflowViewState.IdRef="LogMessage_3" Level="Trace" Message="=== Starting parsing of configuration file">
+    <ui:LogMessage DisplayName="Log message" sap:VirtualizedContainerService.HintSize="314,91" sap2010:WorkflowViewState.IdRef="LogMessage_3" Level="Trace" Message="=== Starting parsing of configuration file">
       <sap:WorkflowViewStateService.ViewState>
         <scg:Dictionary x:TypeArguments="x:String, x:Object">
           <x:Boolean x:Key="IsExpanded">True</x:Boolean>
@@ -101,15 +89,15 @@
         </scg:Dictionary>
       </sap:WorkflowViewStateService.ViewState>
     </ui:LogMessage>
-    <TryCatch DisplayName="Try catch" sap:VirtualizedContainerService.HintSize="587,2812" sap2010:WorkflowViewState.IdRef="TryCatch_1">
+    <TryCatch DisplayName="Try catch" sap:VirtualizedContainerService.HintSize="314,51" sap2010:WorkflowViewState.IdRef="TryCatch_1">
       <sap:WorkflowViewStateService.ViewState>
         <scg:Dictionary x:TypeArguments="x:String, x:Object">
-          <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+          <x:Boolean x:Key="IsExpanded">False</x:Boolean>
           <x:Boolean x:Key="IsPinned">False</x:Boolean>
         </scg:Dictionary>
       </sap:WorkflowViewStateService.ViewState>
       <TryCatch.Try>
-        <Sequence sap:VirtualizedContainerService.HintSize="569,2580" sap2010:WorkflowViewState.IdRef="Sequence_3">
+        <Sequence sap:VirtualizedContainerService.HintSize="569,2577" sap2010:WorkflowViewState.IdRef="Sequence_3">
           <Sequence.Variables>
             <Variable x:TypeArguments="x:Boolean" Name="bool_ConfigurationFileExists" />
             <Variable x:TypeArguments="scg:List(x:Int32)" Name="list_Features" />
@@ -125,8 +113,8 @@
               <x:Boolean x:Key="IsExpanded">True</x:Boolean>
             </scg:Dictionary>
           </sap:WorkflowViewStateService.ViewState>
-          <ui:LogMessage DisplayName="Log message" sap:VirtualizedContainerService.HintSize="547,93" sap2010:WorkflowViewState.IdRef="LogMessage_2" Level="Trace" Message="[String.Format(&quot;&gt; Configuration file path: {0}&quot;, argIn_str_ConfigurationFilePath)]" />
-          <ui:PathExists Exists="{x:Null}" DisplayName="Path exists" sap:VirtualizedContainerService.HintSize="547,90" sap2010:WorkflowViewState.IdRef="PathExists_1" Path="[argIn_str_ConfigurationFilePath]" PathType="File" />
+          <ui:LogMessage DisplayName="Log message" sap:VirtualizedContainerService.HintSize="547,91" sap2010:WorkflowViewState.IdRef="LogMessage_2" Level="Trace" Message="[String.Format(&quot;&gt; Configuration file path: {0}&quot;, argIn_str_ConfigurationFilePath)]" />
+          <ui:PathExists Exists="{x:Null}" DisplayName="Path exists" sap:VirtualizedContainerService.HintSize="547,89" sap2010:WorkflowViewState.IdRef="PathExists_1" Path="[argIn_str_ConfigurationFilePath]" PathType="File" />
           <ui:ReadTextFile Content="[str_ConfigurationJSON]" DisplayName="Read text file" FileName="[argIn_str_ConfigurationFilePath]" sap:VirtualizedContainerService.HintSize="547,59" sap2010:WorkflowViewState.IdRef="ReadTextFile_1" />
           <ui:DeserializeJson x:TypeArguments="njl:JObject" DisplayName="Deserialize json" sap:VirtualizedContainerService.HintSize="547,60" sap2010:WorkflowViewState.IdRef="DeserializeJson`1_1" JsonObject="[jobject_Configuration]" JsonString="[str_ConfigurationJSON]" />
           <ui:InvokeWorkflowFile ContinueOnError="{x:Null}" DisplayName="Parse configuration file" sap:VirtualizedContainerService.HintSize="547,87" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_1" UnSafe="False" WorkflowFileName="workflows\Parse_Configuration.xaml">
@@ -260,7 +248,7 @@
         </Catch>
       </TryCatch.Catches>
     </TryCatch>
-    <ui:LogMessage DisplayName="Log message" sap:VirtualizedContainerService.HintSize="587,93" sap2010:WorkflowViewState.IdRef="LogMessage_4" Level="Trace" Message="=== End of configuration file parsing">
+    <ui:LogMessage DisplayName="Log message" sap:VirtualizedContainerService.HintSize="314,91" sap2010:WorkflowViewState.IdRef="LogMessage_4" Level="Trace" Message="=== End of configuration file parsing">
       <sap:WorkflowViewStateService.ViewState>
         <scg:Dictionary x:TypeArguments="x:String, x:Object">
           <x:Boolean x:Key="IsExpanded">True</x:Boolean>

@@ -10,7 +10,7 @@
   <mva:VisualBasic.Settings>
     <x:Null />
   </mva:VisualBasic.Settings>
-  <sap:VirtualizedContainerService.HintSize>476,974</sap:VirtualizedContainerService.HintSize>
+  <sap:VirtualizedContainerService.HintSize>376,724</sap:VirtualizedContainerService.HintSize>
   <sap2010:WorkflowViewState.IdRef>ActivityBuilder_1</sap2010:WorkflowViewState.IdRef>
   <TextExpression.NamespacesForImplementation>
     <sco:Collection x:TypeArguments="x:String">
@@ -73,7 +73,7 @@
       <AssemblyReference>System.Collections.Immutable</AssemblyReference>
     </sco:Collection>
   </TextExpression.ReferencesForImplementation>
-  <Sequence DisplayName="1_4_Select_your_algorithm" sap:VirtualizedContainerService.HintSize="436,894" sap2010:WorkflowViewState.IdRef="Sequence_3">
+  <Sequence sap2010:Annotation.AnnotationText="Shows the form allowing end-user to select algorithm to use in order to train the machine learning model.&#xA;&#xA;Inputs:&#xA;- List of columns selected as targets (only one)&#xA;- Training data in DataTable format&#xA;&#xA;Outputs:&#xA;- Go to next step?&#xA;- Go to previous step?&#xA;- Selected algorithm with its parameters as JObject&#xA;- Selected algorithm with its parameters as String (JObject deserialized)" DisplayName="1_4_Select_your_algorithm" sap:VirtualizedContainerService.HintSize="336,644" sap2010:WorkflowViewState.IdRef="Sequence_3">
     <Sequence.Variables>
       <Variable x:TypeArguments="x:String" Name="str_HTMLPageContent" />
       <Variable x:TypeArguments="x:String" Default="html\dist\temp.1_4_select_your_algorithm.html" Name="str_HTMLPageURI" />
@@ -86,9 +86,10 @@
     <sap:WorkflowViewStateService.ViewState>
       <scg:Dictionary x:TypeArguments="x:String, x:Object">
         <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+        <x:Boolean x:Key="IsAnnotationDocked">True</x:Boolean>
       </scg:Dictionary>
     </sap:WorkflowViewStateService.ViewState>
-    <ui:LogMessage DisplayName="Log message" sap:VirtualizedContainerService.HintSize="414,91" sap2010:WorkflowViewState.IdRef="LogMessage_1" Level="Trace" Message="=== Opening Select your algorithm form">
+    <ui:LogMessage DisplayName="Log message" sap:VirtualizedContainerService.HintSize="314,91" sap2010:WorkflowViewState.IdRef="LogMessage_1" Level="Trace" Message="=== Opening Select your algorithm form">
       <sap:WorkflowViewStateService.ViewState>
         <scg:Dictionary x:TypeArguments="x:String, x:Object">
           <x:Boolean x:Key="IsExpanded">True</x:Boolean>
@@ -96,15 +97,15 @@
         </scg:Dictionary>
       </sap:WorkflowViewStateService.ViewState>
     </ui:LogMessage>
-    <TryCatch DisplayName="Try Catch" sap:VirtualizedContainerService.HintSize="414,508" sap2010:WorkflowViewState.IdRef="TryCatch_1">
+    <TryCatch DisplayName="Try Catch" sap:VirtualizedContainerService.HintSize="314,51" sap2010:WorkflowViewState.IdRef="TryCatch_1">
       <sap:WorkflowViewStateService.ViewState>
         <scg:Dictionary x:TypeArguments="x:String, x:Object">
-          <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+          <x:Boolean x:Key="IsExpanded">False</x:Boolean>
           <x:Boolean x:Key="IsPinned">False</x:Boolean>
         </scg:Dictionary>
       </sap:WorkflowViewStateService.ViewState>
       <TryCatch.Try>
-        <Sequence sap:VirtualizedContainerService.HintSize="772,3404" sap2010:WorkflowViewState.IdRef="Sequence_2">
+        <Sequence DisplayName="Main Try sequence" sap:VirtualizedContainerService.HintSize="772,2947" sap2010:WorkflowViewState.IdRef="Sequence_2">
           <Sequence.Variables>
             <Variable x:TypeArguments="x:String" Name="str_AlgorithmDefinitions" />
             <Variable x:TypeArguments="scg:List(s:Type)" Default="[New List(Of Type)]" Name="list_TargetsDataTypes" />
@@ -115,7 +116,7 @@
               <x:Boolean x:Key="IsPinned">False</x:Boolean>
             </scg:Dictionary>
           </sap:WorkflowViewStateService.ViewState>
-          <Assign sap:VirtualizedContainerService.HintSize="750,60" sap2010:WorkflowViewState.IdRef="Assign_1">
+          <Assign DisplayName="By default the form is not filled, so set FormFilled output arg to False" sap:VirtualizedContainerService.HintSize="750,60" sap2010:WorkflowViewState.IdRef="Assign_1">
             <Assign.To>
               <OutArgument x:TypeArguments="x:Boolean">[argOut_bool_FormFilled]</OutArgument>
             </Assign.To>
@@ -123,7 +124,7 @@
               <InArgument x:TypeArguments="x:Boolean">False</InArgument>
             </Assign.Value>
           </Assign>
-          <Assign sap:VirtualizedContainerService.HintSize="750,60" sap2010:WorkflowViewState.IdRef="Assign_17">
+          <Assign DisplayName="Set Back output argument default value" sap:VirtualizedContainerService.HintSize="750,60" sap2010:WorkflowViewState.IdRef="Assign_17">
             <Assign.To>
               <OutArgument x:TypeArguments="x:Boolean">[argOut_bool_Back]</OutArgument>
             </Assign.To>
@@ -131,7 +132,7 @@
               <InArgument x:TypeArguments="x:Boolean">False</InArgument>
             </Assign.Value>
           </Assign>
-          <If Condition="[argIn_list_SelectedTargets.Count = 1]" sap:VirtualizedContainerService.HintSize="750,1399" sap2010:WorkflowViewState.IdRef="If_2">
+          <If Condition="[argIn_list_SelectedTargets.Count = 1]" DisplayName="If there is only one Target (this is the case all the time, but preparing the code to be ready for multiple targets)" sap:VirtualizedContainerService.HintSize="750,939" sap2010:WorkflowViewState.IdRef="If_2">
             <sap:WorkflowViewStateService.ViewState>
               <scg:Dictionary x:TypeArguments="x:String, x:Object">
                 <x:Boolean x:Key="IsExpanded">True</x:Boolean>
@@ -139,13 +140,13 @@
               </scg:Dictionary>
             </sap:WorkflowViewStateService.ViewState>
             <If.Then>
-              <ui:ForEach x:TypeArguments="x:Int32" CurrentIndex="{x:Null}" DisplayName="Try to determine DataType of each target" sap:VirtualizedContainerService.HintSize="456,1251" sap2010:WorkflowViewState.IdRef="ForEach`1_1" Values="[argIn_list_SelectedTargets]">
+              <ui:ForEach x:TypeArguments="x:Int32" CurrentIndex="{x:Null}" DisplayName="Try to determine DataType of each target in order to calculated best suited algorithm type" sap:VirtualizedContainerService.HintSize="287,791" sap2010:WorkflowViewState.IdRef="ForEach`1_1" Values="[argIn_list_SelectedTargets]">
                 <ui:ForEach.Body>
                   <ActivityAction x:TypeArguments="x:Int32">
                     <ActivityAction.Argument>
                       <DelegateInArgument x:TypeArguments="x:Int32" Name="target" />
                     </ActivityAction.Argument>
-                    <Sequence DisplayName="Body" sap:VirtualizedContainerService.HintSize="440,1117" sap2010:WorkflowViewState.IdRef="Sequence_4">
+                    <Sequence DisplayName="Body" sap:VirtualizedContainerService.HintSize="264,657" sap2010:WorkflowViewState.IdRef="Sequence_4">
                       <Sequence.Variables>
                         <Variable x:TypeArguments="scg:List(x:Object)" Default="[New List(Of Object)]" Name="list_TargetData" />
                         <Variable x:TypeArguments="x:Object" Name="obj_RandomRowData" />
@@ -156,7 +157,7 @@
                           <x:Boolean x:Key="IsExpanded">True</x:Boolean>
                         </scg:Dictionary>
                       </sap:WorkflowViewStateService.ViewState>
-                      <Assign sap:VirtualizedContainerService.HintSize="418,60" sap2010:WorkflowViewState.IdRef="Assign_5">
+                      <Assign DisplayName="Get Target for all rows" sap:VirtualizedContainerService.HintSize="242,60" sap2010:WorkflowViewState.IdRef="Assign_5">
                         <Assign.To>
                           <OutArgument x:TypeArguments="scg:List(x:Object)">[list_TargetData]</OutArgument>
                         </Assign.To>
@@ -164,7 +165,7 @@
                           <InArgument x:TypeArguments="scg:List(x:Object)">[(From r As DataRow In argIn_dt_Data.Rows.Cast(Of DataRow)() Select r(target)).ToList]</InArgument>
                         </Assign.Value>
                       </Assign>
-                      <Assign sap:VirtualizedContainerService.HintSize="418,60" sap2010:WorkflowViewState.IdRef="Assign_7">
+                      <Assign DisplayName="Select one row randomly" sap:VirtualizedContainerService.HintSize="242,60" sap2010:WorkflowViewState.IdRef="Assign_7">
                         <Assign.To>
                           <OutArgument x:TypeArguments="x:Object">[obj_RandomRowData]</OutArgument>
                         </Assign.To>
@@ -172,7 +173,7 @@
                           <InArgument x:TypeArguments="x:Object">[list_TargetData.Item(CInt(Math.Ceiling(Rnd() * list_TargetData.Count - 1)))]</InArgument>
                         </Assign.Value>
                       </Assign>
-                      <Assign sap:VirtualizedContainerService.HintSize="418,60" sap2010:WorkflowViewState.IdRef="Assign_8">
+                      <Assign DisplayName="Check if the value is Boolean" sap:VirtualizedContainerService.HintSize="242,60" sap2010:WorkflowViewState.IdRef="Assign_8">
                         <Assign.To>
                           <OutArgument x:TypeArguments="x:Boolean">[bool_IsBooleanTarget]</OutArgument>
                         </Assign.To>
@@ -180,7 +181,7 @@
                           <InArgument x:TypeArguments="x:Boolean">[Boolean.TryParse(obj_RandomRowData.ToString, bool_Result)]</InArgument>
                         </Assign.Value>
                       </Assign>
-                      <TryCatch DisplayName="Try Convert Data to Text" sap:VirtualizedContainerService.HintSize="418,51" sap2010:WorkflowViewState.IdRef="TryCatch_3">
+                      <TryCatch DisplayName="Try Convert Data to Text" sap:VirtualizedContainerService.HintSize="242,51" sap2010:WorkflowViewState.IdRef="TryCatch_3">
                         <sap:WorkflowViewStateService.ViewState>
                           <scg:Dictionary x:TypeArguments="x:String, x:Object">
                             <x:Boolean x:Key="IsExpanded">False</x:Boolean>
@@ -198,7 +199,7 @@
                                 <x:Boolean x:Key="IsPinned">False</x:Boolean>
                               </scg:Dictionary>
                             </sap:WorkflowViewStateService.ViewState>
-                            <Assign sap:VirtualizedContainerService.HintSize="242,60" sap2010:WorkflowViewState.IdRef="Assign_10">
+                            <Assign DisplayName="Convert value from Object to String" sap:VirtualizedContainerService.HintSize="242,60" sap2010:WorkflowViewState.IdRef="Assign_10">
                               <Assign.To>
                                 <OutArgument x:TypeArguments="x:String">[str_ConvertedValue]</OutArgument>
                               </Assign.To>
@@ -206,7 +207,7 @@
                                 <InArgument x:TypeArguments="x:String">[CType(obj_RandomRowData, String)]</InArgument>
                               </Assign.Value>
                             </Assign>
-                            <Assign sap:VirtualizedContainerService.HintSize="242,60" sap2010:WorkflowViewState.IdRef="Assign_11">
+                            <Assign DisplayName="Check if value is not numeric, ie. is text" sap:VirtualizedContainerService.HintSize="242,60" sap2010:WorkflowViewState.IdRef="Assign_11">
                               <Assign.To>
                                 <OutArgument x:TypeArguments="x:Boolean">[bool_IsTextTarget]</OutArgument>
                               </Assign.To>
@@ -232,10 +233,10 @@
                           </Catch>
                         </TryCatch.Catches>
                       </TryCatch>
-                      <TryCatch DisplayName="Try Convert Data to Double" sap:VirtualizedContainerService.HintSize="418,511" sap2010:WorkflowViewState.IdRef="TryCatch_4">
+                      <TryCatch DisplayName="Try Convert Data to Double" sap:VirtualizedContainerService.HintSize="242,51" sap2010:WorkflowViewState.IdRef="TryCatch_4">
                         <sap:WorkflowViewStateService.ViewState>
                           <scg:Dictionary x:TypeArguments="x:String, x:Object">
-                            <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                            <x:Boolean x:Key="IsExpanded">False</x:Boolean>
                             <x:Boolean x:Key="IsPinned">False</x:Boolean>
                           </scg:Dictionary>
                         </sap:WorkflowViewStateService.ViewState>
@@ -250,7 +251,7 @@
                                 <x:Boolean x:Key="IsPinned">False</x:Boolean>
                               </scg:Dictionary>
                             </sap:WorkflowViewStateService.ViewState>
-                            <Assign sap:VirtualizedContainerService.HintSize="242,60" sap2010:WorkflowViewState.IdRef="Assign_12">
+                            <Assign DisplayName="Convert value from Object to Double" sap:VirtualizedContainerService.HintSize="242,60" sap2010:WorkflowViewState.IdRef="Assign_12">
                               <Assign.To>
                                 <OutArgument x:TypeArguments="x:Double">[dbl_ConvertedValue]</OutArgument>
                               </Assign.To>
@@ -258,7 +259,7 @@
                                 <InArgument x:TypeArguments="x:Double">[CType(obj_RandomRowData, Double)]</InArgument>
                               </Assign.Value>
                             </Assign>
-                            <Assign sap:VirtualizedContainerService.HintSize="242,60" sap2010:WorkflowViewState.IdRef="Assign_13">
+                            <Assign DisplayName="Check if value is a Double (floating point number)" sap:VirtualizedContainerService.HintSize="242,60" sap2010:WorkflowViewState.IdRef="Assign_13">
                               <Assign.To>
                                 <OutArgument x:TypeArguments="x:Boolean">[bool_IsDoubleTarget]</OutArgument>
                               </Assign.To>
@@ -284,7 +285,7 @@
                           </Catch>
                         </TryCatch.Catches>
                       </TryCatch>
-                      <TryCatch DisplayName="Try Convert Data to Integer" sap:VirtualizedContainerService.HintSize="418,51" sap2010:WorkflowViewState.IdRef="TryCatch_5">
+                      <TryCatch DisplayName="Try Convert Data to Integer" sap:VirtualizedContainerService.HintSize="242,51" sap2010:WorkflowViewState.IdRef="TryCatch_5">
                         <sap:WorkflowViewStateService.ViewState>
                           <scg:Dictionary x:TypeArguments="x:String, x:Object">
                             <x:Boolean x:Key="IsExpanded">False</x:Boolean>
@@ -302,7 +303,7 @@
                                 <x:Boolean x:Key="IsPinned">False</x:Boolean>
                               </scg:Dictionary>
                             </sap:WorkflowViewStateService.ViewState>
-                            <Assign sap:VirtualizedContainerService.HintSize="242,60" sap2010:WorkflowViewState.IdRef="Assign_14">
+                            <Assign DisplayName="Convert value from Object to Integer" sap:VirtualizedContainerService.HintSize="242,60" sap2010:WorkflowViewState.IdRef="Assign_14">
                               <Assign.To>
                                 <OutArgument x:TypeArguments="x:Int32">[int_ConvertedValue]</OutArgument>
                               </Assign.To>
@@ -342,8 +343,8 @@
               </ui:ForEach>
             </If.Then>
           </If>
-          <ui:ReadTextFile Content="[str_AlgorithmDefinitions]" DisplayName="Read Text File" FileName="config\algorithm_definitions.json" sap:VirtualizedContainerService.HintSize="750,59" sap2010:WorkflowViewState.IdRef="ReadTextFile_1" />
-          <ui:ReadTextFile Content="[str_HTMLPageContent]" DisplayName="Read Text File" FileName="html\dist\1_4_select_your_algorithm.html" sap:VirtualizedContainerService.HintSize="750,59" sap2010:WorkflowViewState.IdRef="ReadTextFile_2">
+          <ui:ReadTextFile Content="[str_AlgorithmDefinitions]" DisplayName="Load algorithm definitions in a String" FileName="config\algorithm_definitions.json" sap:VirtualizedContainerService.HintSize="750,59" sap2010:WorkflowViewState.IdRef="ReadTextFile_1" />
+          <ui:ReadTextFile Content="[str_HTMLPageContent]" DisplayName="Load the form in a String" FileName="html\dist\1_4_select_your_algorithm.html" sap:VirtualizedContainerService.HintSize="750,59" sap2010:WorkflowViewState.IdRef="ReadTextFile_2">
             <sap:WorkflowViewStateService.ViewState>
               <scg:Dictionary x:TypeArguments="x:String, x:Object">
                 <x:Boolean x:Key="IsExpanded">True</x:Boolean>
@@ -351,7 +352,7 @@
               </scg:Dictionary>
             </sap:WorkflowViewStateService.ViewState>
           </ui:ReadTextFile>
-          <Assign sap:VirtualizedContainerService.HintSize="750,60" sap2010:WorkflowViewState.IdRef="Assign_2">
+          <Assign DisplayName="Replacement in the form (algorithm definitions)" sap:VirtualizedContainerService.HintSize="750,60" sap2010:WorkflowViewState.IdRef="Assign_2">
             <Assign.To>
               <OutArgument x:TypeArguments="x:String">[str_HTMLPageContent]</OutArgument>
             </Assign.To>
@@ -359,7 +360,7 @@
               <InArgument x:TypeArguments="x:String" xml:space="preserve">[str_HTMLPageContent.Replace("{algorithm-definitions}", System.Web.HttpUtility.HtmlEncode(str_AlgorithmDefinitions).Replace(vbCrLf, "").Replace("    ", "").Replace(vbTab, ""))]</InArgument>
             </Assign.Value>
           </Assign>
-          <Assign sap:VirtualizedContainerService.HintSize="750,60" sap2010:WorkflowViewState.IdRef="Assign_16">
+          <Assign DisplayName="Replacement in the form (calculated algorithm type)" sap:VirtualizedContainerService.HintSize="750,60" sap2010:WorkflowViewState.IdRef="Assign_16">
             <Assign.To>
               <OutArgument x:TypeArguments="x:String">[str_HTMLPageContent]</OutArgument>
             </Assign.To>
@@ -367,7 +368,7 @@
               <InArgument x:TypeArguments="x:String" xml:space="preserve">[str_HTMLPageContent.Replace("{calculated-algorithm-type}", System.Web.HttpUtility.HtmlEncode(If(bool_IsDoubleTarget, "regression", If(bool_IsBooleanTarget Or bool_IsTextTarget, "classification", ""))).Replace(vbCrLf, "").Replace("    ", "").Replace(vbTab, ""))]</InArgument>
             </Assign.Value>
           </Assign>
-          <ui:WriteTextFile DisplayName="Write Text File" FileName="[str_HTMLPageURI]" sap:VirtualizedContainerService.HintSize="750,87" sap2010:WorkflowViewState.IdRef="WriteTextFile_1" Text="[str_HTMLPageContent]">
+          <ui:WriteTextFile DisplayName="Write the form in a temporary file" FileName="[str_HTMLPageURI]" sap:VirtualizedContainerService.HintSize="750,87" sap2010:WorkflowViewState.IdRef="WriteTextFile_1" Text="[str_HTMLPageContent]">
             <sap:WorkflowViewStateService.ViewState>
               <scg:Dictionary x:TypeArguments="x:String, x:Object">
                 <x:Boolean x:Key="IsExpanded">True</x:Boolean>
@@ -375,7 +376,7 @@
               </scg:Dictionary>
             </sap:WorkflowViewStateService.ViewState>
           </ui:WriteTextFile>
-          <ui:CustomInput DisplayName="Custom Input" sap:VirtualizedContainerService.HintSize="750,82" sap2010:WorkflowViewState.IdRef="CustomInput_1" Result="[str_Result]" URI="[str_HTMLPageURI]">
+          <ui:CustomInput DisplayName="Show the form" sap:VirtualizedContainerService.HintSize="750,82" sap2010:WorkflowViewState.IdRef="CustomInput_1" Result="[str_Result]" URI="[str_HTMLPageURI]">
             <sap:WorkflowViewStateService.ViewState>
               <scg:Dictionary x:TypeArguments="x:String, x:Object">
                 <x:Boolean x:Key="IsExpanded">True</x:Boolean>
@@ -391,15 +392,15 @@
               </scg:Dictionary>
             </sap:WorkflowViewStateService.ViewState>
             <If.Then>
-              <Sequence sap:VirtualizedContainerService.HintSize="625,787" sap2010:WorkflowViewState.IdRef="Sequence_1">
+              <Sequence DisplayName="User filled the form" sap:VirtualizedContainerService.HintSize="625,787" sap2010:WorkflowViewState.IdRef="Sequence_1">
                 <sap:WorkflowViewStateService.ViewState>
                   <scg:Dictionary x:TypeArguments="x:String, x:Object">
                     <x:Boolean x:Key="IsExpanded">True</x:Boolean>
                   </scg:Dictionary>
                 </sap:WorkflowViewStateService.ViewState>
-                <If Condition="[str_Result.Equals(&quot;back&quot;)]" sap:VirtualizedContainerService.HintSize="603,663" sap2010:WorkflowViewState.IdRef="If_3">
+                <If Condition="[str_Result.Equals(&quot;back&quot;)]" DisplayName="If user clicked on previous step button" sap:VirtualizedContainerService.HintSize="603,663" sap2010:WorkflowViewState.IdRef="If_3">
                   <If.Then>
-                    <Assign sap:VirtualizedContainerService.HintSize="242,60" sap2010:WorkflowViewState.IdRef="Assign_18">
+                    <Assign DisplayName="Set Back output argument to True" sap:VirtualizedContainerService.HintSize="242,60" sap2010:WorkflowViewState.IdRef="Assign_18">
                       <Assign.To>
                         <OutArgument x:TypeArguments="x:Boolean">[argOut_bool_Back]</OutArgument>
                       </Assign.To>
@@ -409,14 +410,14 @@
                     </Assign>
                   </If.Then>
                   <If.Else>
-                    <Sequence sap:VirtualizedContainerService.HintSize="336,515" sap2010:WorkflowViewState.IdRef="Sequence_9">
+                    <Sequence DisplayName="User clicked on next step button" sap:VirtualizedContainerService.HintSize="336,515" sap2010:WorkflowViewState.IdRef="Sequence_9">
                       <sap:WorkflowViewStateService.ViewState>
                         <scg:Dictionary x:TypeArguments="x:String, x:Object">
                           <x:Boolean x:Key="IsExpanded">True</x:Boolean>
                         </scg:Dictionary>
                       </sap:WorkflowViewStateService.ViewState>
                       <ui:LogMessage DisplayName="Log Message" sap:VirtualizedContainerService.HintSize="314,91" sap2010:WorkflowViewState.IdRef="LogMessage_2" Level="Trace" Message="[String.Format(&quot;Form filled with following data {0}&quot;, str_Result)]" />
-                      <Assign sap:VirtualizedContainerService.HintSize="314,60" sap2010:WorkflowViewState.IdRef="Assign_4">
+                      <Assign DisplayName="Set SelectedAlgorithm (String) output arg" sap:VirtualizedContainerService.HintSize="314,60" sap2010:WorkflowViewState.IdRef="Assign_4">
                         <Assign.To>
                           <OutArgument x:TypeArguments="x:String">[argOut_str_SelectedAlgorithm]</OutArgument>
                         </Assign.To>
@@ -424,8 +425,8 @@
                           <InArgument x:TypeArguments="x:String">[str_Result]</InArgument>
                         </Assign.Value>
                       </Assign>
-                      <ui:DeserializeJson x:TypeArguments="njl:JObject" DisplayName="Deserialize JSON" sap:VirtualizedContainerService.HintSize="314,60" sap2010:WorkflowViewState.IdRef="DeserializeJson`1_1" JsonObject="[argOut_jobject_SelectedAlgorithm]" JsonString="[str_Result]" />
-                      <Assign sap:VirtualizedContainerService.HintSize="314,60" sap2010:WorkflowViewState.IdRef="Assign_3">
+                      <ui:DeserializeJson x:TypeArguments="njl:JObject" DisplayName="Convert form result from String to JObject and set SelectedAlgorithm (JObject) output arg" sap:VirtualizedContainerService.HintSize="314,60" sap2010:WorkflowViewState.IdRef="DeserializeJson`1_1" JsonObject="[argOut_jobject_SelectedAlgorithm]" JsonString="[str_Result]" />
+                      <Assign DisplayName="Set FormFilled output arg" sap:VirtualizedContainerService.HintSize="314,60" sap2010:WorkflowViewState.IdRef="Assign_3">
                         <Assign.To>
                           <OutArgument x:TypeArguments="x:Boolean">[argOut_bool_FormFilled]</OutArgument>
                         </Assign.To>
@@ -439,14 +440,14 @@
               </Sequence>
             </If.Then>
           </If>
-          <ui:Delete ContinueOnError="{x:Null}" sap:VirtualizedContainerService.HintSize="750,22" sap2010:WorkflowViewState.IdRef="Delete_1" Path="[str_HTMLPageURI]" />
+          <ui:Delete ContinueOnError="{x:Null}" DisplayName="Delete temporary form file" sap:VirtualizedContainerService.HintSize="750,22" sap2010:WorkflowViewState.IdRef="Delete_1" Path="[str_HTMLPageURI]" />
         </Sequence>
       </TryCatch.Try>
       <TryCatch.Catches>
-        <Catch x:TypeArguments="s:Exception" sap:VirtualizedContainerService.HintSize="400,346" sap2010:WorkflowViewState.IdRef="Catch`1_1">
+        <Catch x:TypeArguments="s:Exception" sap:VirtualizedContainerService.HintSize="776,21" sap2010:WorkflowViewState.IdRef="Catch`1_1">
           <sap:WorkflowViewStateService.ViewState>
             <scg:Dictionary x:TypeArguments="x:String, x:Object">
-              <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+              <x:Boolean x:Key="IsExpanded">False</x:Boolean>
               <x:Boolean x:Key="IsPinned">False</x:Boolean>
             </scg:Dictionary>
           </sap:WorkflowViewStateService.ViewState>
@@ -467,7 +468,7 @@
         </Catch>
       </TryCatch.Catches>
     </TryCatch>
-    <ui:LogMessage DisplayName="Log message" sap:VirtualizedContainerService.HintSize="414,91" sap2010:WorkflowViewState.IdRef="LogMessage_4" Level="Trace" Message="=== End of Select your algorithm form">
+    <ui:LogMessage DisplayName="Log message" sap:VirtualizedContainerService.HintSize="314,91" sap2010:WorkflowViewState.IdRef="LogMessage_4" Level="Trace" Message="=== End of Select your algorithm form">
       <sap:WorkflowViewStateService.ViewState>
         <scg:Dictionary x:TypeArguments="x:String, x:Object">
           <x:Boolean x:Key="IsExpanded">True</x:Boolean>

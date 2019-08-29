@@ -9,7 +9,7 @@
   <mva:VisualBasic.Settings>
     <x:Null />
   </mva:VisualBasic.Settings>
-  <sap:VirtualizedContainerService.HintSize>852,4329</sap:VirtualizedContainerService.HintSize>
+  <sap:VirtualizedContainerService.HintSize>376,709</sap:VirtualizedContainerService.HintSize>
   <sap2010:WorkflowViewState.IdRef>ActivityBuilder_1</sap2010:WorkflowViewState.IdRef>
   <TextExpression.NamespacesForImplementation>
     <sco:Collection x:TypeArguments="x:String">
@@ -69,10 +69,9 @@
       <AssemblyReference>System.Web</AssemblyReference>
       <AssemblyReference>Newtonsoft.Json</AssemblyReference>
       <AssemblyReference>System.Collections.Immutable</AssemblyReference>
-      <AssemblyReference>System.Runtime.WindowsRuntime</AssemblyReference>
     </sco:Collection>
   </TextExpression.ReferencesForImplementation>
-  <Sequence DisplayName="1_2_Select_your_features" sap:VirtualizedContainerService.HintSize="812,4249" sap2010:WorkflowViewState.IdRef="Sequence_1">
+  <Sequence sap2010:Annotation.AnnotationText="Shows the form allowing end-user to select the columns that will serve as features for the machine learning model.&#xA;&#xA;Inputs:&#xA;- List of headers&#xA;- Training data in DataTable format&#xA;&#xA;Outputs:&#xA;- Go to next step?&#xA;- Go to previous step?&#xA;- List of columns selected as features" DisplayName="1_2_Select_your_features" sap:VirtualizedContainerService.HintSize="336,629" sap2010:WorkflowViewState.IdRef="Sequence_1">
     <Sequence.Variables>
       <Variable x:TypeArguments="x:String" Name="str_Result" />
       <Variable x:TypeArguments="x:Int32" Name="int_Index" />
@@ -87,9 +86,10 @@
     <sap:WorkflowViewStateService.ViewState>
       <scg:Dictionary x:TypeArguments="x:String, x:Object">
         <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+        <x:Boolean x:Key="IsAnnotationDocked">True</x:Boolean>
       </scg:Dictionary>
     </sap:WorkflowViewStateService.ViewState>
-    <ui:LogMessage DisplayName="Log message" sap:VirtualizedContainerService.HintSize="790,91" sap2010:WorkflowViewState.IdRef="LogMessage_1" Level="Trace" Message="=== Opening Select your features form">
+    <ui:LogMessage DisplayName="Log message" sap:VirtualizedContainerService.HintSize="314,91" sap2010:WorkflowViewState.IdRef="LogMessage_1" Level="Trace" Message="=== Opening Select your features form">
       <sap:WorkflowViewStateService.ViewState>
         <scg:Dictionary x:TypeArguments="x:String, x:Object">
           <x:Boolean x:Key="IsExpanded">True</x:Boolean>
@@ -97,9 +97,15 @@
         </scg:Dictionary>
       </sap:WorkflowViewStateService.ViewState>
     </ui:LogMessage>
-    <TryCatch DisplayName="Try Catch" sap:VirtualizedContainerService.HintSize="790,3863" sap2010:WorkflowViewState.IdRef="TryCatch_1">
+    <TryCatch DisplayName="Try Catch" sap:VirtualizedContainerService.HintSize="314,51" sap2010:WorkflowViewState.IdRef="TryCatch_1">
+      <sap:WorkflowViewStateService.ViewState>
+        <scg:Dictionary x:TypeArguments="x:String, x:Object">
+          <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+          <x:Boolean x:Key="IsPinned">False</x:Boolean>
+        </scg:Dictionary>
+      </sap:WorkflowViewStateService.ViewState>
       <TryCatch.Try>
-        <Sequence sap:VirtualizedContainerService.HintSize="772,3636" sap2010:WorkflowViewState.IdRef="Sequence_7">
+        <Sequence DisplayName="Main Try sequence" sap:VirtualizedContainerService.HintSize="772,4118" sap2010:WorkflowViewState.IdRef="Sequence_7">
           <Sequence.Variables>
             <Variable x:TypeArguments="scg:Dictionary(x:String, s:String[])" Default="[New Dictionary(Of String, String())]" Name="dict_DataTop5" />
           </Sequence.Variables>
@@ -109,7 +115,7 @@
               <x:Boolean x:Key="IsPinned">False</x:Boolean>
             </scg:Dictionary>
           </sap:WorkflowViewStateService.ViewState>
-          <Assign sap:VirtualizedContainerService.HintSize="750,60" sap2010:WorkflowViewState.IdRef="Assign_6">
+          <Assign DisplayName="By default the form is not filled, so set FormFilled output arg to False" sap:VirtualizedContainerService.HintSize="750,60" sap2010:WorkflowViewState.IdRef="Assign_6">
             <Assign.To>
               <OutArgument x:TypeArguments="x:Boolean">[argOut_bool_FormFilled]</OutArgument>
             </Assign.To>
@@ -117,7 +123,7 @@
               <InArgument x:TypeArguments="x:Boolean">False</InArgument>
             </Assign.Value>
           </Assign>
-          <Assign sap:VirtualizedContainerService.HintSize="750,60" sap2010:WorkflowViewState.IdRef="Assign_9">
+          <Assign DisplayName="Set Back output argument default value" sap:VirtualizedContainerService.HintSize="750,60" sap2010:WorkflowViewState.IdRef="Assign_9">
             <Assign.To>
               <OutArgument x:TypeArguments="x:Boolean">[argOut_bool_Back]</OutArgument>
             </Assign.To>
@@ -156,7 +162,7 @@
               </scg:Dictionary>
             </sap:WorkflowViewStateService.ViewState>
           </ui:CommentOut>
-          <ui:ReadTextFile Content="[str_HTMLPageContent]" DisplayName="Read Text File" FileName="html\dist\1_2_select_your_features.html" sap:VirtualizedContainerService.HintSize="750,59" sap2010:WorkflowViewState.IdRef="ReadTextFile_1">
+          <ui:ReadTextFile Content="[str_HTMLPageContent]" DisplayName="Load the form in a String" FileName="html\dist\1_2_select_your_features.html" sap:VirtualizedContainerService.HintSize="750,59" sap2010:WorkflowViewState.IdRef="ReadTextFile_1">
             <sap:WorkflowViewStateService.ViewState>
               <scg:Dictionary x:TypeArguments="x:String, x:Object">
                 <x:Boolean x:Key="IsExpanded">True</x:Boolean>
@@ -164,7 +170,7 @@
               </scg:Dictionary>
             </sap:WorkflowViewStateService.ViewState>
           </ui:ReadTextFile>
-          <ui:ForEach x:TypeArguments="x:String" CurrentIndex="[int_Index]" DisplayName="For Each" sap:VirtualizedContainerService.HintSize="750,51" sap2010:WorkflowViewState.IdRef="ForEach`1_1" Values="[argIn_list_ColumnNames]">
+          <ui:ForEach x:TypeArguments="x:String" CurrentIndex="[int_Index]" DisplayName="Create a String containing column names separated by a comma" sap:VirtualizedContainerService.HintSize="750,466" sap2010:WorkflowViewState.IdRef="ForEach`1_1" Values="[argIn_list_ColumnNames]">
             <ui:ForEach.Body>
               <ActivityAction x:TypeArguments="x:String">
                 <ActivityAction.Argument>
@@ -203,12 +209,12 @@
             </ui:ForEach.Body>
             <sap:WorkflowViewStateService.ViewState>
               <scg:Dictionary x:TypeArguments="x:String, x:Object">
-                <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+                <x:Boolean x:Key="IsExpanded">True</x:Boolean>
                 <x:Boolean x:Key="IsPinned">False</x:Boolean>
               </scg:Dictionary>
             </sap:WorkflowViewStateService.ViewState>
           </ui:ForEach>
-          <Assign sap:VirtualizedContainerService.HintSize="750,60" sap2010:WorkflowViewState.IdRef="Assign_3">
+          <Assign DisplayName="Add brackets to create a JSON array as a String from column names" sap:VirtualizedContainerService.HintSize="750,60" sap2010:WorkflowViewState.IdRef="Assign_3">
             <Assign.To>
               <OutArgument x:TypeArguments="x:String">[str_ColumnNames]</OutArgument>
             </Assign.To>
@@ -216,7 +222,7 @@
               <InArgument x:TypeArguments="x:String">["[" + str_ColumnNames + "]"]</InArgument>
             </Assign.Value>
           </Assign>
-          <ui:ForEach x:TypeArguments="sd:DataColumn" CurrentIndex="{x:Null}" DisplayName="For Each" sap:VirtualizedContainerService.HintSize="750,1082" sap2010:WorkflowViewState.IdRef="ForEach`1_3" Values="[argIn_dt_Data.Columns]">
+          <ui:ForEach x:TypeArguments="sd:DataColumn" CurrentIndex="{x:Null}" DisplayName="Retrieve data for each column for top 5 rows" sap:VirtualizedContainerService.HintSize="750,1082" sap2010:WorkflowViewState.IdRef="ForEach`1_3" Values="[argIn_dt_Data.Columns]">
             <ui:ForEach.Body>
               <ActivityAction x:TypeArguments="sd:DataColumn">
                 <ActivityAction.Argument>
@@ -282,7 +288,7 @@
               </scg:Dictionary>
             </sap:WorkflowViewStateService.ViewState>
           </ui:ForEach>
-          <Assign sap:VirtualizedContainerService.HintSize="750,60" sap2010:WorkflowViewState.IdRef="Assign_4">
+          <Assign DisplayName="Replacement in the form (column names)" sap:VirtualizedContainerService.HintSize="750,60" sap2010:WorkflowViewState.IdRef="Assign_4">
             <Assign.To>
               <OutArgument x:TypeArguments="x:String">[str_HTMLPageContent]</OutArgument>
             </Assign.To>
@@ -290,7 +296,7 @@
               <InArgument x:TypeArguments="x:String">[str_HTMLPageContent.Replace("{column-names}", System.Web.HttpUtility.HtmlEncode(str_ColumnNames))]</InArgument>
             </Assign.Value>
           </Assign>
-          <Assign sap:VirtualizedContainerService.HintSize="750,60" sap2010:WorkflowViewState.IdRef="Assign_11">
+          <Assign DisplayName="Replacement in the form (top 5 rows)" sap:VirtualizedContainerService.HintSize="750,60" sap2010:WorkflowViewState.IdRef="Assign_11">
             <Assign.To>
               <OutArgument x:TypeArguments="x:String">[str_HTMLPageContent]</OutArgument>
             </Assign.To>
@@ -298,25 +304,25 @@
               <InArgument x:TypeArguments="x:String" xml:space="preserve">[str_HTMLPageContent.Replace("{data-top-5}", System.Web.HttpUtility.HtmlEncode(JsonConvert.SerializeObject(dict_DataTop5)).Replace(vbCrLf, "").Replace("    ", "").Replace(vbTab, ""))]</InArgument>
             </Assign.Value>
           </Assign>
-          <ui:WriteTextFile DisplayName="Write Text File" FileName="[str_HTMLPageURI]" sap:VirtualizedContainerService.HintSize="750,51" sap2010:WorkflowViewState.IdRef="WriteTextFile_1" Text="[str_HTMLPageContent]">
+          <ui:WriteTextFile DisplayName="Write the form in a temporary file" FileName="[str_HTMLPageURI]" sap:VirtualizedContainerService.HintSize="750,87" sap2010:WorkflowViewState.IdRef="WriteTextFile_1" Text="[str_HTMLPageContent]">
             <sap:WorkflowViewStateService.ViewState>
               <scg:Dictionary x:TypeArguments="x:String, x:Object">
-                <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+                <x:Boolean x:Key="IsExpanded">True</x:Boolean>
                 <x:Boolean x:Key="IsPinned">False</x:Boolean>
               </scg:Dictionary>
             </sap:WorkflowViewStateService.ViewState>
           </ui:WriteTextFile>
-          <ui:CustomInput DisplayName="Custom Input" sap:VirtualizedContainerService.HintSize="750,51" sap2010:WorkflowViewState.IdRef="CustomInput_1" Result="[str_Result]" URI="[str_HTMLPageURI]">
+          <ui:CustomInput DisplayName="Show the form" sap:VirtualizedContainerService.HintSize="750,82" sap2010:WorkflowViewState.IdRef="CustomInput_1" Result="[str_Result]" URI="[str_HTMLPageURI]">
             <sap:WorkflowViewStateService.ViewState>
               <scg:Dictionary x:TypeArguments="x:String, x:Object">
-                <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+                <x:Boolean x:Key="IsExpanded">True</x:Boolean>
                 <x:Boolean x:Key="IsPinned">False</x:Boolean>
               </scg:Dictionary>
             </sap:WorkflowViewStateService.ViewState>
           </ui:CustomInput>
           <If Condition="[Not str_Result.Trim.Equals(&quot;&quot;)]" DisplayName="If user filled the form" sap:VirtualizedContainerService.HintSize="750,1365" sap2010:WorkflowViewState.IdRef="If_2">
             <If.Then>
-              <Sequence sap:VirtualizedContainerService.HintSize="625,1217" sap2010:WorkflowViewState.IdRef="Sequence_6">
+              <Sequence DisplayName="User filled the form" sap:VirtualizedContainerService.HintSize="625,1217" sap2010:WorkflowViewState.IdRef="Sequence_6">
                 <Sequence.Variables>
                   <Variable x:TypeArguments="njl:JArray" Name="jarray_Result" />
                 </Sequence.Variables>
@@ -325,9 +331,9 @@
                     <x:Boolean x:Key="IsExpanded">True</x:Boolean>
                   </scg:Dictionary>
                 </sap:WorkflowViewStateService.ViewState>
-                <If Condition="[str_Result.Equals(&quot;back&quot;)]" sap:VirtualizedContainerService.HintSize="603,1093" sap2010:WorkflowViewState.IdRef="If_3">
+                <If Condition="[str_Result.Equals(&quot;back&quot;)]" DisplayName="If user clicked on previous step button" sap:VirtualizedContainerService.HintSize="603,1093" sap2010:WorkflowViewState.IdRef="If_3">
                   <If.Then>
-                    <Assign sap:VirtualizedContainerService.HintSize="242,60" sap2010:WorkflowViewState.IdRef="Assign_10">
+                    <Assign DisplayName="Set Back output argument to True" sap:VirtualizedContainerService.HintSize="242,60" sap2010:WorkflowViewState.IdRef="Assign_10">
                       <Assign.To>
                         <OutArgument x:TypeArguments="x:Boolean">[argOut_bool_Back]</OutArgument>
                       </Assign.To>
@@ -337,15 +343,15 @@
                     </Assign>
                   </If.Then>
                   <If.Else>
-                    <Sequence sap:VirtualizedContainerService.HintSize="336,945" sap2010:WorkflowViewState.IdRef="Sequence_10">
+                    <Sequence DisplayName="User clicked on next step button" sap:VirtualizedContainerService.HintSize="336,945" sap2010:WorkflowViewState.IdRef="Sequence_10">
                       <sap:WorkflowViewStateService.ViewState>
                         <scg:Dictionary x:TypeArguments="x:String, x:Object">
                           <x:Boolean x:Key="IsExpanded">True</x:Boolean>
                         </scg:Dictionary>
                       </sap:WorkflowViewStateService.ViewState>
                       <ui:LogMessage DisplayName="Log Message" sap:VirtualizedContainerService.HintSize="314,91" sap2010:WorkflowViewState.IdRef="LogMessage_2" Level="Trace" Message="[String.Format(&quot;Form filled with following data {0}&quot;, str_Result)]" />
-                      <ui:DeserializeJsonArray DisplayName="Deserialize JSON Array" sap:VirtualizedContainerService.HintSize="314,60" sap2010:WorkflowViewState.IdRef="DeserializeJsonArray_1" JsonArray="[jarray_Result]" JsonString="[str_Result]" />
-                      <Assign sap:VirtualizedContainerService.HintSize="314,60" sap2010:WorkflowViewState.IdRef="Assign_8">
+                      <ui:DeserializeJsonArray DisplayName="Convert form result from String to JArray" sap:VirtualizedContainerService.HintSize="314,60" sap2010:WorkflowViewState.IdRef="DeserializeJsonArray_1" JsonArray="[jarray_Result]" JsonString="[str_Result]" />
+                      <Assign DisplayName="Init SelectedFeatures output arg" sap:VirtualizedContainerService.HintSize="314,60" sap2010:WorkflowViewState.IdRef="Assign_8">
                         <Assign.To>
                           <OutArgument x:TypeArguments="scg:List(x:Int32)">[argOut_list_SelectedFeatures]</OutArgument>
                         </Assign.To>
@@ -353,7 +359,7 @@
                           <InArgument x:TypeArguments="scg:List(x:Int32)">[New List(Of Integer)]</InArgument>
                         </Assign.Value>
                       </Assign>
-                      <ui:ForEach x:TypeArguments="njl:JToken" CurrentIndex="{x:Null}" DisplayName="For Each" sap:VirtualizedContainerService.HintSize="314,390" sap2010:WorkflowViewState.IdRef="ForEach`1_2" Values="[jarray_Result]">
+                      <ui:ForEach x:TypeArguments="njl:JToken" CurrentIndex="{x:Null}" DisplayName="Add items to SelectedFeatures output arg from form result (JArray)" sap:VirtualizedContainerService.HintSize="314,390" sap2010:WorkflowViewState.IdRef="ForEach`1_2" Values="[jarray_Result]">
                         <ui:ForEach.Body>
                           <ActivityAction x:TypeArguments="njl:JToken">
                             <ActivityAction.Argument>
@@ -375,7 +381,7 @@
                           </ActivityAction>
                         </ui:ForEach.Body>
                       </ui:ForEach>
-                      <Assign sap:VirtualizedContainerService.HintSize="314,60" sap2010:WorkflowViewState.IdRef="Assign_7">
+                      <Assign DisplayName="Set FormFilled output arg" sap:VirtualizedContainerService.HintSize="314,60" sap2010:WorkflowViewState.IdRef="Assign_7">
                         <Assign.To>
                           <OutArgument x:TypeArguments="x:Boolean">[argOut_bool_FormFilled]</OutArgument>
                         </Assign.To>
@@ -389,7 +395,7 @@
               </Sequence>
             </If.Then>
           </If>
-          <ui:Delete ContinueOnError="{x:Null}" sap:VirtualizedContainerService.HintSize="750,22" sap2010:WorkflowViewState.IdRef="Delete_1" Path="[str_HTMLPageURI]" />
+          <ui:Delete ContinueOnError="{x:Null}" DisplayName="Delete temporary form file" sap:VirtualizedContainerService.HintSize="750,22" sap2010:WorkflowViewState.IdRef="Delete_1" Path="[str_HTMLPageURI]" />
         </Sequence>
       </TryCatch.Try>
       <TryCatch.Catches>
@@ -417,7 +423,7 @@
         </Catch>
       </TryCatch.Catches>
     </TryCatch>
-    <ui:LogMessage DisplayName="Log message" sap:VirtualizedContainerService.HintSize="790,91" sap2010:WorkflowViewState.IdRef="LogMessage_4" Level="Trace" Message="=== End of Select your features form">
+    <ui:LogMessage DisplayName="Log message" sap:VirtualizedContainerService.HintSize="314,91" sap2010:WorkflowViewState.IdRef="LogMessage_4" Level="Trace" Message="=== End of Select your features form">
       <sap:WorkflowViewStateService.ViewState>
         <scg:Dictionary x:TypeArguments="x:String, x:Object">
           <x:Boolean x:Key="IsExpanded">True</x:Boolean>

@@ -311,7 +311,7 @@
                         <av:PointCollection x:Key="ConnectorLocation">300,992.5 300,1066.5</av:PointCollection>
                       </scg:Dictionary>
                     </sap:WorkflowViewStateService.ViewState>
-                    <ui:InvokeWorkflowFile ContinueOnError="{x:Null}" sap2010:Annotation.AnnotationText="Shows the form allowing end-user to select the columns that will serve as features for the machine learning model.&#xD;&#xA;&#xD;&#xA;Inputs:&#xD;&#xA;- List of headers&#xD;&#xA;- Training data in DataTable format&#xD;&#xA;&#xD;&#xA;Outputs:&#xD;&#xA;- Go to next step?&#xD;&#xA;- Go to previous step?&#xD;&#xA;- List of columns selected as features&#xD;&#xA;" DisplayName="2. Select your features" sap:VirtualizedContainerService.HintSize="200,318" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_3" UnSafe="False" WorkflowFileName="1_2_Select_your_features.xaml">
+                    <ui:InvokeWorkflowFile ContinueOnError="{x:Null}" sap2010:Annotation.AnnotationText="Shows the form allowing end-user to select the columns that will serve as features for the machine learning model.&#xA;&#xA;Inputs:&#xA;- List of headers&#xA;- Training data in DataTable format&#xA;&#xA;Outputs:&#xA;- Go to next step?&#xA;- Go to previous step?&#xA;- List of columns selected as features&#xA;" DisplayName="2. Select your features" sap:VirtualizedContainerService.HintSize="200,318" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_3" UnSafe="False" WorkflowFileName="1_2_Select_your_features.xaml">
                       <ui:InvokeWorkflowFile.Arguments>
                         <InArgument x:TypeArguments="scg:List(x:String)" x:Key="argIn_list_ColumnNames">[list_ColumnNames]</InArgument>
                         <OutArgument x:TypeArguments="x:Boolean" x:Key="argOut_bool_FormFilled">[bool_NextStep]</OutArgument>
@@ -346,7 +346,7 @@
                                 <av:PointCollection x:Key="ConnectorLocation">300,1502.02 300,1576.5</av:PointCollection>
                               </scg:Dictionary>
                             </sap:WorkflowViewStateService.ViewState>
-                            <ui:InvokeWorkflowFile ContinueOnError="{x:Null}" sap2010:Annotation.AnnotationText="Shows the form allowing end-user to select the column that will serve as target for the machine learning model.&#xD;&#xA;&#xD;&#xA;Inputs:&#xD;&#xA;- List of headers&#xD;&#xA;- List of columns selected as features&#xD;&#xA;&#xD;&#xA;Outputs:&#xD;&#xA;- Go to next step?&#xD;&#xA;- Go to previous step?&#xD;&#xA;- List of columns selected as targets (only one)" DisplayName="3. Select your targets" sap:VirtualizedContainerService.HintSize="200,288" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_4" UnSafe="False" WorkflowFileName="1_3_Select_your_targets.xaml">
+                            <ui:InvokeWorkflowFile ContinueOnError="{x:Null}" sap2010:Annotation.AnnotationText="Shows the form allowing end-user to select the column that will serve as target for the machine learning model.&#xA;&#xA;Inputs:&#xA;- List of headers&#xA;- List of columns selected as features&#xA;&#xA;Outputs:&#xA;- Go to next step?&#xA;- Go to previous step?&#xA;- List of columns selected as targets (only one)" DisplayName="3. Select your targets" sap:VirtualizedContainerService.HintSize="200,288" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_4" UnSafe="False" WorkflowFileName="1_3_Select_your_targets.xaml">
                               <ui:InvokeWorkflowFile.Arguments>
                                 <InArgument x:TypeArguments="scg:List(x:Int32)" x:Key="argIn_list_SelectedFeaturesIndices">[list_SelectedFeatures]</InArgument>
                                 <InArgument x:TypeArguments="scg:List(x:String)" x:Key="argIn_list_ColumnNames">[list_ColumnNames]</InArgument>
@@ -381,7 +381,7 @@
                                         <av:PointCollection x:Key="ConnectorLocation">300,2072.5 300,2146.5</av:PointCollection>
                                       </scg:Dictionary>
                                     </sap:WorkflowViewStateService.ViewState>
-                                    <ui:InvokeWorkflowFile ContinueOnError="{x:Null}" sap2010:Annotation.AnnotationText="Shows the form allowing end-user to select algorithm to use in order to train the machine learning model.&#xD;&#xA;&#xD;&#xA;Inputs:&#xD;&#xA;- List of columns selected as targets (only one)&#xD;&#xA;- Training data in DataTable format&#xD;&#xA;&#xD;&#xA;Outputs:&#xD;&#xA;- Go to next step?&#xD;&#xA;- Go to previous step?&#xD;&#xA;- Selected algorithm with its parameters as JObject&#xD;&#xA;- Selected algorithm with its parameters as String (JObject deserialized)" DisplayName="4. Select your algorithm" sap:VirtualizedContainerService.HintSize="200,348" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_5" UnSafe="False" WorkflowFileName="1_4_Select_your_algorithm.xaml">
+                                    <ui:InvokeWorkflowFile ContinueOnError="{x:Null}" sap2010:Annotation.AnnotationText="Shows the form allowing end-user to select algorithm to use in order to train the machine learning model.&#xA;&#xA;Inputs:&#xA;- List of columns selected as targets (only one)&#xA;- Training data in DataTable format&#xA;&#xA;Outputs:&#xA;- Go to next step?&#xA;- Go to previous step?&#xA;- Selected algorithm with its parameters as JObject&#xA;- Selected algorithm with its parameters as String (JObject deserialized)" DisplayName="4. Select your algorithm" sap:VirtualizedContainerService.HintSize="200,348" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_5" UnSafe="False" WorkflowFileName="1_4_Select_your_algorithm.xaml">
                                       <ui:InvokeWorkflowFile.Arguments>
                                         <InArgument x:TypeArguments="scg:List(x:Int32)" x:Key="argIn_list_SelectedTargets">[list_SelectedTargets]</InArgument>
                                         <InArgument x:TypeArguments="sd:DataTable" x:Key="argIn_dt_Data">[dt_Data]</InArgument>
@@ -417,7 +417,7 @@
                                                 <av:PointCollection x:Key="ConnectorLocation">300,2807.5 300,2876.5</av:PointCollection>
                                               </scg:Dictionary>
                                             </sap:WorkflowViewStateService.ViewState>
-                                            <Sequence sap2010:Annotation.AnnotationText="Saves end-user configuration (Excel file information, features, target, algorithm) in a JSON file and shows summary page allowing user to review its configuration before starting training process.&#xD;&#xA;&#xD;&#xA;Inputs:&#xD;&#xA;- Path of the Excel file holding training data&#xD;&#xA;- Name of the sheet holding formatted training data&#xD;&#xA;- Is data should be considered as headers?&#xD;&#xA;- List of columns selected as features&#xD;&#xA;- List of columns selected as targets (only one)&#xD;&#xA;- Selected algorithm with its parameters as JObject&#xD;&#xA;- Training data in DataTable format&#xD;&#xA;- Saved configuration file path (JSON file)&#xD;&#xA;&#xD;&#xA;Outputs:&#xD;&#xA;- Go to next step?&#xD;&#xA;- Go to previous step?" DisplayName="5. Summary" sap:VirtualizedContainerService.HintSize="200,513" sap2010:WorkflowViewState.IdRef="Sequence_13">
+                                            <Sequence sap2010:Annotation.AnnotationText="Saves end-user configuration (Excel file information, features, target, algorithm) in a JSON file and shows summary page allowing user to review its configuration before starting training process.&#xA;&#xA;Inputs:&#xA;- Path of the Excel file holding training data&#xA;- Name of the sheet holding formatted training data&#xA;- Is data should be considered as headers?&#xA;- List of columns selected as features&#xA;- List of columns selected as targets (only one)&#xA;- Selected algorithm with its parameters as JObject&#xA;- Training data in DataTable format&#xA;- Saved configuration file path (JSON file)&#xA;&#xA;Outputs:&#xA;- Go to next step?&#xA;- Go to previous step?" DisplayName="5. Summary" sap:VirtualizedContainerService.HintSize="200,513" sap2010:WorkflowViewState.IdRef="Sequence_13">
                                               <Sequence.Variables>
                                                 <Variable x:TypeArguments="scg:List(x:String)" Default="[New List(Of String)]" Name="list_SelectedFeaturesColumnNames" />
                                                 <Variable x:TypeArguments="scg:List(x:String)" Default="[New List(Of String)]" Name="list_SelectedTargetsColumnNames" />
@@ -581,7 +581,7 @@
                                                         <av:PointCollection x:Key="ConnectorLocation">150,3217.02 150,3284.5</av:PointCollection>
                                                       </scg:Dictionary>
                                                     </sap:WorkflowViewStateService.ViewState>
-                                                    <Sequence sap2010:Annotation.AnnotationText="Trains the machine learning model according to parameters set by end-user. This is where the Python script is called, it generates machine learning model artifacts (.pickle files) after training." DisplayName="=== Train model ===" sap:VirtualizedContainerService.HintSize="609,3695" sap2010:WorkflowViewState.IdRef="Sequence_16">
+                                                    <Sequence sap2010:Annotation.AnnotationText="Trains the machine learning model according to parameters set by end-user. This is where the Python script is called, it generates machine learning model artifacts (.pickle files) after training." DisplayName="=== Train model ===" sap:VirtualizedContainerService.HintSize="200,183" sap2010:WorkflowViewState.IdRef="Sequence_16">
                                                       <Sequence.Variables>
                                                         <Variable x:TypeArguments="x:String" Name="str_Features" />
                                                         <Variable x:TypeArguments="x:String" Name="str_CategoricalFeatures" />
@@ -598,8 +598,14 @@
                                                         </scg:Dictionary>
                                                       </sap:WorkflowViewStateService.ViewState>
                                                       <TryCatch DisplayName="Try Catch" sap:VirtualizedContainerService.HintSize="587,3529" sap2010:WorkflowViewState.IdRef="TryCatch_2">
+                                                        <sap:WorkflowViewStateService.ViewState>
+                                                          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                                                            <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                                                            <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                                                          </scg:Dictionary>
+                                                        </sap:WorkflowViewStateService.ViewState>
                                                         <TryCatch.Try>
-                                                          <Sequence sap:VirtualizedContainerService.HintSize="569,3302" sap2010:WorkflowViewState.IdRef="Sequence_17">
+                                                          <Sequence DisplayName="Main Try Sequence" sap:VirtualizedContainerService.HintSize="569,3302" sap2010:WorkflowViewState.IdRef="Sequence_17">
                                                             <Sequence.Variables>
                                                               <Variable x:TypeArguments="njl:JObject" Name="jobject_TrainResult" />
                                                               <Variable x:TypeArguments="x:String" Name="str_ColumnNames">
@@ -614,7 +620,7 @@
                                                                 <x:Boolean x:Key="IsExpanded">True</x:Boolean>
                                                               </scg:Dictionary>
                                                             </sap:WorkflowViewStateService.ViewState>
-                                                            <Assign sap:VirtualizedContainerService.HintSize="547,60" sap2010:WorkflowViewState.IdRef="Assign_13">
+                                                            <Assign DisplayName="Save start date / time of training" sap:VirtualizedContainerService.HintSize="547,60" sap2010:WorkflowViewState.IdRef="Assign_13">
                                                               <Assign.To>
                                                                 <OutArgument x:TypeArguments="s:DateTime">[dat_Start]</OutArgument>
                                                               </Assign.To>
@@ -622,7 +628,7 @@
                                                                 <InArgument x:TypeArguments="s:DateTime">[DateTime.Now]</InArgument>
                                                               </Assign.Value>
                                                             </Assign>
-                                                            <Assign sap:VirtualizedContainerService.HintSize="547,60" sap2010:WorkflowViewState.IdRef="Assign_7">
+                                                            <Assign DisplayName="Generated CSV file path with a timestamp" sap:VirtualizedContainerService.HintSize="547,60" sap2010:WorkflowViewState.IdRef="Assign_7">
                                                               <Assign.To>
                                                                 <OutArgument x:TypeArguments="x:String">[str_CSVFilePath]</OutArgument>
                                                               </Assign.To>
@@ -630,7 +636,7 @@
                                                                 <InArgument x:TypeArguments="x:String">[str_FolderPath + String.Format("\converted_{0}.csv", DateTime.Now.ToString("ddMMyyyyHHmmss"))]</InArgument>
                                                               </Assign.Value>
                                                             </Assign>
-                                                            <ui:ForEach x:TypeArguments="x:String" CurrentIndex="[int_Index]" DisplayName="For Each" sap:VirtualizedContainerService.HintSize="547,466" sap2010:WorkflowViewState.IdRef="ForEach`1_3" Values="[list_ColumnNames]">
+                                                            <ui:ForEach x:TypeArguments="x:String" CurrentIndex="[int_Index]" DisplayName="Convert list of column names to a String containing column names separated by &quot;::&quot;" sap:VirtualizedContainerService.HintSize="547,466" sap2010:WorkflowViewState.IdRef="ForEach`1_3" Values="[list_ColumnNames]">
                                                               <ui:ForEach.Body>
                                                                 <ActivityAction x:TypeArguments="x:String">
                                                                   <ActivityAction.Argument>
@@ -697,7 +703,7 @@
                                                                 <InArgument x:TypeArguments="x:String" x:Key="argIn_str_FolderPath">[str_FolderPath]</InArgument>
                                                               </ui:InvokeWorkflowFile.Arguments>
                                                             </ui:InvokeWorkflowFile>
-                                                            <Assign sap:VirtualizedContainerService.HintSize="547,60" sap2010:WorkflowViewState.IdRef="Assign_35">
+                                                            <Assign DisplayName="Get errors from training results" sap:VirtualizedContainerService.HintSize="547,60" sap2010:WorkflowViewState.IdRef="Assign_35">
                                                               <Assign.To>
                                                                 <OutArgument x:TypeArguments="s:String[]">[arr_Errors]</OutArgument>
                                                               </Assign.To>
@@ -705,7 +711,7 @@
                                                                 <InArgument x:TypeArguments="s:String[]">[jobject_TrainResult.Item("errors").ToObject(Of String())]</InArgument>
                                                               </Assign.Value>
                                                             </Assign>
-                                                            <Assign sap:VirtualizedContainerService.HintSize="547,60" sap2010:WorkflowViewState.IdRef="Assign_8">
+                                                            <Assign DisplayName="Get score from training results" sap:VirtualizedContainerService.HintSize="547,60" sap2010:WorkflowViewState.IdRef="Assign_8">
                                                               <Assign.To>
                                                                 <OutArgument x:TypeArguments="x:Double">[dbl_Score]</OutArgument>
                                                               </Assign.To>
@@ -713,7 +719,7 @@
                                                                 <InArgument x:TypeArguments="x:Double">[CDbl(jobject_TrainResult.Item("score").ToString)]</InArgument>
                                                               </Assign.Value>
                                                             </Assign>
-                                                            <Assign sap:VirtualizedContainerService.HintSize="547,60" sap2010:WorkflowViewState.IdRef="Assign_14">
+                                                            <Assign DisplayName="Get model path from training results" sap:VirtualizedContainerService.HintSize="547,60" sap2010:WorkflowViewState.IdRef="Assign_14">
                                                               <Assign.To>
                                                                 <OutArgument x:TypeArguments="x:String">[str_ModelPath]</OutArgument>
                                                               </Assign.To>
@@ -721,7 +727,7 @@
                                                                 <InArgument x:TypeArguments="x:String">[jobject_TrainResult.Item("model").ToString.Replace("/", "\")]</InArgument>
                                                               </Assign.Value>
                                                             </Assign>
-                                                            <Assign sap:VirtualizedContainerService.HintSize="547,60" sap2010:WorkflowViewState.IdRef="Assign_37">
+                                                            <Assign DisplayName="Get mean pickle path from training results" sap:VirtualizedContainerService.HintSize="547,60" sap2010:WorkflowViewState.IdRef="Assign_37">
                                                               <Assign.To>
                                                                 <OutArgument x:TypeArguments="x:String">[str_DatasetMeanPath]</OutArgument>
                                                               </Assign.To>
@@ -729,7 +735,7 @@
                                                                 <InArgument x:TypeArguments="x:String">[jobject_TrainResult.Item("dataset_mean").ToString.Replace("/", "\")]</InArgument>
                                                               </Assign.Value>
                                                             </Assign>
-                                                            <Assign sap:VirtualizedContainerService.HintSize="547,60" sap2010:WorkflowViewState.IdRef="Assign_38">
+                                                            <Assign DisplayName="Get mode pickle path from training results" sap:VirtualizedContainerService.HintSize="547,60" sap2010:WorkflowViewState.IdRef="Assign_38">
                                                               <Assign.To>
                                                                 <OutArgument x:TypeArguments="x:String">[str_DatasetModePath]</OutArgument>
                                                               </Assign.To>
@@ -737,7 +743,7 @@
                                                                 <InArgument x:TypeArguments="x:String">[jobject_TrainResult.Item("dataset_mode").ToString.Replace("/", "\")]</InArgument>
                                                               </Assign.Value>
                                                             </Assign>
-                                                            <Assign sap:VirtualizedContainerService.HintSize="547,60" sap2010:WorkflowViewState.IdRef="Assign_36">
+                                                            <Assign DisplayName="Get one hot encoder pickle path from training results" sap:VirtualizedContainerService.HintSize="547,60" sap2010:WorkflowViewState.IdRef="Assign_36">
                                                               <Assign.To>
                                                                 <OutArgument x:TypeArguments="x:String">[str_OneHotEncoderPath]</OutArgument>
                                                               </Assign.To>
@@ -745,7 +751,7 @@
                                                                 <InArgument x:TypeArguments="x:String">[jobject_TrainResult.Item("one_hot_encoder").ToString.Replace("/", "\")]</InArgument>
                                                               </Assign.Value>
                                                             </Assign>
-                                                            <Assign sap:VirtualizedContainerService.HintSize="547,60" sap2010:WorkflowViewState.IdRef="Assign_24">
+                                                            <Assign DisplayName="Get scaler X pickle path from training results" sap:VirtualizedContainerService.HintSize="547,60" sap2010:WorkflowViewState.IdRef="Assign_24">
                                                               <Assign.To>
                                                                 <OutArgument x:TypeArguments="x:String">[str_ScalerXPath]</OutArgument>
                                                               </Assign.To>
@@ -753,7 +759,7 @@
                                                                 <InArgument x:TypeArguments="x:String">[jobject_TrainResult.Item("scaler_X").ToString.Replace("/", "\")]</InArgument>
                                                               </Assign.Value>
                                                             </Assign>
-                                                            <Assign sap:VirtualizedContainerService.HintSize="547,60" sap2010:WorkflowViewState.IdRef="Assign_25">
+                                                            <Assign DisplayName="Get scaler Y pickle path from training results" sap:VirtualizedContainerService.HintSize="547,60" sap2010:WorkflowViewState.IdRef="Assign_25">
                                                               <Assign.To>
                                                                 <OutArgument x:TypeArguments="x:String">[str_ScalerYPath]</OutArgument>
                                                               </Assign.To>
@@ -761,7 +767,7 @@
                                                                 <InArgument x:TypeArguments="x:String">[jobject_TrainResult.Item("scaler_y").ToString.Replace("/", "\")]</InArgument>
                                                               </Assign.Value>
                                                             </Assign>
-                                                            <Assign sap:VirtualizedContainerService.HintSize="547,60" sap2010:WorkflowViewState.IdRef="Assign_26">
+                                                            <Assign DisplayName="Get label encoder pickle path from training results" sap:VirtualizedContainerService.HintSize="547,60" sap2010:WorkflowViewState.IdRef="Assign_26">
                                                               <Assign.To>
                                                                 <OutArgument x:TypeArguments="x:String">[str_LabelEncoderPath]</OutArgument>
                                                               </Assign.To>
@@ -769,7 +775,7 @@
                                                                 <InArgument x:TypeArguments="x:String">[jobject_TrainResult.Item("labelencoder").ToString.Replace("/", "\")]</InArgument>
                                                               </Assign.Value>
                                                             </Assign>
-                                                            <Assign sap:VirtualizedContainerService.HintSize="547,60" sap2010:WorkflowViewState.IdRef="Assign_17">
+                                                            <Assign DisplayName="Get results folder path from training results" sap:VirtualizedContainerService.HintSize="547,60" sap2010:WorkflowViewState.IdRef="Assign_17">
                                                               <Assign.To>
                                                                 <OutArgument x:TypeArguments="x:String">[str_ResultsPath]</OutArgument>
                                                               </Assign.To>
@@ -777,7 +783,7 @@
                                                                 <InArgument x:TypeArguments="x:String">[str_ModelPath.Replace(".model", ".json")]</InArgument>
                                                               </Assign.Value>
                                                             </Assign>
-                                                            <Assign sap:VirtualizedContainerService.HintSize="547,60" sap2010:WorkflowViewState.IdRef="Assign_19">
+                                                            <Assign DisplayName="Get training results plot path from training results" sap:VirtualizedContainerService.HintSize="547,60" sap2010:WorkflowViewState.IdRef="Assign_19">
                                                               <Assign.To>
                                                                 <OutArgument x:TypeArguments="x:String">[str_PlotTrainingResults]</OutArgument>
                                                               </Assign.To>
@@ -785,7 +791,7 @@
                                                                 <InArgument x:TypeArguments="x:String">[jobject_TrainResult.Item("plot_training_results").ToString]</InArgument>
                                                               </Assign.Value>
                                                             </Assign>
-                                                            <Assign sap:VirtualizedContainerService.HintSize="547,60" sap2010:WorkflowViewState.IdRef="Assign_20">
+                                                            <Assign DisplayName="Get test results plot path from training results" sap:VirtualizedContainerService.HintSize="547,60" sap2010:WorkflowViewState.IdRef="Assign_20">
                                                               <Assign.To>
                                                                 <OutArgument x:TypeArguments="x:String">[str_PlotTestResults]</OutArgument>
                                                               </Assign.To>
@@ -793,7 +799,7 @@
                                                                 <InArgument x:TypeArguments="x:String">[jobject_TrainResult.Item("plot_test_results").ToString]</InArgument>
                                                               </Assign.Value>
                                                             </Assign>
-                                                            <Assign sap:VirtualizedContainerService.HintSize="547,60" sap2010:WorkflowViewState.IdRef="Assign_27">
+                                                            <Assign DisplayName="Get confusion matrix plot path from training results" sap:VirtualizedContainerService.HintSize="547,60" sap2010:WorkflowViewState.IdRef="Assign_27">
                                                               <Assign.To>
                                                                 <OutArgument x:TypeArguments="x:String">[str_PlotConfusionMatrix]</OutArgument>
                                                               </Assign.To>
@@ -801,7 +807,7 @@
                                                                 <InArgument x:TypeArguments="x:String">[jobject_TrainResult.Item("plot_confusion_matrix").ToString]</InArgument>
                                                               </Assign.Value>
                                                             </Assign>
-                                                            <Assign sap:VirtualizedContainerService.HintSize="547,60" sap2010:WorkflowViewState.IdRef="Assign_28">
+                                                            <Assign DisplayName="Get ROC plot path from training results" sap:VirtualizedContainerService.HintSize="547,60" sap2010:WorkflowViewState.IdRef="Assign_28">
                                                               <Assign.To>
                                                                 <OutArgument x:TypeArguments="x:String">[str_PlotROC]</OutArgument>
                                                               </Assign.To>
@@ -809,7 +815,7 @@
                                                                 <InArgument x:TypeArguments="x:String">[jobject_TrainResult.Item("plot_roc").ToString]</InArgument>
                                                               </Assign.Value>
                                                             </Assign>
-                                                            <Assign sap:VirtualizedContainerService.HintSize="547,60" sap2010:WorkflowViewState.IdRef="Assign_29">
+                                                            <Assign DisplayName="Get KSS plot path from training results" sap:VirtualizedContainerService.HintSize="547,60" sap2010:WorkflowViewState.IdRef="Assign_29">
                                                               <Assign.To>
                                                                 <OutArgument x:TypeArguments="x:String">[str_PlotKSStatistic]</OutArgument>
                                                               </Assign.To>
@@ -817,7 +823,7 @@
                                                                 <InArgument x:TypeArguments="x:String">[jobject_TrainResult.Item("plot_ks_statistic").ToString]</InArgument>
                                                               </Assign.Value>
                                                             </Assign>
-                                                            <Assign sap:VirtualizedContainerService.HintSize="547,60" sap2010:WorkflowViewState.IdRef="Assign_30">
+                                                            <Assign DisplayName="Get precision recall plot path from training results" sap:VirtualizedContainerService.HintSize="547,60" sap2010:WorkflowViewState.IdRef="Assign_30">
                                                               <Assign.To>
                                                                 <OutArgument x:TypeArguments="x:String">[str_PlotPrecisionRecall]</OutArgument>
                                                               </Assign.To>
@@ -825,7 +831,7 @@
                                                                 <InArgument x:TypeArguments="x:String">[jobject_TrainResult.Item("plot_precision_recall").ToString]</InArgument>
                                                               </Assign.Value>
                                                             </Assign>
-                                                            <Assign sap:VirtualizedContainerService.HintSize="547,60" sap2010:WorkflowViewState.IdRef="Assign_31">
+                                                            <Assign DisplayName="Get cumulative gain plot path from training results" sap:VirtualizedContainerService.HintSize="547,60" sap2010:WorkflowViewState.IdRef="Assign_31">
                                                               <Assign.To>
                                                                 <OutArgument x:TypeArguments="x:String">[str_PlotCumulativeGain]</OutArgument>
                                                               </Assign.To>
@@ -833,7 +839,7 @@
                                                                 <InArgument x:TypeArguments="x:String">[jobject_TrainResult.Item("plot_cumulative_gain").ToString]</InArgument>
                                                               </Assign.Value>
                                                             </Assign>
-                                                            <Assign sap:VirtualizedContainerService.HintSize="547,60" sap2010:WorkflowViewState.IdRef="Assign_32">
+                                                            <Assign DisplayName="Get lift curve plot path from training results" sap:VirtualizedContainerService.HintSize="547,60" sap2010:WorkflowViewState.IdRef="Assign_32">
                                                               <Assign.To>
                                                                 <OutArgument x:TypeArguments="x:String">[str_PlotLiftCurve]</OutArgument>
                                                               </Assign.To>
@@ -841,7 +847,7 @@
                                                                 <InArgument x:TypeArguments="x:String">[jobject_TrainResult.Item("plot_lift_curve").ToString]</InArgument>
                                                               </Assign.Value>
                                                             </Assign>
-                                                            <Assign sap:VirtualizedContainerService.HintSize="547,60" sap2010:WorkflowViewState.IdRef="Assign_33">
+                                                            <Assign DisplayName="Get learning curve plot path from training results" sap:VirtualizedContainerService.HintSize="547,60" sap2010:WorkflowViewState.IdRef="Assign_33">
                                                               <Assign.To>
                                                                 <OutArgument x:TypeArguments="x:String">[str_PlotLearningCurve]</OutArgument>
                                                               </Assign.To>
@@ -849,7 +855,7 @@
                                                                 <InArgument x:TypeArguments="x:String">[jobject_TrainResult.Item("plot_learning_curve").ToString]</InArgument>
                                                               </Assign.Value>
                                                             </Assign>
-                                                            <Assign sap:VirtualizedContainerService.HintSize="547,60" sap2010:WorkflowViewState.IdRef="Assign_34">
+                                                            <Assign DisplayName="Get feature importances plot path from training results" sap:VirtualizedContainerService.HintSize="547,60" sap2010:WorkflowViewState.IdRef="Assign_34">
                                                               <Assign.To>
                                                                 <OutArgument x:TypeArguments="x:String">[str_PlotFeatureImportances]</OutArgument>
                                                               </Assign.To>
@@ -857,7 +863,7 @@
                                                                 <InArgument x:TypeArguments="x:String">[jobject_TrainResult.Item("plot_feature_importances").ToString]</InArgument>
                                                               </Assign.Value>
                                                             </Assign>
-                                                            <ui:WriteTextFile DisplayName="Write Text File" FileName="[str_ResultsPath]" sap:VirtualizedContainerService.HintSize="547,87" sap2010:WorkflowViewState.IdRef="WriteTextFile_1" Text="[jobject_TrainResult.ToString]" />
+                                                            <ui:WriteTextFile DisplayName="Write results to a JSON file" FileName="[str_ResultsPath]" sap:VirtualizedContainerService.HintSize="547,87" sap2010:WorkflowViewState.IdRef="WriteTextFile_1" Text="[jobject_TrainResult.ToString]" />
                                                             <ui:LogMessage DisplayName="Log Message" sap:VirtualizedContainerService.HintSize="547,91" sap2010:WorkflowViewState.IdRef="LogMessage_3" Level="Trace" Message="[String.Format(&quot;Results from training: {0}&quot;, jobject_TrainResult.ToString)]" />
                                                           </Sequence>
                                                         </TryCatch.Try>
@@ -905,7 +911,7 @@
                                                             <av:Size x:Key="ShapeSize">200,483</av:Size>
                                                           </scg:Dictionary>
                                                         </sap:WorkflowViewStateService.ViewState>
-                                                        <ui:InvokeWorkflowFile ContinueOnError="{x:Null}" sap2010:Annotation.AnnotationText="Shows report page after machine learning model training. It allows the end-user to get access to some metrics (score, number of observations, duration, plots) and the result of the training.&#xD;&#xA;&#xD;&#xA;Inputs:&#xD;&#xA;- Score of the training&#xD;&#xA;- Number of observations&#xD;&#xA;- Duration of the training&#xD;&#xA;- List of headers&#xD;&#xA;- Path of the configuration file saved earlier (JSON file)&#xD;&#xA;- Path of the result file (JSON file)&#xD;&#xA;- Path of the machine learning model (.model file)&#xD;&#xA;- Paths of different plots (.png files)&#xD;&#xA;- Paths of different artifacts (.pickle files)&#xD;&#xA;- Path of the template generated for use with HandyML_Predictor&#xD;&#xA;- Errors raised during training if so" DisplayName="6. Report" sap:VirtualizedContainerService.HintSize="200,483" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_8" UnSafe="False" WorkflowFileName="1_6_Report.xaml">
+                                                        <ui:InvokeWorkflowFile ContinueOnError="{x:Null}" sap2010:Annotation.AnnotationText="Shows report page after machine learning model training. It allows the end-user to get access to some metrics (score, number of observations, duration, plots) and the result of the training.&#xA;&#xA;Inputs:&#xA;- Score of the training&#xA;- Number of observations&#xA;- Duration of the training&#xA;- List of headers&#xA;- Path of the configuration file saved earlier (JSON file)&#xA;- Path of the result file (JSON file)&#xA;- Path of the machine learning model (.model file)&#xA;- Paths of different plots (.png files)&#xA;- Paths of different artifacts (.pickle files)&#xA;- Path of the template generated for use with HandyML_Predictor&#xA;- Errors raised during training if so" DisplayName="6. Report" sap:VirtualizedContainerService.HintSize="200,483" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_8" UnSafe="False" WorkflowFileName="1_6_Report.xaml">
                                                           <ui:InvokeWorkflowFile.Arguments>
                                                             <InArgument x:TypeArguments="x:String" x:Key="argIn_str_ModelPath">[str_ModelPath]</InArgument>
                                                             <InArgument x:TypeArguments="x:Double" x:Key="argIn_dbl_Score">[dbl_Score]</InArgument>
@@ -1011,7 +1017,7 @@
                                     <av:PointCollection x:Key="ConnectorLocation">300,442.5 300,516.5</av:PointCollection>
                                   </scg:Dictionary>
                                 </sap:WorkflowViewStateService.ViewState>
-                                <ui:InvokeWorkflowFile ContinueOnError="{x:Null}" sap2010:Annotation.AnnotationText="Shows first page of the form asking the user to specify information about the Excel file holding training data.&#xD;&#xA;&#xD;&#xA;Outputs:&#xD;&#xA;- Path of the Excel file holding training data&#xD;&#xA;- Name of the sheet holding formatted training data&#xD;&#xA;- Is data should be considered as headers?&#xD;&#xA;- Go to next step?&#xD;&#xA;- List of headers&#xD;&#xA;- Training data in DataTable format&#xD;&#xA;" DisplayName="1. Where is your data?" sap:VirtualizedContainerService.HintSize="200,318" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_12" UnSafe="False" WorkflowFileName="1_1_Where_is_your_data.xaml">
+                                <ui:InvokeWorkflowFile ContinueOnError="{x:Null}" sap2010:Annotation.AnnotationText="Shows first page of the form asking the user to specify information about the Excel file holding training data.&#xA;&#xA;Outputs:&#xA;- Path of the Excel file holding training data&#xA;- Name of the sheet holding formatted training data&#xA;- Is data should be considered as headers?&#xA;- Go to next step?&#xA;- List of headers&#xA;- Training data in DataTable format&#xA;" DisplayName="1. Where is your data?" sap:VirtualizedContainerService.HintSize="200,318" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_12" UnSafe="False" WorkflowFileName="1_1_Where_is_your_data.xaml">
                                   <ui:InvokeWorkflowFile.Arguments>
                                     <OutArgument x:TypeArguments="scg:List(x:String)" x:Key="argOut_list_Headers">[list_ColumnNames]</OutArgument>
                                     <OutArgument x:TypeArguments="x:Boolean" x:Key="argOut_bool_FormFilled">[bool_NextStep]</OutArgument>
