@@ -48,9 +48,7 @@ If using Anaconda, launch Anaconda Prompt and execute following commands:
 
 `activate [environment-name]`
 
-`conda install numpy pandas scikit-learn`
-
-`pip install matplotlib scikit-plot`
+`pip install numpy pandas scikit-learn matplotlib scikit-plot`
 
 `pip install win10toast` (add options `--user --ignore-installed` when installed on a Windows 7 machine)
 
@@ -61,11 +59,11 @@ Developed with Pandas 0.24.2.
 ##### 1.3.3. Scikit-Learn
 Developed with Scikit-Learn 0.21.2.
 ##### 1.3.4. Matplotlib
-Developed with Matplotlib 3.1.1. (Note: needs to be installed using `pip`, not working correctly using `conda`)
+Developed with Matplotlib 3.1.1.
 ##### 1.3.5. Win10toast
-Developed with Win10toast 0.9. (Note: needs to be installed using `pip`, not working correctly using `conda`)
+Developed with Win10toast 0.9.
 ##### 1.3.6. Scikit-Plot
-Developed with Scikit-Plot 0.3.7. (Note: needs to be installed using `pip`, not working correctly using `conda`)
+Developed with Scikit-Plot 0.3.7.
 #### 1.4. Environment variables
 In order for the UiPath Robot to know where is Python installed and on which architecture you'll have to create 2 environment variables:
 - `HANDYML_PYTHON_PATH`, indicating the folder on which python.exe file can be found
